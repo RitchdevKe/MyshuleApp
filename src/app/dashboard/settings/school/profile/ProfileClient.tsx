@@ -3,7 +3,7 @@
 import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Building2, Globe, Save, Upload, Palette } from "lucide-react";
-import { updateSchoolProfile } from "@/app/actions/settings_school";
+import { updateSchoolProfile } from "../actions";
 
 export default function ProfileClient({ initialData }: { initialData: any }) {
   const router = useRouter();
@@ -15,7 +15,6 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
   const [primaryColor, setPrimaryColor] = useState(initialData?.primaryColor || "#0ea5e9");
   const [secondaryColor, setSecondaryColor] = useState(initialData?.secondaryColor || "#1e293b");
   const [logoUrl, setLogoUrl] = useState(initialData?.logoUrl || "");
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
@@ -30,30 +29,27 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
     }
   };
 
-  const handleSave = async () => {
-    setLoading(true);
+  const handleSave = () => {
     setSuccess(false);
     setError("");
-    try {
-      await updateSchoolProfile({ 
-        name, 
-        domainPrefix,
-        motto,
-        timezone,
-        primaryColor,
-        secondaryColor,
-        logoUrl
-      });
-      startTransition(() => {
+    startTransition(async () => {
+      try {
+        await updateSchoolProfile({ 
+          name, 
+          domainPrefix,
+          motto,
+          timezone,
+          primaryColor,
+          secondaryColor,
+          logoUrl
+        });
         router.refresh();
-      });
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
-    } catch (err: any) {
-      setError(err.message || "Failed to save profile");
-    } finally {
-      setLoading(false);
-    }
+        setSuccess(true);
+        setTimeout(() => setSuccess(false), 3000);
+      } catch (err: any) {
+        setError(err.message || "Failed to save profile");
+      }
+    });
   };
 
   return (
@@ -170,10 +166,10 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
         <div className="pt-4 flex items-center gap-4">
           <button 
             onClick={handleSave}
-            disabled={loading}
+            disabled={isPending}
             className="flex items-center gap-2 bg-primary-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm hover:bg-primary-700 transition-colors disabled:opacity-50"
           >
-            <Save className="w-4 h-4" /> {loading ? "Saving..." : "Save Profile"}
+            <Save className="w-4 h-4" /> {isPending ? "Saving..." : "Save Profile"}
           </button>
           {success && <span className="text-sm font-bold text-emerald-600">Saved successfully!</span>}
           {error && <span className="text-sm font-bold text-red-600">{error}</span>}

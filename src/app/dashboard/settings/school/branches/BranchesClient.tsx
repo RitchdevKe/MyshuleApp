@@ -3,7 +3,7 @@
 import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Network, Plus, Trash2, Building, CheckSquare, Square } from "lucide-react";
-import { createSchoolBranch, deleteSchoolBranch } from "@/app/actions/settings_school";
+import { createBranch, deleteBranch } from "../actions";
 
 const AVAILABLE_LEVELS = [
   { id: "PRE_PRIMARY", label: "Pre-Primary" },
@@ -18,31 +18,26 @@ export default function BranchesClient({ branches }: { branches: any[] }) {
   const [showAdd, setShowAdd] = useState(false);
   const [name, setName] = useState("");
   const [levelTypes, setLevelTypes] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
 
   const toggleLevel = (id: string) => {
      setLevelTypes(prev => prev.includes(id) ? prev.filter(l => l !== id) : [...prev, id]);
   };
 
-  const handleAdd = async () => {
+  const handleAdd = () => {
     if (!name || levelTypes.length === 0) return;
-    setLoading(true);
-    await createSchoolBranch({ name, levelTypes: levelTypes as any[] });
-    
-    startTransition(() => {
+    startTransition(async () => {
+      await createBranch({ name, levelTypes: levelTypes as any[] });
       router.refresh();
+      setShowAdd(false);
+      setName("");
+      setLevelTypes([]);
     });
-    
-    setLoading(false);
-    setShowAdd(false);
-    setName("");
-    setLevelTypes([]);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this branch?")) {
-      await deleteSchoolBranch(id);
-      startTransition(() => {
+      startTransition(async () => {
+        await deleteBranch(id);
         router.refresh();
       });
     }
@@ -70,14 +65,15 @@ export default function BranchesClient({ branches }: { branches: any[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {branches.map((branch) => (
-          <div key={branch.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm group">
+          <div key={branch.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm group relative">
             <div className="flex justify-between items-start mb-4">
               <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500">
                 <Building className="w-5 h-5" />
               </div>
               <button 
                 onClick={() => handleDelete(branch.id)}
-                className="text-slate-400 hover:text-red-500 transition-colors p-1"
+                disabled={isPending}
+                className="text-slate-400 hover:text-red-500 transition-colors p-1 disabled:opacity-50"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -123,7 +119,7 @@ export default function BranchesClient({ branches }: { branches: any[] }) {
                       <div 
                          key={lvl.id} 
                          onClick={() => toggleLevel(lvl.id)}
-                         className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${levelTypes.includes(lvl.id) ? 'bg-primary-50 border-primary-200 text-primary-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+                         className={lex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors }
                       >
                          {levelTypes.includes(lvl.id) ? <CheckSquare className="w-5 h-5 text-primary-500" /> : <Square className="w-5 h-5 text-slate-300" />}
                          <span className="font-bold text-sm">{lvl.label}</span>
@@ -135,16 +131,17 @@ export default function BranchesClient({ branches }: { branches: any[] }) {
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
               <button 
                 onClick={() => setShowAdd(false)}
-                className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors"
+                disabled={isPending}
+                className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors disabled:opacity-50"
               >
                 Cancel
               </button>
               <button 
                 onClick={handleAdd}
-                disabled={loading || !name || levelTypes.length === 0}
+                disabled={isPending || !name || levelTypes.length === 0}
                 className="px-5 py-2.5 text-sm font-bold text-white bg-primary-600 hover:bg-primary-700 rounded-xl transition-colors shadow-sm disabled:opacity-50"
               >
-                {loading ? "Adding..." : "Add Branch"}
+                {isPending ? "Adding..." : "Add Branch"}
               </button>
             </div>
           </div>

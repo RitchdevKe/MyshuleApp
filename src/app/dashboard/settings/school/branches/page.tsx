@@ -1,10 +1,9 @@
 import React from "react";
 import BranchesClient from "./BranchesClient";
-import { getTenantProfile } from "@/app/actions/tenant";
+import { getBranches } from "../actions";
 
 export default async function BranchesPage() {
-  const profile = await getTenantProfile();
-  const branches = profile?.branches || [];
+  const branches = await getBranches();
 
   return <BranchesClient branches={branches} />;
 }

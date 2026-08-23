@@ -1,9 +1,10 @@
 import React from "react";
 import PreferencesClient from "./PreferencesClient";
-import { getTenantProfile } from "@/app/actions/tenant";
+import { getSchoolProfile } from "../actions";
 
 export default async function PreferencesPage() {
-  const tenant = await getTenantProfile();
+  const tenant = await getSchoolProfile();
 
   return <PreferencesClient tenant={tenant} />;
 }
+

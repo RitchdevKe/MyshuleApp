@@ -3,12 +3,11 @@
 import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Phone, Save } from "lucide-react";
-import { updateSchoolProfile } from "@/app/actions/settings_school";
+import { updateSchoolProfile } from "../actions";
 
 export default function ContactsClient({ tenant }: { tenant: any }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     contactEmail: tenant?.contactEmail || "",
     contactPhone: tenant?.contactPhone || "",
@@ -20,19 +19,16 @@ export default function ContactsClient({ tenant }: { tenant: any }) {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSave = async () => {
-    setLoading(true);
-    try {
-      await updateSchoolProfile(formData);
-      startTransition(() => {
+  const handleSave = () => {
+    startTransition(async () => {
+      try {
+        await updateSchoolProfile(formData);
         router.refresh();
-      });
-      alert("Contacts saved successfully!");
-    } catch (e) {
-      alert("Failed to save contacts");
-    } finally {
-      setLoading(false);
-    }
+        alert("Contacts saved successfully!");
+      } catch (e) {
+        alert("Failed to save contacts");
+      }
+    });
   };
 
   return (
@@ -49,10 +45,10 @@ export default function ContactsClient({ tenant }: { tenant: any }) {
         </div>
         <button 
           onClick={handleSave}
-          disabled={loading}
+          disabled={isPending}
           className="flex items-center gap-2 bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm hover:bg-slate-700 transition-colors disabled:opacity-50"
         >
-          <Save className="w-4 h-4" /> Save Contacts
+          <Save className="w-4 h-4" /> {isPending ? "Saving..." : "Save Contacts"}
         </button>
       </div>
 

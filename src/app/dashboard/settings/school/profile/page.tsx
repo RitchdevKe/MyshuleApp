@@ -1,9 +1,10 @@
 import React from "react";
 import ProfileClient from "./ProfileClient";
-import { getTenantProfile } from "@/app/actions/tenant";
+import { getSchoolProfile } from "../actions";
 
 export default async function ProfilePage() {
-  const profile = await getTenantProfile();
+  const profile = await getSchoolProfile();
 
   return <ProfileClient initialData={profile} />;
 }
+

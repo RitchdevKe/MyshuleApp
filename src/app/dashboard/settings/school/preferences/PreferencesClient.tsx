@@ -3,12 +3,11 @@
 import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Settings, Save } from "lucide-react";
-import { updateSchoolProfile } from "@/app/actions/settings_school";
+import { updateSchoolProfile } from "../actions";
 
 export default function PreferencesClient({ tenant }: { tenant: any }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     timezone: tenant?.timezone || "Africa/Nairobi",
     dateFormat: tenant?.dateFormat || "DD/MM/YYYY",
@@ -19,19 +18,16 @@ export default function PreferencesClient({ tenant }: { tenant: any }) {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSave = async () => {
-    setLoading(true);
-    try {
-      await updateSchoolProfile(formData);
-      startTransition(() => {
+  const handleSave = () => {
+    startTransition(async () => {
+      try {
+        await updateSchoolProfile(formData);
         router.refresh();
-      });
-      alert("Preferences saved successfully!");
-    } catch (e) {
-      alert("Failed to save preferences");
-    } finally {
-      setLoading(false);
-    }
+        alert("Preferences saved successfully!");
+      } catch (e) {
+        alert("Failed to save preferences");
+      }
+    });
   };
 
   return (
@@ -48,10 +44,10 @@ export default function PreferencesClient({ tenant }: { tenant: any }) {
         </div>
         <button 
           onClick={handleSave}
-          disabled={loading}
+          disabled={isPending}
           className="flex items-center gap-2 bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm hover:bg-slate-700 transition-colors disabled:opacity-50"
         >
-          <Save className="w-4 h-4" /> Save Preferences
+          <Save className="w-4 h-4" /> {isPending ? "Saving..." : "Save Preferences"}
         </button>
       </div>
 

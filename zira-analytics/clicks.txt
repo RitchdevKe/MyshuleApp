@@ -1,0 +1,133 @@
+src/App.tsx:567:                onClick={() => setActiveTab('overview')}
+src/App.tsx:573:                onClick={() => alert(`Upgrading credential request for '${requiredPage}' successfully filed with Principal Julius Karega.`)}
+src/App.tsx:801:            onClick={() => setIsSidebarOpen(false)} 
+src/components/LoginScreen.tsx:193:                  <a href="#" className="text-[10px] font-bold text-indigo-400 hover:text-indigo-300 transition" onClick={(e) => { e.preventDefault(); alert("Please use the demo login credentials provided in the bottom card."); }}>
+src/components/LoginScreen.tsx:240:                onClick={handleAutocompleteAdmin}
+src/components/LoginScreen.tsx:251:                onClick={() => autofillUser('principal')}
+src/components/LoginScreen.tsx:262:                onClick={() => autofillUser('headteacher')}
+src/components/LoginScreen.tsx:273:                onClick={() => autofillUser('accountant')}
+src/components/LoginScreen.tsx:284:                onClick={handleAutocompleteDemo}
+src/components/LoginScreen.tsx:295:                onClick={() => autofillUser('parent')}
+src/components/Sidebar.tsx:213:              onClick={onReturnToAdmin}
+src/components/Sidebar.tsx:237:                      onClick={() => toggleGroup(group.key)}
+src/components/Sidebar.tsx:259:                              onClick={() => onTabChange(sub.id)}
+src/components/Sidebar.tsx:288:                    onClick={() => onTabChange(item.id)}
+src/components/Sidebar.tsx:307:              onClick={() => onTabChange('super_admin')}
+src/components/Sidebar.tsx:316:              onClick={() => onTabChange('overview')}
+src/components/Sidebar.tsx:343:          onClick={onLogout}
+src/components/AcademicTab.tsx:200:                    onClick={() => setSelectedForm(f)}
+src/components/AcademicTab.tsx:222:                    onClick={() => setSelectedStream(s)}
+src/components/AcademicTab.tsx:368:                              onClick={() => handleOpenStudentModal(sheet)}
+src/components/AcademicTab.tsx:405:                onClick={() => setSelectedStudentSheet(null)}
+src/components/AcademicTab.tsx:496:                      onClick={() => handleFetchAiAdvisorReport(selectedStudentSheet)}
+src/components/AcademicTab.tsx:563:                onClick={() => alert("Report card dispatch successfully prepared for print spooler.")}
+src/components/AcademicTab.tsx:571:                onClick={() => setSelectedStudentSheet(null)}
+src/components/StudentsTab.tsx:233:                  onClick={() => setSelectedForm(f)}
+src/components/StudentsTab.tsx:253:                  onClick={() => setSelectedStream(st)}
+src/components/StudentsTab.tsx:282:              onClick={() => setShowBulkImport(true)}
+src/components/StudentsTab.tsx:290:              onClick={() => setShowWizard(true)}
+src/components/StudentsTab.tsx:340:                        onClick={() => setActiveDossier(stud)}
+src/components/StudentsTab.tsx:356:                            onClick={() => setActiveDossier(stud)}
+src/components/StudentsTab.tsx:363:                            onClick={() => {
+src/components/StudentsTab.tsx:380:                                onClick={() => setActiveDossier(stud)}
+src/components/StudentsTab.tsx:387:                                onClick={() => handleApplyPermissionsEdit(stud)}
+src/components/StudentsTab.tsx:394:                                onClick={() => handleStatusChangeToggle(stud, 'Suspended')}
+src/components/StudentsTab.tsx:401:                                onClick={() => handleStatusChangeToggle(stud, 'Active')}
+src/components/StudentsTab.tsx:408:                                onClick={() => handleSmsDispatchedAlert(stud.name)}
+src/components/StudentsTab.tsx:416:                                onClick={() => handleDelete(stud.id)}
+src/components/StudentsTab.tsx:478:                onClick={() => setIsFormOpen(false)}
+src/components/StudentsTab.tsx:582:                  onClick={() => setIsFormOpen(false)}
+src/components/FinanceTab.tsx:158:          onClick={() => setFormOpen(true)}
+src/components/FinanceTab.tsx:235:                onClick={() => setFormOpen(false)}
+src/components/FinanceTab.tsx:295:                      onClick={handleAutocompleteRef}
+src/components/FinanceTab.tsx:317:                  onClick={() => setFormOpen(false)}
+src/components/SmsTab.tsx:126:                    onClick={() => handleSmsTypeChange(cat)}
+src/components/TimetableTab.tsx:110:              onClick={() => setSelectedForm(f)}
+src/components/TimetableTab.tsx:124:          onClick={() => setFilterTeacher(!filterTeacher)}
+src/components/BulkStudentImport.tsx:112:            onClick={onClose}
+src/components/BulkStudentImport.tsx:132:              onClick={downloadTemplateSim}
+src/components/BulkStudentImport.tsx:142:              onClick={handleSimulateFileSelect}
+src/components/BulkStudentImport.tsx:205:            onClick={onClose}
+src/components/BulkStudentImport.tsx:213:              onClick={handleApplyImport}
+src/components/AdmissionsTab.tsx:352:          onClick={() => {
+src/components/AdmissionsTab.tsx:421:                        onClick={() => setActiveDossierReview(a)}
+src/components/AdmissionsTab.tsx:429:                        onClick={() => {
+src/components/AdmissionsTab.tsx:446:                            onClick={() => setShowInterviewModal(a)}
+src/components/AdmissionsTab.tsx:453:                            onClick={() => setShowExamScoreModal(a)}
+src/components/AdmissionsTab.tsx:460:                            onClick={() => handleStatusChange(a.id, 'accepted')}
+src/components/AdmissionsTab.tsx:468:                              onClick={() => handleEnrollApplicantClick(a)}
+src/components/AdmissionsTab.tsx:503:                  onClick={() => setActiveDossierReview(null)}
+src/components/AdmissionsTab.tsx:576:                onClick={() => setActiveDossierReview(null)}
+src/components/AdmissionsTab.tsx:583:                  onClick={() => {
+src/components/AdmissionsTab.tsx:629:                onClick={() => setShowInterviewModal(null)}
+src/components/AdmissionsTab.tsx:668:                onClick={() => setShowExamScoreModal(null)}
+src/components/ModuleHeader.tsx:56:            onClick={() => setIsDarkMode(!isDarkMode)}
+src/components/ModuleHeader.tsx:113:          onClick={onToggleSidebar}
+src/components/RolePermissionsGrid.tsx:125:                onClick={() => setSelectedRole(r)}
+src/components/RolePermissionsGrid.tsx:145:            onClick={handleSaveAll}
+src/components/RolePermissionsGrid.tsx:182:                      onClick={() => handleSelectAll(categoryKey, true)}
+src/components/RolePermissionsGrid.tsx:190:                      onClick={() => handleSelectAll(categoryKey, false)}
+src/components/RolePermissionsGrid.tsx:205:                        onClick={() => handleToggle(categoryKey, pageKey)}
+src/components/NewEnrollmentWizard.tsx:249:            onClick={onClose}
+src/components/NewEnrollmentWizard.tsx:265:                onClick={() => {
+src/components/NewEnrollmentWizard.tsx:309:                        onClick={() => setAvatar(null)}
+src/components/NewEnrollmentWizard.tsx:549:                      onClick={() => setShowAddGrade(!showAddGrade)}
+src/components/NewEnrollmentWizard.tsx:567:                        onClick={addGrade}
+src/components/NewEnrollmentWizard.tsx:592:                      onClick={() => setShowAddStream(!showAddStream)}
+src/components/NewEnrollmentWizard.tsx:610:                        onClick={addStream}
+src/components/NewEnrollmentWizard.tsx:657:                      onClick={() => setStudentType('Day Student')}
+src/components/NewEnrollmentWizard.tsx:666:                      onClick={() => setStudentType('Boarding Student')}
+src/components/NewEnrollmentWizard.tsx:732:                    onClick={handleAddGuardian}
+src/components/NewEnrollmentWizard.tsx:746:                          onClick={() => handleRemoveGuardian(g.id)}
+src/components/NewEnrollmentWizard.tsx:1039:                        onClick={() => handleSimulateAttachment(docItem.key)}
+src/components/NewEnrollmentWizard.tsx:1110:            onClick={() => setCurrentStep(prev => prev - 1)}
+src/components/NewEnrollmentWizard.tsx:1119:              onClick={() => {
+src/components/NewEnrollmentWizard.tsx:1133:              onClick={handleSubmit}
+src/components/StudentProfileDossier.tsx:54:            onClick={onClose}
+src/components/StudentProfileDossier.tsx:109:                onClick={handleExportDossierSim}
+src/components/StudentProfileDossier.tsx:116:                  onClick={onEdit}
+src/components/StudentProfileDossier.tsx:136:                    onClick={() => setActiveSubTab(t.id)}
+src/components/SuperAdminPortal.tsx:297:          onClick={() => setActiveTab('overview')}
+src/components/SuperAdminPortal.tsx:307:          onClick={() => setActiveTab('tenants')}
+src/components/SuperAdminPortal.tsx:317:          onClick={() => setActiveTab('sms')}
+src/components/SuperAdminPortal.tsx:327:          onClick={() => setActiveTab('finance')}
+src/components/SuperAdminPortal.tsx:574:                onClick={handleOpenAddSchool}
+src/components/SuperAdminPortal.tsx:657:                                onClick={() => onImpersonateSchool(school.id)}
+src/components/SuperAdminPortal.tsx:667:                                onClick={() => handleOpenEditSchool(school)}
+src/components/SuperAdminPortal.tsx:858:                              onClick={() => handleSettleInvoice(inv.id)}
+src/components/SuperAdminPortal.tsx:926:                onClick={() => setIsAddSchoolOpen(false)}
+src/components/SuperAdminPortal.tsx:1056:                  onClick={() => setIsAddSchoolOpen(false)}
+src/components/SuperAdminPortal.tsx:1084:                onClick={() => setIsEditSchoolOpen(false)}
+src/components/SuperAdminPortal.tsx:1168:                  onClick={() => setIsEditSchoolOpen(false)}
+src/components/TeacherPortal.tsx:442:          onClick={() => setActivePortalTab('lessons')}
+src/components/TeacherPortal.tsx:453:          onClick={() => setActivePortalTab('class_teacher')}
+src/components/TeacherPortal.tsx:464:          onClick={() => setActivePortalTab('target_predictor')}
+src/components/TeacherPortal.tsx:475:          onClick={() => setActivePortalTab('subject_analytics')}
+src/components/TeacherPortal.tsx:527:                  onClick={handleBulkPerformanceAids}
+src/components/TeacherPortal.tsx:565:                onClick={handleSaveSpreadsheetMarks}
+src/components/TeacherPortal.tsx:650:                                onClick={() => handleTriggerParentSMS(existingCard, student)}
+src/components/TeacherPortal.tsx:777:                                  onClick={() => setEditingRemarksStudentId(null)}
+src/components/TeacherPortal.tsx:783:                                  onClick={() => handleSaveRemarks(student.id)}
+src/components/TeacherPortal.tsx:794:                                onClick={() => handleOpenRemarksEditor(student.id, currentRemarks)}
+src/components/TeacherPortal.tsx:809:                              onClick={() => handleTriggerStkPush(student.id, student.name, student.feeBalance)}
+src/components/ExtraModules.tsx:252:              onClick={() => alert('New advisory broadcast queued for school-parent SMS sync.')}
+src/components/ExtraModules.tsx:273:                    onClick={() => toggleNotification(n.id)}
+src/components/ExtraModules.tsx:295:                onClick={() => {
+src/components/ExtraModules.tsx:336:                          onClick={() => handlePromote(p.id)}
+src/components/ExtraModules.tsx:506:                onClick={() => {
+src/components/ExtraModules.tsx:602:              onClick={() => {
+src/components/ExtraModules.tsx:639:                  onClick={() => alert('e-Learning resource file download successfully requested.')}
+src/components/ExtraModules.tsx:660:                onClick={() => {
+src/components/ExtraModules.tsx:767:                onClick={() => {
+src/components/ExtraModules.tsx:901:                onClick={() => {
+src/components/ExtraModules.tsx:1069:                onClick={() => {
+src/components/ExtraModules.tsx:1124:                onClick={() => {
+src/components/ExtraModules.tsx:1257:                    onClick={() => addToCart(item)}
+src/components/ExtraModules.tsx:1272:                  <button onClick={clearCart} className="text-[10px] uppercase font-bold text-rose-500 hover:underline">Clear Basket</button>
+src/components/ExtraModules.tsx:1311:                    onClick={handlePurchase}
+src/components/ExtraModules.tsx:1333:                onClick={() => {
+src/components/UsersManagementTab.tsx:143:              onClick={() => setActiveSubTab('users')}
+src/components/UsersManagementTab.tsx:154:              onClick={() => setActiveSubTab('permissions')}
+src/components/UsersManagementTab.tsx:168:              onClick={handleOpenModal}
+src/components/UsersManagementTab.tsx:318:                onClick={() => setIsOpen(false)}
+src/components/UsersManagementTab.tsx:430:                  onClick={() => setIsOpen(false)}

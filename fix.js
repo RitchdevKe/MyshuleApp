@@ -1,0 +1,1 @@
+const fs = require('fs'); const file = 'src/app/dashboard/academics/assessment/continuous/page.tsx'; let data = fs.readFileSync(file, 'utf8'); data = data.replace(/\\\/g, '\'); fs.writeFileSync(file, data);

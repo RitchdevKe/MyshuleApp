@@ -1,0 +1,21 @@
+{
+  "entities": {
+    "SchoolSettings": {
+      "title": "School Settings",
+      "description": "Global and branding settings for a school",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "logo": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schoolName"]
+    }
+  },
+  "firestore": {
+    "/settings/{schoolId}": {
+      "schema": "SchoolSettings",
+      "description": "Branding and profile settings for each school"
+    }
+  }
+}

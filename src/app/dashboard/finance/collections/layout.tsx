@@ -1,0 +1,62 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Receipt, SplitSquareHorizontal, RefreshCcw, AlertOctagon, Plus } from "lucide-react";
+
+export default function CollectionsLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const tabs = [
+    { name: "Payments & Receipts", icon: Receipt, href: "/dashboard/finance/collections/payments-receipts" },
+    { name: "Payment Allocation", icon: SplitSquareHorizontal, href: "/dashboard/finance/collections/payment-allocation" },
+    { name: "Refunds & Reversals", icon: RefreshCcw, href: "/dashboard/finance/collections/refunds-reversals" },
+    { name: "Debt Collection", icon: AlertOctagon, href: "/dashboard/finance/collections/debt-collection" }
+  ];
+
+  return (
+    <div className="space-y-6 pb-8">
+      {/* Top Header Card */}
+      <div className="bg-primary-900 p-5 rounded-3xl text-white shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-black tracking-tight">Collections</h1>
+          <p className="text-sm text-primary-200 font-medium mt-1">Manage incoming payments, allocations, refunds, and debt recovery.</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-white text-primary-900 rounded-xl font-bold text-sm transition-all shadow-sm hover:bg-slate-50">
+            <Plus className="w-4 h-4" />
+            Receive Payment
+          </button>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className="flex flex-wrap gap-2 mt-6">
+        {tabs.map((tab) => {
+          const Icon = tab.icon;
+          const isActive = pathname.startsWith(tab.href);
+          return (
+            <Link
+              key={tab.name}
+              href={tab.href}
+              className={`flex items-center gap-2 px-5 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-all duration-300 shadow-sm ${
+                isActive
+                  ? "bg-secondary-500 text-white shadow-secondary-500/20"
+                  : "bg-primary-900 text-white hover:bg-primary-800"
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {tab.name}
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Main Content Area */}
+      <div>
+        {children}
+      </div>
+    </div>
+  );
+}

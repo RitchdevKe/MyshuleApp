@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Inter", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  --color-primary: #3D1D3F;
+  --color-primary-foreground: hsl(0 0% 98%);
+  
+  --color-secondary: #C20F47;
+  --color-secondary-foreground: hsl(0 0% 98%);
+  
+  --color-sidebar-bg: #3D1D3F;
+  --color-header-bg: #3D1D3F;
+  
+  --color-success: hsl(152 60% 42%);
+  --color-success-foreground: hsl(0 0% 100%);
+  
+  --color-destructive: hsl(0 72% 55%);
+  --color-warning: hsl(38 92% 55%);
+}
+
+/* ============================================================
+   INTER FONT SYSTEM — Applied globally and consistently
+   Body/table data: 400 | Labels/subtext: 400 | Column headers: 500
+   Bold names in tables: 600 | Page titles: 600 | Buttons: 500
+   ============================================================ */
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  /* Override mono font fallback — keep Inter everywhere */
+  .font-mono,
+  code, pre, kbd, samp {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Page-level headings: 600 */
+  .page-title {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* Table column headers: 500 */
+  th, .col-header {
+    font-weight: 500;
+  }
+
+  /* Table data / body text: 400 */
+  td, .body-text {
+    font-weight: 400;
+  }
+
+  /* Bold names in tables: 600 */
+  .name-bold {
+    font-weight: 600;
+  }
+
+  /* Button text: 500 */
+  button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  input, select, textarea {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+}
+
+/* ============================================================
+   GLOBAL TYPOGRAPHY NORMALISATION
+   Replaces the heavy font-black/extrabold chaos with a
+   clean Inter weight hierarchy throughout the app.
+   ============================================================ */
+
+/* Tame the overuse of font-black — data should read, not shout */
+.font-black {
+  font-weight: 700 !important;
+}
+
+/* font-extrabold maps to 700 — same as black in Inter */
+.font-extrabold {
+  font-weight: 700 !important;
+}
+
+/* Mono class: keep Inter, just tabular nums for numeric data */
+.font-mono {
+  font-family: 'Inter', sans-serif !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0 !important;
+}
+
+/* Restore clean uppercase tracking — reduce the storm of tracking-widest */
+.tracking-widest {
+  letter-spacing: 0.08em !important;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em !important;
+}
+
+/* ============================================================
+   HIGH-CONTRAST TEXT OUTSIDE SIDEBAR
+   ============================================================ */
+:not(aside):not(button[class*="text-slate-3"]) [class*="text-slate-4"],
+:not(aside):not(button[class*="text-slate-3"]) [class*="text-slate-5"],
+:not(aside):not(button[class*="text-slate-3"]) [class*="text-slate-6"],
+:not(aside):not(button[class*="text-slate-3"]) [class*="text-slate-7"],
+:not(aside):not(button[class*="text-gray-3"]) [class*="text-gray-4"],
+:not(aside):not(button[class*="text-gray-3"]) [class*="text-gray-5"],
+:not(aside):not(button[class*="text-gray-3"]) [class*="text-gray-6"],
+:not(aside):not(button[class*="text-gray-3"]) [class*="text-gray-7"],
+:not(aside):not(button[class*="text-zinc-3"]) [class*="text-zinc-4"],
+:not(aside):not(button[class*="text-zinc-3"]) [class*="text-zinc-5"],
+:not(aside):not(button[class*="text-zinc-3"]) [class*="text-zinc-6"],
+:not(aside):not(button[class*="text-zinc-3"]) [class*="text-zinc-7"],
+:not(aside):not(button[class*="text-neutral-3"]) [class*="text-neutral-4"],
+:not(aside):not(button[class*="text-neutral-3"]) [class*="text-neutral-5"],
+:not(aside):not(button[class*="text-neutral-3"]) [class*="text-neutral-6"],
+:not(aside):not(button[class*="text-neutral-3"]) [class*="text-neutral-7"],
+:not(aside) [class*="text-muted-"] {
+  color: #374151 !important;
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+#dashboard-main-scroller::-webkit-scrollbar {
+  width: 8px;
+}
+#dashboard-main-scroller::-webkit-scrollbar-thumb {
+  background-color: #94a3b8;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+#dashboard-main-scroller::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b;
+}
+
+aside ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+}
+aside ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}

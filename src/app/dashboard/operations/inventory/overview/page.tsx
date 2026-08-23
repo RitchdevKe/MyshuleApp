@@ -1,0 +1,136 @@
+"use client";
+
+import React from "react";
+import { Grid, AlertTriangle, TrendingUp, Package, Box, RefreshCcw } from "lucide-react";
+
+export default function InventoryOverviewPage() {
+  const stockCategories = [
+    { name: "IT Equipment", value: "$450,200", percent: 42, color: "bg-indigo-500" },
+    { name: "Office Furniture", value: "$320,500", percent: 30, color: "bg-emerald-500" },
+    { name: "Stationery & Supplies", value: "$180,000", percent: 17, color: "bg-amber-500" },
+    { name: "Maintenance Parts", value: "$115,000", percent: 11, color: "bg-rose-500" },
+  ];
+
+  const recentAlerts = [
+    { id: 1, item: "MacBook Pro M3", status: "Low Stock", qty: 2, threshold: 5, time: "2 hours ago" },
+    { id: 2, item: "A4 Printer Paper", status: "Out of Stock", qty: 0, threshold: 50, time: "5 hours ago" },
+    { id: 3, item: "Ergonomic Chairs", status: "Low Stock", qty: 4, threshold: 10, time: "1 day ago" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center mb-2">
+         <h2 className="text-lg font-black text-slate-800">Inventory Dashboard</h2>
+         <p className="text-sm font-bold text-slate-500">Real-time overview of organizational stock.</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-center relative overflow-hidden group">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-primary-50 rounded-bl-full opacity-50 group-hover:scale-110 transition-transform"></div>
+          <div className="relative z-10">
+             <div className="p-2.5 bg-primary-100 text-primary-600 rounded-xl inline-block mb-4">
+                <Box className="w-5 h-5" />
+             </div>
+             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Stock Value</p>
+             <p className="text-3xl font-black text-slate-800">$1.06M</p>
+             <p className="text-xs font-bold text-emerald-600 mt-2 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> +2.4% vs last month</p>
+          </div>
+        </div>
+        
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-center relative overflow-hidden group">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-amber-50 rounded-bl-full opacity-50 group-hover:scale-110 transition-transform"></div>
+          <div className="relative z-10">
+             <div className="p-2.5 bg-amber-100 text-amber-600 rounded-xl inline-block mb-4">
+                <Package className="w-5 h-5" />
+             </div>
+             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Active SKUs</p>
+             <p className="text-3xl font-black text-slate-800">1,284</p>
+             <p className="text-xs font-bold text-slate-500 mt-2">Across 4 locations</p>
+          </div>
+        </div>
+
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-center relative overflow-hidden group">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-rose-50 rounded-bl-full opacity-50 group-hover:scale-110 transition-transform"></div>
+          <div className="relative z-10">
+             <div className="p-2.5 bg-rose-100 text-rose-600 rounded-xl inline-block mb-4">
+                <AlertTriangle className="w-5 h-5" />
+             </div>
+             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Low Stock Alerts</p>
+             <p className="text-3xl font-black text-rose-600">24</p>
+             <p className="text-xs font-bold text-rose-600 mt-2">Requires immediate attention</p>
+          </div>
+        </div>
+
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-center relative overflow-hidden group">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-emerald-50 rounded-bl-full opacity-50 group-hover:scale-110 transition-transform"></div>
+          <div className="relative z-10">
+             <div className="p-2.5 bg-emerald-100 text-emerald-600 rounded-xl inline-block mb-4">
+                <RefreshCcw className="w-5 h-5" />
+             </div>
+             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Items Issued YTD</p>
+             <p className="text-3xl font-black text-slate-800">5,492</p>
+             <p className="text-xs font-bold text-slate-500 mt-2">High turnover velocity</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+         {/* Value by Category */}
+         <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm">
+            <h3 className="text-lg font-black text-slate-800 mb-6">Stock Value by Category</h3>
+            <div className="space-y-6">
+               {stockCategories.map((cat, index) => (
+                  <div key={index}>
+                     <div className="flex justify-between items-end mb-2">
+                        <span className="text-sm font-bold text-slate-700">{cat.name}</span>
+                        <div className="text-right">
+                           <span className="text-sm font-black text-slate-800">{cat.value}</span>
+                           <span className="text-xs font-medium text-slate-400 ml-2">({cat.percent}%)</span>
+                        </div>
+                     </div>
+                     <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${cat.color}`} style={{ width: `${cat.percent}%` }}></div>
+                     </div>
+                  </div>
+               ))}
+            </div>
+         </div>
+
+         {/* Critical Alerts */}
+         <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl shadow-sm flex flex-col overflow-hidden">
+            <div className="p-6 border-b border-slate-200/60 bg-rose-50/30 flex justify-between items-center">
+               <h3 className="text-lg font-black text-slate-800 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-rose-500" />
+                  Critical Stock Alerts
+               </h3>
+               <span className="text-xs font-bold text-rose-600 bg-rose-100 px-2 py-1 rounded-md">Action Needed</span>
+            </div>
+            
+            <div className="divide-y divide-slate-100 flex-grow">
+               {recentAlerts.map((alert) => (
+                  <div key={alert.id} className="p-4 hover:bg-slate-50/50 transition-colors flex items-center justify-between">
+                     <div>
+                        <p className="font-bold text-slate-800 text-sm">{alert.item}</p>
+                        <p className="text-xs font-medium text-slate-500 mt-0.5">Threshold: {alert.threshold} | Current: <span className="font-bold text-rose-600">{alert.qty}</span></p>
+                     </div>
+                     <div className="text-right">
+                        <span className={`inline-block px-2 py-1 text-[10px] font-black uppercase tracking-wider rounded-md mb-1 ${
+                           alert.status === 'Out of Stock' ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700'
+                        }`}>
+                           {alert.status}
+                        </span>
+                        <p className="text-[10px] font-bold text-slate-400">{alert.time}</p>
+                     </div>
+                  </div>
+               ))}
+            </div>
+            <div className="p-4 border-t border-slate-100 bg-slate-50/50 text-center">
+               <button className="text-sm font-bold text-primary-600 hover:text-primary-800 transition-colors">
+                  View All Alerts →
+               </button>
+            </div>
+         </div>
+      </div>
+    </div>
+  );
+}

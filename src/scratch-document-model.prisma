@@ -1,0 +1,11 @@
+﻿model StudentDocument {
+  id           String   @id @default(uuid())
+  tenantId     String
+  studentId    String
+  title        String
+  documentType String   // e.g. "Birth Certificate", "Medical Record", "Previous Report"
+  fileUrl      String
+  uploadedAt   DateTime @default(now())
+  student      Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}

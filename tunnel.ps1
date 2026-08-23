@@ -1,0 +1,1 @@
+while ($true) { Write-Host "Starting Tunnel"; ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -i "C:\Users\USER\Downloads\LightsailDefaultKey-ap-south-1.pem" -N -L 5432:127.0.0.1:5432 ubuntu@13.206.124.104; Start-Sleep -Seconds 3 }

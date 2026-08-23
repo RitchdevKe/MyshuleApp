@@ -1,0 +1,654 @@
+src/components/AcademicTab.tsx:212:            <div className="text-[15px] font-mono font-bold text-slate-400 border border-slate-200 px-2 py-0.5 rounded bg-slate-50">
+src/components/AcademicTab.tsx:260:                className="w-full p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition text-left flex items-center justify-between group cursor-pointer"
+src/components/AcademicTab.tsx:276:                className="w-full p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition text-left flex items-center justify-between group cursor-pointer"
+src/components/AcademicTab.tsx:292:                className="w-full p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition text-left flex items-center justify-between group cursor-pointer"
+src/components/AcademicTab.tsx:345:              <tr className="bg-slate-50 border-b border-slate-200 text-[14px] font-black text-slate-400 uppercase tracking-wider font-mono">
+src/components/AcademicTab.tsx:357:                  <tr key={classKey} className="hover:bg-slate-50/50 transition-colors">
+src/components/AcademicTab.tsx:429:                  className="flex-1 py-2.5 text-base font-black text-slate-500 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer uppercase transition"
+src/components/AccountingSubsystem.tsx:1223:                          <tr className="hover:bg-slate-50/50 transition border-b border-slate-50">
+src/components/AccountingSubsystem.tsx:1253:                          <tr className="hover:bg-slate-50/50 transition border-b border-slate-50">
+src/components/AccountingSubsystem.tsx:1283:                          <tr className="hover:bg-slate-50/50 transition border-b border-slate-50">
+src/components/AccountingSubsystem.tsx:1312:                          <tr className="hover:bg-slate-50/50 transition">
+src/components/AccountingSubsystem.tsx:1464:                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
+src/components/AccountingSubsystem.tsx:1474:                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
+src/components/AccountingSubsystem.tsx:1507:                  <div className="p-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+src/components/AccountingSubsystem.tsx:1519:                        <tr className="bg-slate-50 border-b border-slate-200 font-mono uppercase text-slate-500 tracking-wider">
+src/components/AccountingSubsystem.tsx:1528:                          <tr key={head.code} className="hover:bg-slate-50/40 transition">
+src/components/AccountingSubsystem.tsx:1563:                      <div className="p-4 bg-slate-50/80 border border-slate-100/50 rounded-2xl flex justify-between items-center">
+src/components/AccountingSubsystem.tsx:1568:                      <div className="p-4 bg-slate-50/80 border border-slate-100/50 rounded-2xl flex justify-between items-center">
+src/components/AccountingSubsystem.tsx:1606:                      className="w-full text-center px-4 py-2.5 border border-slate-200 rounded-xl text-base font-black tracking-wider uppercase text-slate-700 bg-slate-50 hover:bg-slate-100 cursor-pointer transition flex items-center justify-center gap-1.5"
+src/components/AccountingSubsystem.tsx:1616:                <div className="p-5 border-b border-slate-100 bg-slate-50/50 pb-3">
+src/components/AccountingSubsystem.tsx:1625:                      <tr className="bg-slate-50 border-b border-slate-100 font-mono text-slate-500 uppercase tracking-wider">
+src/components/AccountingSubsystem.tsx:1637:                        <tr key={entry.id} className="hover:bg-slate-50/40 transition">
+src/components/AccountingSubsystem.tsx:1705:                              : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50/50'
+src/components/AccountingSubsystem.tsx:1721:                        className="w-full text-[11.5px] font-bold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none cursor-pointer"
+src/components/AccountingSubsystem.tsx:1734:                        className="w-full text-[11.5px] font-bold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none cursor-pointer"
+src/components/AccountingSubsystem.tsx:1750:                        className="w-full text-[11.5px] font-bold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-slate-800 cursor-pointer"
+src/components/AccountingSubsystem.tsx:1840:                                <tr key={head.code} className="hover:bg-slate-50/50">
+src/components/AccountingSubsystem.tsx:1881:                            <tr className="bg-slate-50 font-sans">
+src/components/AccountingSubsystem.tsx:1908:                              <tr key={pv.pvNo} className="hover:bg-slate-50/50">
+src/components/AccountingSubsystem.tsx:1966:                                  <tr key={entry.id} className="hover:bg-slate-50/50">
+src/components/AccountingSubsystem.tsx:1997:                                <tr key={head.code} className="hover:bg-slate-50/20 text-[11.5px]">
+src/components/AccountingSubsystem.tsx:2015:                                <tr key={head.code} className="hover:bg-slate-50/20 text-[11.5px]">
+src/components/AccountingSubsystem.tsx:2020:                              <tr className="hover:bg-slate-50/20 text-[11.5px]">
+src/components/AccountingSubsystem.tsx:2100:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-800 placeholder:text-slate-500"
+src/components/AccountingSubsystem.tsx:2108:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-800"
+src/components/AccountingSubsystem.tsx:2125:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-800 placeholder:text-slate-500"
+src/components/AccountingSubsystem.tsx:2144:                            className="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-base font-bold"
+src/components/AccountingSubsystem.tsx:2166:                            className="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-base font-bold font-mono"
+src/components/AccountingSubsystem.tsx:2181:                            className="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-base font-bold font-mono"
+src/components/AccountingSubsystem.tsx:2399:                            tx.arrow === '↑' ? 'text-emerald-600 bg-emerald-50 border-emerald-100' : 'text-neutral-500 bg-slate-50 border-slate-150'
+src/components/AccountingSubsystem.tsx:2642:                      <tr className="bg-slate-50 border-b border-slate-150 font-mono text-slate-500 uppercase tracking-wider text-[11px] font-bold">
+src/components/AccountingSubsystem.tsx:2654:                        <tr key={inv.id} className="hover:bg-slate-50/40 transition">
+src/components/AccountingSubsystem.tsx:2707:                                  className="px-3 py-1.5 border border-slate-200 hover:bg-slate-50 bg-white text-slate-700 rounded-xl text-xs font-bold cursor-pointer transition"
+src/components/AccountingSubsystem.tsx:2731:              <div className="bg-slate-50 border border-slate-200/50 rounded-3xl p-6 shadow-sm space-y-4">
+src/components/AccountingSubsystem.tsx:2820:                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-800"
+src/components/AccountingSubsystem.tsx:2833:                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-semibold text-slate-800"
+src/components/AccountingSubsystem.tsx:2845:                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-mono font-bold text-slate-800"
+src/components/AccountingSubsystem.tsx:2854:                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-semibold"
+src/components/AccountingSubsystem.tsx:2864:                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none text-slate-850"
+src/components/AccountingSubsystem.tsx:2903:                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-800 text-xs"
+src/components/AccountingSubsystem.tsx:2915:                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/AccountingSubsystem.tsx:2995:            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end text-base font-semibold text-slate-700 bg-slate-50/50 p-5 rounded-2xl border border-slate-100">
+src/components/AccountingSubsystem.tsx:3046:              <div className="p-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+src/components/AccountingSubsystem.tsx:3063:                    <div key={feed.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/30 transition">
+src/components/AccountingSubsystem.tsx:3066:                          <span className="p-1 px-2 border border-slate-200 rounded-md font-mono font-bold uppercase text-[9.5px] bg-slate-50 text-slate-600 block">
+src/components/AccountingSubsystem.tsx:3124:                  <div key={debtor.id} className="p-3.5 bg-slate-50 border border-slate-200/50 rounded-2xl flex items-center justify-between text-base hover:bg-slate-100/50 transition">
+src/components/AccountingSubsystem.tsx:3162:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl space-y-1.5">
+src/components/AdminUtilityTab.tsx:268:        <div className="bg-slate-50 p-2.5 rounded-3xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/AdminUtilityTab.tsx:273:        <div className="bg-slate-50 p-2.5 rounded-3xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/AdminUtilityTab.tsx:278:        <div className="bg-slate-50 p-2.5 rounded-3xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] col-span-1 md:col-span-2">
+src/components/AdminUtilityTab.tsx:308:                className="px-2.5 py-1.5 border border-slate-200 text-slate-600 hover:bg-slate-50 text-[15px] font-bold uppercase rounded-lg transition cursor-pointer flex items-center gap-1"
+src/components/AdminUtilityTab.tsx:330:                className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-base font-semibold focus:outline-none focus:bg-white focus:border-[var(--color-secondary)] transition"
+src/components/AdminUtilityTab.tsx:337:              className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold w-full sm:w-44 focus:outline-none cursor-pointer"
+src/components/AdminUtilityTab.tsx:356:                <div key={l.id} className="py-3.5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 hover:bg-slate-50/50 transition px-2 rounded-xl">
+src/components/AdminUtilityTab.tsx:412:                  <div key={bk.id} className="p-3 bg-slate-50 hover:bg-slate-50/70 border border-slate-150 rounded-2xl flex justify-between items-center text-base">
+src/components/AdminUtilityTab.tsx:471:                    : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-500'
+src/components/AdmissionsTab.tsx:321:          className="flex items-center gap-1.5 px-1.5 py-1.5 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition text-[16px] font-bold cursor-pointer shadow-sm"
+src/components/AdmissionsTab.tsx:349:              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full mix-blend-multiply filter blur-xl opacity-20 -mr-6 -mt-6"></div>
+src/components/AdmissionsTab.tsx:362:               className={`px-3 py-1.5 rounded-lg text-base font-bold transition-all flex items-center gap-1.5 ${viewMode === 'list' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:bg-slate-50'}`}
+src/components/AdmissionsTab.tsx:368:               className={`px-3 py-1.5 rounded-lg text-base font-bold transition-all flex items-center gap-1.5 ${viewMode === 'pipeline' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:bg-slate-50'}`}
+src/components/AdmissionsTab.tsx:384:              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl placeholder:text-slate-400 font-semibold focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-slate-800"
+src/components/AdmissionsTab.tsx:403:          <div className="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+src/components/AdmissionsTab.tsx:410:                <tr className="bg-slate-50 border-b border-slate-200 text-[15px] text-slate-500 uppercase font-mono tracking-wider h-11">
+src/components/AdmissionsTab.tsx:434:                      <tr key={a.id} className="hover:bg-slate-50/50 transition duration-150">
+src/components/AdmissionsTab.tsx:448:                          <span className="font-extrabold text-slate-800 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] px-2 py-1 rounded text-[15px] font-mono uppercase">{a.grade}</span>
+src/components/AdmissionsTab.tsx:458:                            'bg-slate-50 text-slate-650 border-slate-200'
+src/components/AdmissionsTab.tsx:467:                              className="px-1.5 py-1.5 bg-white hover:bg-slate-50 text-slate-700 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] text-[16px] font-bold rounded-lg transition inline-flex items-center gap-1 cursor-pointer hover:border-slate-300 shadow-sm"
+src/components/AdmissionsTab.tsx:495:                                  className="w-full text-left px-3 py-2 hover:bg-slate-50 rounded-lg text-amber-850 font-bold text-[12.5px] block cursor-pointer transition"
+src/components/AdmissionsTab.tsx:505:                                  className="w-full text-left px-3 py-2 hover:bg-slate-50 rounded-lg text-purple-800 font-bold text-[12.5px] block cursor-pointer transition"
+src/components/AdmissionsTab.tsx:512:                                  className="w-full text-left px-3 py-2 hover:bg-slate-50 rounded-lg text-indigo-805 font-bold text-[12.5px] block cursor-pointer transition"
+src/components/AdmissionsTab.tsx:559:                             <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center font-black text-slate-400 text-base border border-slate-100 group-hover:bg-indigo-50 group-hover:text-indigo-600 group-hover:border-indigo-100 transition-colors">
+src/components/AdmissionsTab.tsx:612:                <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 border border-slate-150 rounded-2xl">
+src/components/AdmissionsTab.tsx:710:                  className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-slate-50"
+src/components/AdmissionsTab.tsx:720:                  className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-slate-50"
+src/components/AdmissionsTab.tsx:760:                className="w-full px-3 py-2 border border-slate-200 rounded-xl bg-slate-50 font-mono"
+src/components/AssessmentsTab.tsx:142:        <div className="p-5 border-b border-slate-100 bg-slate-50/70">
+src/components/AssessmentsTab.tsx:251:              className="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold text-slate-800 transition-all font-mono"
+src/components/AssessmentsTab.tsx:254:          <div className="w-full sm:w-auto flex items-center gap-2 border border-slate-200 bg-slate-50 rounded-xl px-3 py-2">
+src/components/AssessmentsTab.tsx:272:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/AssessmentsTab.tsx:296:                      className="hover:bg-slate-50/50 transition-colors"
+src/components/AttendanceHub.tsx:24:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/AttendanceHub.tsx:35:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/BulkStudentImport.tsx:105:        <div className="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+src/components/BulkStudentImport.tsx:127:          <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl p-2 flex items-center justify-between gap-4">
+src/components/BulkStudentImport.tsx:134:              className="px-1.5 py-2 hover:bg-white hover:border-slate-300 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] text-slate-700 font-extrabold rounded-xl flex items-center gap-1.5 cursor-pointer transition shadow-sm bg-slate-50 font-mono text-[15px]"
+src/components/BulkStudentImport.tsx:144:              className="border-2 border-dashed border-slate-200 hover:border-primary rounded-2xl p-9 text-center bg-slate-50/50 hover:bg-slate-50/80 transition cursor-pointer flex flex-col items-center group"
+src/components/BulkStudentImport.tsx:214:        <div className="px-6 py-4 flex items-center justify-center border-t border-slate-100 bg-slate-50/50">
+src/components/BulkStudentImport.tsx:224:               <button onClick={onClose} className="px-2.5 py-2.5 bg-white text-slate-700 text-[17px] font-bold rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] cursor-pointer hover:bg-slate-50 transition">Cancel</button>
+src/components/ClassesTab.tsx:49:              className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-lg font-semibold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none"
+src/components/ClassesTab.tsx:91:                <div className="space-y-3 bg-slate-50/50 p-3 rounded-xl border border-slate-100 text-[17px]">
+src/components/ClassesTab.tsx:170:                    <div className="w-full px-2 py-2.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl text-slate-800 font-bold text-lg">
+src/components/CommunicationTab.tsx:263:                          : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+src/components/CommunicationTab.tsx:278:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-1 focus:ring-indigo-500 text-slate-800"
+src/components/CommunicationTab.tsx:295:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:306:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-sans"
+src/components/CommunicationTab.tsx:355:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:364:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-slate-800"
+src/components/CommunicationTab.tsx:379:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-sans"
+src/components/CommunicationTab.tsx:425:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:437:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:449:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-sans"
+src/components/CommunicationTab.tsx:496:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:506:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:517:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CommunicationTab.tsx:528:                  className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/CurriculumTab.tsx:138:                  <div className="flex bg-slate-50 p-1 rounded-xl items-center border border-slate-150">
+src/components/ExtraModules.tsx:340:            <div className="p-5 border-b border-slate-200 bg-slate-50">
+src/components/ExtraModules.tsx:347:                <input type="text" id="notif-title" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 text-lg font-semibold" placeholder="e.g. Campus lockdown" />
+src/components/ExtraModules.tsx:351:                <input type="text" id="notif-body" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 text-lg font-semibold" placeholder="Detailed alert description..." />
+src/components/ExtraModules.tsx:414:            <div className="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/ExtraModules.tsx:447:                  className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-lg font-semibold"
+src/components/ExtraModules.tsx:454:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:529:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold cursor-pointer"
+src/components/ExtraModules.tsx:544:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:557:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:572:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:587:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-mono font-bold"
+src/components/ExtraModules.tsx:646:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:651:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:656:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:664:            <div className="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/ExtraModules.tsx:686:                  className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-lg font-semibold text-slate-800"
+src/components/ExtraModules.tsx:694:                  className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold focus:outline-none text-slate-700 cursor-pointer"
+src/components/ExtraModules.tsx:706:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:723:                    <tr key={a.id} className="hover:bg-slate-50/20 font-semibold text-slate-800">
+src/components/ExtraModules.tsx:754:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:765:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold font-mono"
+src/components/ExtraModules.tsx:775:                        className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold font-mono"
+src/components/ExtraModules.tsx:786:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:796:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold"
+src/components/ExtraModules.tsx:896:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:901:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:906:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:911:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:929:                  <select id="transport-student-assign" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none">
+src/components/ExtraModules.tsx:938:                  <select id="transport-route-assign" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none">
+src/components/ExtraModules.tsx:978:                <div className="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+src/components/ExtraModules.tsx:994:                      className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-base font-semibold text-slate-800"
+src/components/ExtraModules.tsx:1002:                      className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold focus:outline-none text-slate-700 cursor-pointer"
+src/components/ExtraModules.tsx:1014:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1031:                        <tr key={ta.id} className="hover:bg-slate-50/30">
+src/components/ExtraModules.tsx:1061:                <div className="p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+src/components/ExtraModules.tsx:1080:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1090:                      <tr key={v.id} className="hover:bg-slate-50/10">
+src/components/ExtraModules.tsx:1119:                <div className="p-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+src/components/ExtraModules.tsx:1141:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1192:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-extrabold text-slate-900 font-mono text-center"
+src/components/ExtraModules.tsx:1200:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none text-slate-700"
+src/components/ExtraModules.tsx:1280:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:1285:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:1290:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:1295:            <div className="bg-slate-50 p-2.5 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ExtraModules.tsx:1313:                  <select id="boarding-student-assign" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none">
+src/components/ExtraModules.tsx:1322:                  <select id="boarding-hostel-assign" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none">
+src/components/ExtraModules.tsx:1332:                    <input id="boarding-room-assign" type="text" placeholder="Room 102" defaultValue="Room 101" className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl font-mono focus:outline-none font-bold" />
+src/components/ExtraModules.tsx:1336:                    <input id="boarding-bed-assign" type="text" placeholder="Bed B-3" defaultValue="Bed B-1" className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl font-mono focus:outline-none font-bold" />
+src/components/ExtraModules.tsx:1379:                <div className="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+src/components/ExtraModules.tsx:1395:                      className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-base font-semibold text-slate-800"
+src/components/ExtraModules.tsx:1403:                      className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold focus:outline-none text-slate-700 cursor-pointer"
+src/components/ExtraModules.tsx:1415:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1432:                        <tr key={ba.id} className="hover:bg-slate-50/30">
+src/components/ExtraModules.tsx:1463:                <div className="p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+src/components/ExtraModules.tsx:1481:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1490:                      <tr key={rs.id} className="hover:bg-slate-50/10">
+src/components/ExtraModules.tsx:1503:                <div className="p-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+src/components/ExtraModules.tsx:1526:                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] uppercase">
+src/components/ExtraModules.tsx:1537:                      <tr key={d.id} className="hover:bg-slate-50/10">
+src/components/ExtraModules.tsx:1581:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl font-bold cursor-pointer focus:outline-none text-slate-700"
+src/components/ExtraModules.tsx:1595:                      className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-bold text-slate-900 text-center"
+src/components/ExtraModules.tsx:1655:            <div className="p-5 border-b border-slate-200 bg-slate-50">
+src/components/ExtraModules.tsx:1660:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:1692:            <div className="p-5 border-b border-slate-200 bg-slate-50">
+src/components/ExtraModules.tsx:1697:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:1731:            <div className="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+src/components/ExtraModules.tsx:1739:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:1771:            <div className="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+src/components/ExtraModules.tsx:1779:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:1816:                    className="p-4 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 border border-slate-200 rounded-3xl text-left space-y-2 cursor-pointer transition select-none"
+src/components/ExtraModules.tsx:1840:                      <div key={c.name} className="flex justify-between items-center text-lg p-2.5 bg-slate-50 rounded-2xl border border-slate-150">
+src/components/ExtraModules.tsx:1885:            <div className="p-5 border-b border-slate-200 bg-slate-50">
+src/components/ExtraModules.tsx:1892:                <select id="hl-student" className="w-full px-1.5 py-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl text-lg font-semibold font-sans cursor-pointer">
+src/components/ExtraModules.tsx:1901:                <input type="text" id="hl-comp" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 text-lg font-semibold" placeholder="e.g. Headache / Cold" />
+src/components/ExtraModules.tsx:1905:                <input type="text" id="hl-act" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 text-lg font-semibold" placeholder="e.g. Paracetamol 2X3" />
+src/components/ExtraModules.tsx:1934:                <tr className="bg-slate-50/50 border-b border-slate-200 text-slate-400">
+src/components/ExtraModules.tsx:1945:                  <tr key={l.id} className="hover:bg-slate-50/20 font-sans transition text-[17px]">
+src/components/FeeStructureTab.tsx:56:        <div className="p-6 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/FeeStructureTab.tsx:88:            <tbody className="divide-y divide-slate-100 font-semibold text-slate-800 bg-slate-50/20">
+src/components/FeeStructureTab.tsx:102:                       className="hover:bg-slate-50 transition-colors group"
+src/components/FeeStructureTab.tsx:200:                <div className="grid grid-cols-2 gap-4 bg-slate-50 p-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/FinanceDashTab.tsx:146:          <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+src/components/FinanceDashTab.tsx:178:          <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+src/components/FinanceDashTab.tsx:191:                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-[17px] font-bold text-slate-800 cursor-pointer appearance-none transition-all"
+src/components/FinanceDashTab.tsx:211:                    className="w-full pl-12 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-extrabold text-slate-900 font-mono transition-all shadow-inner"
+src/components/FinanceDashTab.tsx:220:                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-[17px] font-bold text-slate-800 cursor-pointer appearance-none transition-all"
+src/components/FinanceTab.tsx:235:                className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-lg bg-slate-50 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition"
+src/components/FinanceTab.tsx:250:            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+src/components/FinanceTab.tsx:269:                    <tr className="bg-slate-50 border-b border-slate-200 text-[16px] font-bold text-slate-500 uppercase tracking-wider font-mono">
+src/components/FinanceTab.tsx:281:                      <tr key={tx.id} className="hover:bg-slate-50/60 transition border-b border-slate-100/60">
+src/components/FinanceTab.tsx:325:                <div key={item.id} className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-1.5 rounded-3xl space-y-1.5 hover:border-slate-300 transition-all group">
+src/components/FinanceTab.tsx:362:                 <button className="px-4 py-2 border border-slate-200 text-slate-700 rounded-xl text-lg font-bold hover:bg-slate-50 cursor-pointer">Export All (PDF)</button>
+src/components/FinanceTab.tsx:409:            <div className="px-6 py-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+src/components/FinanceTab.tsx:428:                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-250 bg-slate-50 text-slate-805 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition cursor-pointer"
+src/components/FinanceTab.tsx:448:                  className="w-full px-3.5 py-2 hover:border-slate-300 rounded-lg border border-slate-200 bg-slate-50 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition"
+src/components/FinanceTab.tsx:459:                    className="w-full px-3.5 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition cursor-pointer"
+src/components/FinanceTab.tsx:486:                    className="w-full px-3.5 py-2 hover:border-slate-300 rounded-lg border border-slate-200 bg-slate-50 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition"
+src/components/FinanceTab.tsx:491:              <div className="flex justify-end gap-2.5 pt-5 border-t border-slate-200 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+src/components/FinanceTab.tsx:496:                  className="px-4 py-2 border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 rounded-lg cursor-pointer transition font-bold"
+src/components/InvoicePreviewModal.tsx:47:        <div className="px-8 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+src/components/InvoicePreviewModal.tsx:127:               <div className="h-px bg-slate-50 w-full" />
+src/components/InvoicePreviewModal.tsx:130:            <div className="overflow-hidden bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-3xl">
+src/components/InvoicePreviewModal.tsx:156:          <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+src/components/InvoicePreviewModal.tsx:165:        <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row gap-4">
+src/components/InvoicePreviewModal.tsx:176:              className="flex-1 sm:flex-none px-1.5 py-2 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 rounded-2xl font-black uppercase text-[16px] tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-1 active:scale-95"
+src/components/InvoicePreviewModal.tsx:182:              className="flex-1 sm:flex-none px-1.5 py-2 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 rounded-2xl font-black uppercase text-[16px] tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-1 active:scale-95"
+src/components/InvoicesTab.tsx:97:        <div className="p-5 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/InvoicesTab.tsx:125:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold text-slate-800 transition-all font-mono placeholder:text-slate-400 placeholder:font-sans"
+src/components/InvoicesTab.tsx:128:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/InvoicesTab.tsx:146:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/InvoicesTab.tsx:171:                      className="hover:bg-slate-50/70 transition-colors group"
+src/components/InvoicesTab.tsx:355:              <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] p-1.5 rounded-xl mb-4">
+src/components/LMSTab.tsx:663:                      className={`px-4 py-3 transition-colors ${subjectFilter === 'All' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-50'}`}
+src/components/LMSTab.tsx:671:                        className={`px-4 py-3 border-l border-slate-150 transition-colors ${subjectFilter === subj ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-50'}`}
+src/components/LMSTab.tsx:696:                            <span className="p-2.5 bg-slate-50 border border-slate-150 rounded-2xl inline-block shadow-sm">
+src/components/LMSTab.tsx:733:                            <span className="px-2 py-0.5 bg-slate-50 border border-slate-150 rounded-md text-[9px] font-bold font-mono text-slate-500">
+src/components/LMSTab.tsx:782:              <div className="xl:col-span-4 bg-slate-50 border border-slate-200/60 rounded-[32px] p-6 shadow-sm space-y-6">
+src/components/LMSTab.tsx:888:              <div className="xl:col-span-4 bg-slate-50 border border-slate-200/60 p-6 rounded-[32px] space-y-6">
+src/components/LMSTab.tsx:984:                            : 'bg-white border-slate-150 hover:bg-slate-50 text-slate-705'
+src/components/LMSTab.tsx:1066:                                  className="bg-slate-50 hover:bg-slate-100/60 p-4 rounded-2xl border border-slate-150 transition"
+src/components/LMSTab.tsx:1204:              <div className="xl:col-span-4 bg-slate-50 border border-slate-200/60 p-6 rounded-[32px] space-y-6">
+src/components/LMSTab.tsx:1360:                              className="flex-1 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-xl text-[10.5px] font-bold uppercase transition text-center cursor-pointer"
+src/components/LMSTab.tsx:1504:                              : 'bg-slate-50 border-slate-150 hover:bg-slate-100 text-slate-800'
+src/components/LMSTab.tsx:1576:                                  : 'text-slate-300 border-slate-200 hover:border-slate-400 hover:bg-slate-50'
+src/components/LeaveManagementTab.tsx:84:        <div className="p-6 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/LeaveManagementTab.tsx:108:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/20 focus:border-[var(--color-secondary)] text-lg font-bold text-slate-800 transition-all font-mono placeholder:text-slate-400 placeholder:font-sans"
+src/components/LeaveManagementTab.tsx:111:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/LeaveManagementTab.tsx:129:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/LeaveManagementTab.tsx:151:                      className="hover:bg-slate-50/70 transition-colors group"
+src/components/LeaveManagementTab.tsx:157:                      <td className="px-6 py-4 text-indigo-700 font-extrabold text-[17px] bg-slate-50/30">{l.type}</td>
+src/components/LeaveManagementTab.tsx:162:                      <td className="px-6 py-4 text-center bg-slate-50/30">
+src/components/LeaveManagementTab.tsx:264:                <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-xl space-y-2">
+src/components/LibraryTab.tsx:235:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/LibraryTab.tsx:247:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/LibraryTab.tsx:259:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/LibraryTab.tsx:320:            <div className="p-5 border-b border-slate-200 bg-slate-50/50">
+src/components/LibraryTab.tsx:328:                <input type="text" id="lb-title" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" placeholder="e.g. Blossoms of the Savannah" />
+src/components/LibraryTab.tsx:332:                <input type="text" id="lb-author" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" placeholder="e.g. Henry Ole Kulet" />
+src/components/LibraryTab.tsx:336:                <input type="text" id="lb-isbn" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" placeholder="e.g. 978-9966-33-2" />
+src/components/LibraryTab.tsx:341:                  <input type="number" id="lb-qty" defaultValue="50" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" />
+src/components/LibraryTab.tsx:352:            <div className="p-5 flex items-center justify-between gap-4 border-b border-slate-100 bg-slate-50/20">
+src/components/LibraryTab.tsx:371:                  <tr className="bg-slate-50 border-b border-slate-150 text-slate-400">
+src/components/LibraryTab.tsx:390:                        <tr key={b.id} className="hover:bg-slate-50/50 transition">
+src/components/LibraryTab.tsx:436:            <div className="p-5 border-b border-slate-200 bg-slate-50/50">
+src/components/LibraryTab.tsx:444:                <input type="text" id="li-student" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" placeholder="e.g. Adrian Kipirono" />
+src/components/LibraryTab.tsx:448:                <select id="li-book-select" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition bg-white cursor-pointer">
+src/components/LibraryTab.tsx:459:                  <input type="date" id="li-due-date" defaultValue="2026-06-30" className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 text-lg font-semibold outline-none transition" />
+src/components/LibraryTab.tsx:470:            <div className="p-5 flex items-center justify-between gap-4 border-b border-slate-100 bg-slate-50/20">
+src/components/LibraryTab.tsx:486:                  <tr className="bg-slate-50 border-b border-slate-150 text-slate-400">
+src/components/LibraryTab.tsx:504:                        <tr key={l.id} className={`hover:bg-slate-50/50 transition ${isReturned ? 'opacity-60 bg-slate-50/20' : ''}`}>
+src/components/LibraryTab.tsx:568:              <div className="p-5 border-b border-slate-250 bg-slate-50">
+src/components/LibraryTab.tsx:575:                  <input type="text" id="lf-student" className="w-full text-lg font-semibold p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-orange-500 outline-none transition" placeholder="e.g. Emily Wanjala" />
+src/components/LibraryTab.tsx:580:                  <input type="text" id="lf-book" className="w-full text-lg font-semibold p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-orange-500 outline-none transition" placeholder="e.g. Secondary School Mathematics Form 4" />
+src/components/LibraryTab.tsx:587:                    <input type="number" id="lf-amount" defaultValue="150" className="w-full pl-11 text-lg font-semibold p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-orange-500 outline-none transition" />
+src/components/LibraryTab.tsx:602:              <div className="p-5 border-b border-slate-200 bg-slate-50/50">
+src/components/LibraryTab.tsx:615:                    className="w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-base font-semibold outline-none focus:ring-1 focus:ring-orange-500"
+src/components/LibraryTab.tsx:623:                    <tr className="bg-slate-50 border-b border-slate-150 text-slate-400">
+src/components/LibraryTab.tsx:637:                        <tr key={f.id} className="hover:bg-slate-50/40 transition">
+src/components/NewEnrollmentWizard.tsx:238:      <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 shrink-0">
+src/components/NewEnrollmentWizard.tsx:242:            className="flex items-center gap-1.5 px-1.5 py-1.5 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition text-[16px] font-bold cursor-pointer shadow-sm"
+src/components/NewEnrollmentWizard.tsx:284:                  isCompleted ? 'bg-white text-slate-800 border-slate-200' : 'bg-slate-50 text-slate-400 border-slate-200'
+src/components/NewEnrollmentWizard.tsx:300:        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto px-8 py-6 space-y-6 bg-slate-50/50 text-lg">
+src/components/NewEnrollmentWizard.tsx:416:                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono tracking-wider"
+src/components/NewEnrollmentWizard.tsx:566:                    <div className="flex gap-2 p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/NewEnrollmentWizard.tsx:587:                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:609:                    <div className="flex gap-2 p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/NewEnrollmentWizard.tsx:630:                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:772:                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50"
+src/components/NewEnrollmentWizard.tsx:780:                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50"
+src/components/NewEnrollmentWizard.tsx:796:                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50"
+src/components/NewEnrollmentWizard.tsx:807:                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono"
+src/components/NewEnrollmentWizard.tsx:817:                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono"
+src/components/NewEnrollmentWizard.tsx:957:                      className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:980:                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:993:                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:1007:                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-semibold"
+src/components/NewEnrollmentWizard.tsx:1115:        <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between shrink-0">
+src/components/OverviewTab.tsx:291:          <div className="w-12 h-12 rounded-full bg-slate-50/80 flex items-center justify-center border border-slate-150 shadow-sm shrink-0">
+src/components/OverviewTab.tsx:348:          <div className="w-12 h-12 rounded-full bg-slate-50/80 flex items-center justify-center border border-slate-150 shadow-sm shrink-0">
+src/components/OverviewTab.tsx:372:          <div className="w-12 h-12 rounded-full bg-slate-50/80 flex items-center justify-center border border-slate-150 shadow-sm shrink-0">
+src/components/OverviewTab.tsx:680:            className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-3xl p-1.5 shadow-inner space-y-2"
+src/components/OverviewTab.tsx:766:                      <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[15px] font-bold uppercase">
+src/components/OverviewTab.tsx:1048:            <div className="flex items-center gap-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] py-1 px-2.5 rounded-xl text-base font-bold">
+src/components/OverviewTab.tsx:1128:            selectedSectionType === 'streams' ? 'bg-amber-100/10 border-amber-500' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+src/components/OverviewTab.tsx:1147:            selectedSectionType === 'library' ? 'bg-amber-100/10 border-amber-500' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+src/components/OverviewTab.tsx:1166:            selectedSectionType === 'transport' ? 'bg-amber-100/10 border-amber-500' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+src/components/OverviewTab.tsx:1185:            selectedSectionType === 'income' ? 'bg-amber-100/10 border-amber-500' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+src/components/OverviewTab.tsx:1203:          className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-2xl flex items-center gap-3 shadow-xs cursor-pointer hover:bg-slate-100 transition col-span-2 sm:col-span-1"
+src/components/OverviewTab.tsx:1222:            className="p-2.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-3xl"
+src/components/OverviewTab.tsx:1584:                <div className="p-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl space-y-1 text-base font-bold">
+src/components/OverviewTab.tsx:1598:                    className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-base font-semibold focus:outline-none focus:bg-white focus:border-[var(--color-secondary)] text-slate-800 leading-normal"
+src/components/PTCTab.tsx:74:        <div className="p-5 border-b border-slate-100 bg-slate-50/70">
+src/components/PTCTab.tsx:87:              <input type="text" id="ptc-teacher" className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold transition-all placeholder:text-slate-400" placeholder="e.g. Mr. Daniel Gitumu" />
+src/components/PTCTab.tsx:92:            <div className="relative border border-slate-200 rounded-xl bg-slate-50 group focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-500/20 transition-all">
+src/components/PTCTab.tsx:101:              <input type="text" id="ptc-time" className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold transition-all placeholder:text-slate-400 font-mono" placeholder="10:00 AM - 10:30 AM" />
+src/components/PTCTab.tsx:144:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold text-slate-800 transition-all placeholder:text-slate-400"
+src/components/PTCTab.tsx:147:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/PTCTab.tsx:165:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/PTCTab.tsx:189:                      className="hover:bg-slate-50/70 transition-colors"
+src/components/PayrollTab.tsx:90:        <div className="p-6 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/PayrollTab.tsx:99:              className="px-2 py-2.5 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-700 text-[17px] font-extrabold rounded-xl hover:bg-slate-50 transition cursor-pointer flex items-center gap-1 shadow-sm"
+src/components/PayrollTab.tsx:122:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-lg font-bold text-slate-800 transition-all font-mono placeholder:text-slate-400 placeholder:font-sans"
+src/components/PayrollTab.tsx:125:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/PayrollTab.tsx:143:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/PayrollTab.tsx:168:                      className="hover:bg-slate-50/70 transition-colors"
+src/components/PayrollTab.tsx:268:                <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-xl space-y-2">
+src/components/PayrollTab.tsx:441:                   <button onClick={() => window.print()} className="flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-slate-200 text-slate-900 rounded-xl font-black uppercase text-[16px] tracking-widest hover:bg-slate-50 transition-colors cursor-pointer">
+src/components/QuickSearchTab.tsx:139:                    <div className="w-12 h-12 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl flex items-center justify-center font-black text-[#3D1D3F] group-hover:bg-amber-50 group-hover:text-[#3D1D3F] group-hover:border-[#C20F47] transition-all font-mono">
+src/components/QuickSearchTab.tsx:163:                     className="px-2 py-2 bg-slate-50 hover:bg-[#3D1D3F] hover:text-white rounded-xl text-[14px] font-black uppercase tracking-widest transition-all cursor-pointer flex items-center gap-1 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]"
+src/components/ReceptionistTab.tsx:211:    <div className="p-6 md:p-8 space-y-8 animate-in fade-in duration-500 bg-slate-50 min-h-full">
+src/components/ReceptionistTab.tsx:295:                        <div className="bg-slate-50 rounded-2xl p-4 mb-4 border border-slate-100">
+src/components/ReceptionistTab.tsx:362:                className="w-full mt-6 bg-slate-50 hover:bg-slate-100 border-2 border-dashed border-slate-200 hover:border-slate-300 text-slate-600 font-bold py-3.5 rounded-2xl transition-all text-sm flex items-center justify-center gap-2"
+src/components/ReceptionistTab.tsx:385:          <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-50/50">
+src/components/ReceptionistTab.tsx:395:              <button className="flex items-center gap-2 bg-white border border-slate-200 text-slate-700 px-5 py-3 rounded-xl font-bold hover:bg-slate-50 transition-colors">
+src/components/ReceptionistTab.tsx:403:                <tr className="bg-slate-50 border-b border-slate-200">
+src/components/ReceptionistTab.tsx:413:                  <tr key={visitor.id} className="hover:bg-slate-50/50 transition-colors group">
+src/components/ReceptionistTab.tsx:433:                          visitor.outcome === 'Rescheduled' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-slate-50 text-slate-600 border-slate-200'
+src/components/ReceptionistTab.tsx:451:                        visitor.status === 'In Premise' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-50 text-slate-400 border-slate-200'
+src/components/ReceptionistTab.tsx:467:          <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-50/50">
+src/components/ReceptionistTab.tsx:503:            <div className="p-6 bg-slate-50/50 flex-1 overflow-x-auto">
+src/components/ReceptionistTab.tsx:550:                  <tr className="bg-slate-50 border-b border-slate-200">
+src/components/ReceptionistTab.tsx:560:                  <tr key={meeting.id} className="hover:bg-slate-50/50 transition-colors">
+src/components/ReceptionistTab.tsx:651:            <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/80 shrink-0">
+src/components/ReceptionistTab.tsx:661:              <button onClick={() => setShowNewVisitor(false)} className="text-slate-400 hover:text-slate-700 bg-white shadow-sm border border-slate-200 rounded-full p-2 transition-all hover:bg-slate-50">
+src/components/ReceptionistTab.tsx:673:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-900 transition-all text-sm shadow-sm" 
+src/components/ReceptionistTab.tsx:682:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-900 transition-all text-sm shadow-sm" 
+src/components/ReceptionistTab.tsx:693:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-800 transition-all shadow-sm cursor-pointer text-sm"
+src/components/ReceptionistTab.tsx:707:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-medium text-slate-900 transition-all shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:718:                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-800 transition-all cursor-pointer shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:753:                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-bold text-slate-800 transition-all cursor-pointer shadow-sm text-sm"
+src/components/ReceptionistTab.tsx:762:                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-bold font-mono text-slate-800 transition-all cursor-pointer shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:771:            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0">
+src/components/ReceptionistTab.tsx:792:             <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/80 shrink-0">
+src/components/ReceptionistTab.tsx:802:              <button onClick={() => setShowNewMeeting(false)} className="text-slate-400 hover:text-slate-700 bg-white shadow-sm border border-slate-200 rounded-full p-2 transition-all hover:bg-slate-50">
+src/components/ReceptionistTab.tsx:813:                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-800 transition-all cursor-pointer shadow-sm text-sm"
+src/components/ReceptionistTab.tsx:822:                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold font-mono text-slate-800 transition-all cursor-pointer shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:833:                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-900 transition-all shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:842:                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 font-bold text-slate-900 transition-all shadow-sm text-sm" 
+src/components/ReceptionistTab.tsx:849:            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0">
+src/components/ReportFormsTab.tsx:50:      <div className="flex flex-col sm:flex-row justify-between items-center bg-slate-50 p-3 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-3xl gap-4 shadow-sm">
+src/components/ReportFormsTab.tsx:88:                   selectedStudentId === s.id ? 'bg-indigo-50 border border-indigo-100 shadow-sm' : 'hover:bg-slate-50'
+src/components/ReportFormsTab.tsx:113:               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 bg-slate-50 border border-slate-200 rounded-xl p-4">
+src/components/ReportFormsTab.tsx:160:                       <tr key={idx} className="hover:bg-slate-50 text-lg font-bold text-slate-800">
+src/components/ReportFormsTab.tsx:180:                 <button className="px-4 py-2 border border-slate-300 rounded-xl text-slate-700 font-bold text-lg uppercase hover:bg-slate-50 transition flex items-center gap-2">
+src/components/ReportFormsTab.tsx:189:             <div className="bg-slate-50 border-2 border-dashed border-slate-200 h-full rounded-3xl flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest text-lg p-12 text-center">
+src/components/ReportsTab.tsx:46:      <div className="flex flex-col sm:flex-row justify-between items-center bg-slate-50 p-2 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-3xl gap-1.5">
+src/components/ReportsTab.tsx:60:                  : 'bg-white hover:bg-slate-50 text-slate-600 border-slate-200'
+src/components/ReportsTab.tsx:94:                <tr className="bg-slate-50 border-b border-slate-200 text-slate-450 uppercase text-[16px]">
+src/components/ReportsTab.tsx:146:                <tr className="bg-slate-50 border-b border-slate-200 text-slate-450 uppercase text-[16px]">
+src/components/ReportsTab.tsx:194:                <tr className="bg-slate-50 border-b border-slate-200 text-slate-450 uppercase text-[16px]">
+src/components/ReportsTab.tsx:240:                <tr className="bg-slate-50 border-b border-slate-200 text-slate-450 uppercase text-[16px]">
+src/components/ResultsTab.tsx:83:        <div className="p-5 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/ResultsTab.tsx:113:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-lg font-bold text-slate-800 transition-all placeholder:text-slate-400"
+src/components/ResultsTab.tsx:116:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/ResultsTab.tsx:135:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/ResultsTab.tsx:160:                      className="hover:bg-slate-50 transition-colors group"
+src/components/ResultsTab.tsx:167:                            'bg-slate-50 text-slate-500'}`}
+src/components/RolePermissionsGrid.tsx:174:    <div className="space-y-6 animate-fade-in text-lg text-slate-700 bg-slate-50/50 p-6 rounded-3xl min-h-screen">
+src/components/RolePermissionsGrid.tsx:209:                  className={`px-4 py-2.5 text-lg cursor-pointer transition flex items-center justify-between ${selectedRole === r ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+src/components/RolePermissionsGrid.tsx:235:            className="flex items-center gap-2 font-bold text-[17px] text-slate-500 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] px-2 py-2 rounded-xl shadow-sm hover:bg-slate-50 transition cursor-pointer"
+src/components/RolePermissionsGrid.tsx:275:                        className="flex items-center gap-3 py-1.5 px-0 hover:bg-slate-50 transition cursor-pointer select-none rounded group"
+src/components/SettingsTab.tsx:644:                    : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700'
+src/components/SettingsTab.tsx:661:      <div className="bg-slate-50/30 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-[2rem] p-1.5 shadow-xs min-h-[400px]">
+src/components/SettingsTab.tsx:685:                  <div className="md:col-span-3 flex flex-col items-center justify-center p-8 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50/50 space-y-4">
+src/components/SettingsTab.tsx:700:                      className="px-2 py-2 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-700 rounded-xl hover:bg-slate-50 transition font-black text-[14px] uppercase tracking-wider cursor-pointer font-sans"
+src/components/SettingsTab.tsx:718:                      className="w-full text-slate-900 font-extrabold p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:727:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:736:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:746:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:755:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:765:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:773:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500 font-extrabold"
+src/components/SettingsTab.tsx:789:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500 font-extrabold"
+src/components/SettingsTab.tsx:804:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:813:                      className="w-full text-slate-950 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-indigo-500"
+src/components/SettingsTab.tsx:818:                    <div className="w-full bg-slate-50 p-1.5 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-xl text-slate-900 font-black uppercase tracking-wider flex items-center gap-1.5">
+src/components/SettingsTab.tsx:854:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white text-slate-905"
+src/components/SettingsTab.tsx:864:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:873:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:883:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:894:                        className="flex-1 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white text-slate-900 font-mono font-extrabold"
+src/components/SettingsTab.tsx:906:                        className="flex-1 p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white text-slate-900 font-mono font-extrabold"
+src/components/SettingsTab.tsx:921:                            branding.theme === thm ? 'border-pink-500 bg-pink-50/10 text-pink-700' : 'border-slate-200 hover:bg-slate-50/60 text-slate-650'
+src/components/SettingsTab.tsx:960:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:969:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:977:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 font-extrabold text-slate-900 focus:outline-none"
+src/components/SettingsTab.tsx:995:                      className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none text-slate-905"
+src/components/SettingsTab.tsx:1001:                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-4 border border-slate-150 rounded-2xl">
+src/components/SettingsTab.tsx:1057:                        className="px-3 py-1.5 border border-slate-250 bg-slate-50 text-base font-bold rounded-xl focus:bg-white focus:outline-none"
+src/components/SettingsTab.tsx:1070:                      <div key={stage.id} className="p-2 bg-slate-50 rounded-2xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] space-y-1.5">
+src/components/SettingsTab.tsx:1137:                    <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-base font-bold text-slate-700">
+src/components/SettingsTab.tsx:1185:                      <div key={term.id} className="p-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl flex items-center justify-between text-base font-bold text-slate-700">
+src/components/SettingsTab.tsx:1221:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/SettingsTab.tsx:1233:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/SettingsTab.tsx:1245:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+src/components/SettingsTab.tsx:1258:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-mono"
+src/components/SettingsTab.tsx:1267:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-mono"
+src/components/SettingsTab.tsx:1276:                        className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none font-mono"
+src/components/SettingsTab.tsx:1281:                  <div className="bg-slate-50 p-4 border border-slate-150 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4">
+src/components/SettingsTab.tsx:1350:                      className="w-full p-2.5 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:1364:                      className="w-full p-2.5 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none font-mono"
+src/components/SettingsTab.tsx:1372:                      className="w-full p-2.5 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none font-semibold"
+src/components/SettingsTab.tsx:1386:                      className="w-full p-2.5 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none font-mono"
+src/components/SettingsTab.tsx:1438:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl grid grid-cols-2 md:grid-cols-4 gap-1.5">
+src/components/SettingsTab.tsx:1498:                      <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[14px] font-black tracking-widest uppercase font-mono">
+src/components/SettingsTab.tsx:1508:                        <tr key={gr.id} className="hover:bg-slate-50/50 transition">
+src/components/SettingsTab.tsx:1515:                              className="w-16 px-2 py-1 border border-slate-200 rounded text-center bg-slate-50 font-mono"
+src/components/SettingsTab.tsx:1524:                              className="w-16 px-2 py-1 border border-slate-200 rounded text-center bg-slate-50 font-mono"
+src/components/SettingsTab.tsx:1586:                        <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[14px] font-black tracking-widest uppercase font-mono">
+src/components/SettingsTab.tsx:1597:                          <tr key={fee.id} className="hover:bg-slate-50/50">
+src/components/SettingsTab.tsx:1627:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl grid grid-cols-1 sm:grid-cols-5 gap-1.5">
+src/components/SettingsTab.tsx:1716:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none"
+src/components/SettingsTab.tsx:1724:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 font-extrabold focus:outline-none"
+src/components/SettingsTab.tsx:1737:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 focus:outline-none text-slate-905 font-semibold"
+src/components/SettingsTab.tsx:1741:                  <div className="md:col-span-2 bg-slate-50 p-2 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-2">
+src/components/SettingsTab.tsx:1807:                      className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono focus:outline-none"
+src/components/SettingsTab.tsx:1816:                      className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono focus:outline-none"
+src/components/SettingsTab.tsx:1849:                <div className="w-16 h-16 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl flex items-center justify-center text-slate-400 mx-auto">
+src/components/SettingsTab.tsx:1891:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl">
+src/components/SettingsTab.tsx:1895:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl">
+src/components/SettingsTab.tsx:1899:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl">
+src/components/SettingsTab.tsx:1908:                    <div className="p-3.5 bg-slate-50/55 flex justify-between items-center">
+src/components/SettingsTab.tsx:1915:                    <div className="p-3.5 bg-slate-50/55 flex justify-between items-center">
+src/components/SettingsTab.tsx:1939:                  <label className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer select-none">
+src/components/SettingsTab.tsx:1952:                  <label className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer select-none">
+src/components/SettingsTab.tsx:1965:                  <label className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer select-none">
+src/components/SettingsTab.tsx:2007:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 font-extrabold focus:outline-none"
+src/components/SettingsTab.tsx:2019:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 font-extrabold focus:outline-none"
+src/components/SettingsTab.tsx:2031:                      className="w-full p-3 border border-slate-205 rounded-xl bg-slate-50 font-extrabold focus:outline-none"
+src/components/SmsTab.tsx:131:                        : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+src/components/SmsTab.tsx:148:                className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition cursor-pointer"
+src/components/SmsTab.tsx:169:                className="w-full px-3 py-2 border border-slate-200 bg-slate-50 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition"
+src/components/SmsTab.tsx:183:                className="w-full p-3 border border-slate-200 bg-slate-50 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition leading-relaxed resize-none font-sans font-medium"
+src/components/SmsTab.tsx:205:            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+src/components/SmsTab.tsx:218:                  className="w-full pl-8 pr-3 py-1.5 border border-slate-200 bg-white rounded-lg text-[16px] text-slate-800 placeholder:text-slate-450 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-slate-50 transition"
+src/components/SmsTab.tsx:231:                  <div key={log.id} className="p-5 hover:bg-slate-50/60 transition flex items-start justify-between gap-4 border-b border-slate-100">
+src/components/StaffAttendanceTab.tsx:120:        <div className="px-6 md:px-8 py-5 border-b border-slate-100 bg-slate-50/30 flex flex-col sm:flex-row items-center gap-4">
+src/components/StaffAttendanceTab.tsx:150:              <tr className="bg-slate-50/50 border-b border-slate-100">
+src/components/StaffAttendanceTab.tsx:172:                      className="hover:bg-slate-50 transition-colors"
+src/components/StudentAttendanceTab.tsx:142:                  className="pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8862F0]/20 focus:border-[#8862F0] transition-colors"
+src/components/StudentAttendanceTab.tsx:152:                className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-850 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8862F0]/20 focus:border-[#8862F0] transition-colors appearance-none pr-10 cursor-pointer min-w-[120px]"
+src/components/StudentAttendanceTab.tsx:167:                className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-850 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8862F0]/20 focus:border-[#8862F0] transition-colors appearance-none pr-10 cursor-pointer min-w-[140px]"
+src/components/StudentAttendanceTab.tsx:184:                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-850 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#8862F0]/20 focus:border-[#8862F0] transition-colors"
+src/components/StudentAttendanceTab.tsx:193:              className="flex-1 xl:flex-none justify-center px-5 py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold rounded-2xl transition shadow-sm border border-slate-200 flex items-center gap-2 text-sm"
+src/components/StudentAttendanceTab.tsx:210:              <tr className="border-b border-slate-100 bg-slate-50/50">
+src/components/StudentAttendanceTab.tsx:228:                    <tr key={stud.id} className="hover:bg-slate-50 transition-colors">
+src/components/StudentAttendanceTab.tsx:245:                                  : 'bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 hover:text-slate-800'
+src/components/StudentPortal.tsx:141:      <div className="flex flex-col sm:flex-row justify-between items-center bg-slate-50 p-2 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-3xl gap-1.5">
+src/components/StudentPortal.tsx:304:                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
+src/components/StudentPortal.tsx:315:              <div key={idx} className="flex justify-between items-center text-lg font-semibold p-3 bg-slate-50 rounded-2xl border border-slate-150">
+src/components/StudentPortal.tsx:336:              <div key={a.id} className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-150 text-lg font-semibold">
+src/components/StudentPortal.tsx:369:                  <tr className="bg-slate-50 border-b border-slate-250 text-slate-400 text-[16px] uppercase font-bold">
+src/components/StudentPortal.tsx:377:                    <tr key={sc.subject} className="hover:bg-slate-50/50">
+src/components/StudentPortal.tsx:402:            <div className="text-[16px] bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-2xl px-1.5 py-2.5 text-center font-mono">
+src/components/StudentPortal.tsx:420:                <div key={bk.id} className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-150 text-lg font-semibold">
+src/components/StudentProfileDossier.tsx:50:        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 shrink-0">
+src/components/StudentProfileDossier.tsx:69:          <div className="w-full md:w-72 border-r border-slate-100 bg-slate-50/50 p-6 flex flex-col items-center text-center shrink-0 space-y-6 overflow-y-auto">
+src/components/StudentProfileDossier.tsx:121:                  className="w-full py-2 bg-white hover:bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-700 text-[17px] font-bold rounded-xl transition cursor-pointer"
+src/components/StudentProfileDossier.tsx:133:            <div className="px-6 border-b border-slate-100 flex items-center gap-1 bg-slate-50/20 overflow-x-auto shrink-0 scrollbar-hide py-1">
+src/components/StudentProfileDossier.tsx:226:                    <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl">
+src/components/StudentProfileDossier.tsx:267:                    <div className="bg-slate-50 p-4 rounded-xl text-center">
+src/components/StudentProfileDossier.tsx:271:                    <div className="bg-slate-50 p-4 rounded-xl text-center">
+src/components/StudentProfileDossier.tsx:275:                    <div className="bg-slate-50 p-4 rounded-xl text-center">
+src/components/StudentProfileDossier.tsx:323:                    <div className="col-span-2 bg-slate-50 p-4 rounded-xl">
+src/components/StudentProfileDossier.tsx:347:                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-150">
+src/components/StudentProfileDossier.tsx:351:                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-150">
+src/components/StudentProfileDossier.tsx:355:                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-150">
+src/components/StudentProfileDossier.tsx:388:                    <div className="flex justify-between items-center bg-slate-50 p-1.5 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/70 rounded-2xl">
+src/components/StudentProfileDossier.tsx:392:                    <div className="flex justify-between items-center bg-slate-50 p-1.5 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/70 rounded-2xl">
+src/components/StudentProfileDossier.tsx:396:                    <div className="flex justify-between items-center bg-slate-50 p-1.5 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/70 rounded-2xl">
+src/components/StudentsDataHub.tsx:253:            <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-2xl space-y-1.5">
+src/components/StudentsDataHub.tsx:298:            <div className="flex items-center justify-around bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2.5 rounded-2xl gap-2">
+src/components/StudentsDataHub.tsx:364:              <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-[1.25rem]">
+src/components/StudentsDataHub.tsx:368:              <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-[1.25rem]">
+src/components/StudentsDataHub.tsx:430:            <div className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-2 rounded-2xl flex items-center justify-between text-base font-semibold">
+src/components/StudentsTab.tsx:222:          className="flex items-center gap-1.5 px-1.5 py-1.5 bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition text-[16px] font-bold cursor-pointer shadow-sm"
+src/components/StudentsTab.tsx:312:              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full mix-blend-multiply filter blur-xl opacity-20 -mr-6 -mt-6"></div>
+src/components/StudentsTab.tsx:372:              className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl placeholder:text-slate-400 font-semibold focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-slate-800"
+src/components/StudentsTab.tsx:379:              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold transition duration-150 shrink-0 cursor-pointer text-[17px]"
+src/components/StudentsTab.tsx:399:        <div className="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+src/components/StudentsTab.tsx:421:                <tr className="bg-slate-50 border-b border-slate-200 text-[15px] text-slate-500 uppercase font-mono tracking-wider h-11">
+src/components/StudentsTab.tsx:437:                    <tr key={stud.id} className="hover:bg-slate-50/50 transition duration-150">
+src/components/StudentsTab.tsx:481:                            className="bg-white hover:bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-700 px-1.5 py-1.5 text-[16px] font-bold rounded-lg cursor-pointer transition shadow-sm hover:border-slate-300"
+src/components/StudentsTab.tsx:508:                                className="w-full text-left px-3 py-2 hover:bg-slate-50 rounded-lg text-slate-800 font-bold text-[12.5px] block cursor-pointer transition"
+src/components/StudentsTab.tsx:515:                                className="w-full text-left px-3 py-2 hover:bg-slate-50 rounded-lg text-slate-800 font-bold text-[12.5px] block cursor-pointer transition"
+src/components/StudentsTab.tsx:590:            <div className="px-6 py-4.5 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+src/components/StudentsTab.tsx:611:                  className="w-full px-3.5 py-2 rounded-xl border border-slate-205 bg-slate-50 text-slate-800"
+src/components/StudentsTab.tsx:625:                    className="w-full px-3.5 py-2 rounded-xl border border-slate-205 bg-slate-50 text-slate-850 disabled:opacity-45"
+src/components/StudentsTab.tsx:680:                    className="w-full px-3.5 py-2 rounded-xl border border-slate-205 bg-slate-50 text-slate-800"
+src/components/StudentsTab.tsx:691:                    className="w-full px-3.5 py-2 rounded-xl border border-slate-205 bg-slate-50 text-slate-800"
+src/components/StudentsTab.tsx:700:                  className="px-4.5 py-2 border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 rounded-xl cursor-pointer font-bold transition"
+src/components/SubjectsTab.tsx:69:        <div className="p-5 border-b border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+src/components/SubjectsTab.tsx:101:              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:bg-white text-lg font-semibold text-slate-800 transition-all"
+src/components/SubjectsTab.tsx:104:          <div className="w-full sm:w-auto flex items-center gap-2 bg-slate-50 px-1.5 py-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]">
+src/components/SubjectsTab.tsx:123:              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500">
+src/components/SubjectsTab.tsx:149:                      className="hover:bg-slate-50/50 transition-colors"
+src/components/SubjectsTab.tsx:156:                      <td className="px-5 py-4 font-mono text-[17px] text-slate-600 bg-slate-50/30">x{s.coefficient}</td>
+src/components/SuperAdminPortal.tsx:301:              : 'bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+src/components/SuperAdminPortal.tsx:311:              : 'bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+src/components/SuperAdminPortal.tsx:321:              : 'bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+src/components/SuperAdminPortal.tsx:331:              : 'bg-white border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+src/components/SuperAdminPortal.tsx:491:              <div className="bg-slate-50 p-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/60">
+src/components/SuperAdminPortal.tsx:502:              <div className="bg-slate-50 p-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/60">
+src/components/SuperAdminPortal.tsx:513:              <div className="bg-slate-50 p-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A]/60">
+src/components/SuperAdminPortal.tsx:540:                className="w-full pl-9 pr-4 py-2 rounded-xl text-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 font-sans focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:bg-white transition"
+src/components/SuperAdminPortal.tsx:553:                className="px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-800 text-lg rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+src/components/SuperAdminPortal.tsx:565:                className="px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-800 text-lg rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+src/components/SuperAdminPortal.tsx:588:                  <tr className="bg-slate-50 border-b border-slate-200 text-[16px] uppercase tracking-wider text-slate-500 font-mono">
+src/components/SuperAdminPortal.tsx:625:                        <tr key={school.id} className="hover:bg-slate-50/60 transition-all">
+src/components/SuperAdminPortal.tsx:713:                  className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-lg py-2 px-1.5 text-lg text-slate-800"
+src/components/SuperAdminPortal.tsx:732:                  className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 px-3 text-lg text-slate-800 placeholder:text-slate-400"
+src/components/SuperAdminPortal.tsx:746:                  className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 px-3 text-lg text-slate-800 placeholder:text-slate-400"
+src/components/SuperAdminPortal.tsx:772:                  <div key={log.id} className="bg-slate-50 p-2 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] flex flex-col gap-1">
+src/components/SuperAdminPortal.tsx:836:                      <tr key={inv.id} className="hover:bg-slate-50/60 transition-all font-semibold">
+src/components/SuperAdminPortal.tsx:883:                <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/SuperAdminPortal.tsx:891:                <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/SystemUsersOnboardingTab.tsx:272:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:295:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:318:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:341:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:364:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:387:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:410:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:433:              : 'border-slate-200 shadow-sm hover:shadow hover:bg-slate-50/50'
+src/components/SystemUsersOnboardingTab.tsx:473:                className="w-full pl-9 pr-4 py-2 text-base font-semibold rounded-lg bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:ring-1 focus:ring-[#3D1D3F] focus:bg-white transition"
+src/components/SystemUsersOnboardingTab.tsx:493:              <tr className="bg-slate-50 border-b border-slate-200 text-[15px] font-black uppercase tracking-widest text-slate-400 font-sans h-12">
+src/components/SystemUsersOnboardingTab.tsx:513:                    <tr key={user.id} className="hover:bg-slate-50/30 transition duration-150 h-16">
+src/components/SystemUsersOnboardingTab.tsx:629:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-bold focus:outline-none focus:ring-1 focus:ring-[#3D1D3F]"
+src/components/SystemUsersOnboardingTab.tsx:641:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-mono focus:outline-none focus:ring-1 focus:ring-[#3D1D3F]"
+src/components/SystemUsersOnboardingTab.tsx:652:                      className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-lg p-2.5 font-bold cursor-pointer outline-none"
+src/components/SystemUsersOnboardingTab.tsx:669:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:681:                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-mono focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:740:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-bold focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:751:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-mono focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:762:                      className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-lg p-2.5 font-bold cursor-pointer outline-none"
+src/components/SystemUsersOnboardingTab.tsx:778:                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:789:                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-mono focus:outline-none"
+src/components/SystemUsersOnboardingTab.tsx:846:                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-10 py-2.5 font-mono text-slate-800 text-[17px] tracking-widest focus:outline-none"
+src/components/TeacherPortal.tsx:492:          <div className="bg-slate-50 border border-slate-250 p-5 rounded-3xl flex flex-col md:flex-row gap-4 items-center justify-between">
+src/components/TeacherPortal.tsx:553:            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between flex-wrap gap-3">
+src/components/TeacherPortal.tsx:587:                  <tr className="bg-slate-50 border-b border-slate-200 text-[16px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+src/components/TeacherPortal.tsx:612:                        <tr key={student.id} className="hover:bg-slate-50 transition">
+src/components/TeacherPortal.tsx:705:            <div className="px-6 py-4 bg-slate-50 border-b border-rose-900/10">
+src/components/TeacherPortal.tsx:716:                  <tr className="bg-slate-50 border-b border-slate-150 text-[16px] font-bold text-slate-400 tracking-wider">
+src/components/TeacherPortal.tsx:731:                      <tr key={student.id} className="hover:bg-slate-50 transition">
+src/components/TeacherPortal.tsx:879:            <div className="bg-slate-50 p-1.5 border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] rounded-xl text-lg space-y-1">
+src/components/TeacherPortal.tsx:908:                  <div className="p-2 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl text-center">
+src/components/TeacherPortal.tsx:937:                        <div key={row.subject} className="bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] p-1.5 rounded-xl flex items-center justify-between font-sans">
+src/components/TeacherPortal.tsx:1028:                <div className="p-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/TeacherPortal.tsx:1036:                <div className="p-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl">
+src/components/TeacherPortal.tsx:1044:            <div className="bg-slate-50 p-1.5 rounded-xl border-x-2 border-b-2 border-[#C20F47] border-t-4 border-t-[#F39C2A] text-[16px] text-slate-400 leading-normal font-mono">
+src/components/TimetableTab.tsx:312:             <div className="flex items-center gap-1 bg-slate-50 border border-slate-200 p-1 rounded-lg">
+src/components/TimetableTab.tsx:345:                  : "bg-white hover:bg-slate-50 border-slate-200 text-slate-700"
+src/components/TimetableTab.tsx:361:                  : "bg-white hover:bg-slate-50 border-slate-200 text-slate-600"
+src/components/TimetableTab.tsx:375:                    : "bg-white hover:bg-slate-50 border-slate-200 text-slate-700"
+src/components/TimetableTab.tsx:396:              className="px-4 py-2 border border-slate-300 rounded-xl text-slate-700 font-bold text-lg hover:bg-slate-50 transition"
+src/components/TimetableTab.tsx:407:                  <div key={subject} className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col">
+src/components/TimetableTab.tsx:433:              <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+src/components/TimetableTab.tsx:485:        <div className="px-6 py-4.5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+src/components/TimetableTab.tsx:500:              <tr className="bg-slate-50 border-b border-slate-200 text-[16px] font-extrabold text-slate-500 uppercase tracking-wide shadow-sm">
+src/components/TimetableTab.tsx:501:                <th className="py-3 px-4 border-r border-slate-200 w-24 sticky left-0 z-20 bg-slate-50">{viewMode === 'weekly' ? 'Day' : 'Class'}</th>
+src/components/TimetableTab.tsx:513:                  <td colSpan={SLOTS.length + 1} className="py-16 text-center text-slate-500 font-medium bg-slate-50/50">
+src/components/TimetableTab.tsx:521:                  <td className="py-6 px-4 border-r border-slate-200 font-extrabold text-slate-800 text-center bg-slate-50 uppercase tracking-wider sticky left-0 z-10 shadow-[1px_0_2px_rgba(0,0,0,0.05)]">
+src/components/TimetableTab.tsx:569:                        <td key={slot.name} className={"p-1 border-r border-slate-200 last:border-0 " + (isOngoing ? "bg-indigo-50/30" : "bg-slate-50/30")}>
+src/components/TimetableTab.tsx:615:                         <div className={"w-full h-full min-h-[90px] p-2 flex flex-col justify-center items-center transition-all duration-200 relative " + blockColor + " " + innerBorder + (editMode ? " group-hover/cell:scale-[1.03] group-hover/cell:shadow-md" : (targetClass && !isOngoing ? " hover:bg-slate-50" : ""))}>
+src/components/TimetableTab.tsx:664:              <div className="flex items-center gap-2 mb-4 bg-slate-50 p-3 rounded-lg border border-slate-200">
+src/components/TimetableTab.tsx:687:                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all"
+src/components/TimetableTab.tsx:699:                    className={"w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-lg font-bold text-slate-900 focus:outline-none transition-all " + (!isAdmin && isCellMySlot({ current: editForm }) ? "opacity-60 cursor-not-allowed" : "focus:ring-2 focus:ring-indigo-500/30")}
+src/components/TimetableTab.tsx:713:                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all"
+src/components/TimetableTab.tsx:720:            <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
+src/components/TransportModule.tsx:168:              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+src/components/TransportModule.tsx:287:              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-sm">
+src/components/TransportModule.tsx:360:                      <div className="mt-4 p-2.5 bg-slate-50 border border-slate-150 rounded-xl text-xs flex justify-between items-center text-slate-500">
+src/components/TransportModule.tsx:377:                          className="flex-1 py-1 px-2.5 bg-slate-50 border border-slate-250 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-bold transition text-center cursor-pointer"
+src/components/TransportModule.tsx:441:                        className="bg-slate-50 border border-slate-150 rounded-2xl p-5 hover:border-indigo-400 transition-all duration-300"
+src/components/TransportModule.tsx:615:                        className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold font-sans cursor-pointer focus:outline-none"
+src/components/TransportModule.tsx:629:                        className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold font-sans cursor-pointer focus:outline-none"
+src/components/TransportModule.tsx:641:                      <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-2.5">
+src/components/TransportModule.tsx:698:                  <div className="p-5 border-b border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+src/components/TransportModule.tsx:714:                        className="w-full pl-9.5 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none text-base font-semibold text-slate-800"
+src/components/TransportModule.tsx:722:                        className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[14.5px] font-bold focus:outline-none text-slate-700 cursor-pointer"
+src/components/TransportModule.tsx:736:                        <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[13.5px] uppercase tracking-widest font-mono">
+src/components/TransportModule.tsx:765:                                <tr key={item.id} className="hover:bg-slate-50/50 transition">
+src/components/TransportModule.tsx:877:                      <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 text-[13.5px] uppercase tracking-wider font-mono">
+src/components/TransportModule.tsx:889:                        <tr key={log.id} className="hover:bg-slate-50/40">
+src/components/TransportModule.tsx:983:                      className="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 hover:bg-white hover:border-amber-400 transition-all duration-300 relative overflow-hidden"
+src/components/TransportModule.tsx:1086:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1096:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1110:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none font-bold text-base text-slate-800"
+src/components/TransportModule.tsx:1122:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1130:                className="px-4 py-2 border border-slate-250 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold transition cursor-pointer"
+src/components/TransportModule.tsx:1183:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1193:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1206:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none font-bold text-base text-slate-800"
+src/components/TransportModule.tsx:1218:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1227:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1239:                className="px-4 py-2 border border-slate-250 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold transition cursor-pointer"
+src/components/TransportModule.tsx:1295:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1306:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800 font-mono"
+src/components/TransportModule.tsx:1316:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1325:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1339:                className="px-4 py-2 border border-slate-250 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold transition cursor-pointer"
+src/components/TransportModule.tsx:1388:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1403:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1414:                    className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1422:                    className="w-full px-3 py-2 bg-slate-50 border border-[#CBD5E1] rounded-xl font-semibold focus:outline-none"
+src/components/TransportModule.tsx:1437:                  className="w-full px-3 py-2 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 focus:ring-slate-900/10 outline-none text-base font-bold text-slate-800"
+src/components/TransportModule.tsx:1445:                className="px-4 py-2 border border-slate-250 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold transition cursor-pointer"
+src/components/UnauthorizedAccess.tsx:24:        <div className="bg-slate-50 p-8 flex justify-center">
+src/components/UnauthorizedAccess.tsx:43:          <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-[15px] font-extrabold text-slate-400 uppercase tracking-widest leading-loose">
+src/components/UnauthorizedAccess.tsx:58:                className="w-full py-4 bg-white border-2 border-slate-100 text-slate-600 rounded-2xl font-black uppercase text-[16px] tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-2 active:scale-95"
+src/components/UsersManagementTab.tsx:170:            className="w-full pl-9 pr-4 py-2 rounded-xl text-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[var(--color-secondary)]"
+src/components/UsersManagementTab.tsx:182:            className="px-1.5 py-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-755 text-lg rounded-xl font-semibold outline-none cursor-pointer"
+src/components/UsersManagementTab.tsx:201:              <tr className="bg-slate-50 border-b border-slate-250 text-[15px] uppercase tracking-wider text-slate-500 font-mono h-11">
+src/components/UsersManagementTab.tsx:219:                  <tr key={user.id} className="hover:bg-slate-50/50 transition">
+src/components/UsersManagementTab.tsx:277:            <div className="px-6 py-4 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+src/components/UsersManagementTab.tsx:308:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-slate-800 select-all"
+src/components/UsersManagementTab.tsx:321:                      className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl px-1.5 py-2 font-mono text-slate-800"
+src/components/UsersManagementTab.tsx:332:                      className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl px-1.5 py-2 font-mono text-slate-800"
+src/components/UsersManagementTab.tsx:377:                          className="w-full bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] rounded-xl px-1.5 py-2 text-slate-800"
+src/components/UsersManagementTab.tsx:386:              <div className="p-1.5 bg-slate-50 border-x-2 border-b-2 border-[#C20F47] border-t-[8px] border-t-[#F39C2A] text-slate-600 rounded-2xl flex items-start gap-1 text-[16px] font-medium leading-relaxed">
+src/components/UsersManagementTab.tsx:398:                  className="px-4.5 py-2 border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 rounded-xl cursor-pointer font-bold transition"
+src/components/WorkDiariesTab.tsx:90:      default: return { bg: 'bg-slate-50 hover:bg-slate-100', border: 'border-slate-200', text: 'text-slate-700', icon: LayoutGrid };
+src/components/WorkDiariesTab.tsx:141:    <div className="flex h-full bg-slate-50 animate-in fade-in duration-500">
+src/components/WorkDiariesTab.tsx:155:              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:bg-white transition-all text-sm font-medium"
+src/components/WorkDiariesTab.tsx:171:                  : 'hover:bg-slate-50 border border-transparent hover:border-slate-200 text-slate-700'
+src/components/WorkDiariesTab.tsx:215:                  <div className="bg-slate-50 border border-slate-200 rounded-xl flex items-center p-1 shadow-sm">
+src/components/WorkDiariesTab.tsx:332:                    <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+src/components/WorkDiariesTab.tsx:339:                      className="mt-8 text-indigo-600 font-bold hover:bg-slate-50 px-6 py-3 rounded-xl transition-colors border border-transparent hover:border-slate-200 inline-flex items-center gap-2"
+src/components/WorkDiariesTab.tsx:356:             <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/80 shrink-0">
+src/components/WorkDiariesTab.tsx:382:                          : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+src/components/WorkDiariesTab.tsx:396:                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-bold text-slate-900 transition-all text-sm shadow-sm"
+src/components/WorkDiariesTab.tsx:408:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-bold font-mono text-slate-800 transition-all cursor-pointer shadow-sm text-sm"
+src/components/WorkDiariesTab.tsx:417:                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-bold font-mono text-slate-800 transition-all cursor-pointer shadow-sm text-sm"
+src/components/WorkDiariesTab.tsx:427:                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-[#3D1D3F] focus:ring-4 focus:ring-[#3D1D3F]/10 font-medium text-slate-900 transition-all shadow-sm resize-none h-20 text-sm"
+src/components/WorkDiariesTab.tsx:435:            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0">

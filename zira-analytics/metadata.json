@@ -1,0 +1,6 @@
+{
+  "name": "ZIRA ACADEMY",
+  "description": "An academic analytics and school management portal mirroring the Zira Analytics dashboard for exam processing, student merit lists, class tracking, and school fee records.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

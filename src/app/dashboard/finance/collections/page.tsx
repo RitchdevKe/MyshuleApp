@@ -1,5 +1,14 @@
-import { redirect } from 'next/navigation';
+"use client";
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CollectionsPage() {
-  redirect('/dashboard/finance/collections/payments-receipts');
+  const router = useRouter();
+  
+  useEffect(() => {
+    router.replace('/dashboard/finance/collections/payments-receipts');
+  }, [router]);
+  
+  return null;
 }

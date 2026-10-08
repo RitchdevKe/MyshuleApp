@@ -6,7 +6,7 @@ import {
   GraduationCap, MapPin, Phone, User, Calendar, Settings, AlertTriangle, Shield, CheckCircle2,
   ChevronLeft, ChevronRight, Download, Upload, X
 } from "lucide-react";
-import { getStudentsDirectory } from "@/app/actions/students";
+import { getStudentsDirectory, createStudent, updateStudent, deleteStudent } from "@/app/actions/students";
 
 type UserRole = "admin" | "secretary" | "teacher";
 
@@ -92,9 +92,14 @@ export default function DirectoryPage() {
     });
   }, []);
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this student?")) {
-      setStudents(prev => prev.filter(s => s.id !== id));
+      const res = await deleteStudent(id);
+      if (res.success) {
+        setStudents(prev => prev.filter(s => s.id !== id));
+      } else {
+        alert("Failed to delete student: " + res.error);
+      }
     }
   };
 
@@ -109,34 +114,44 @@ export default function DirectoryPage() {
     setIsModalOpen(true);
   };
 
-  const openEditModal = (student: Student) => {
+  const openEditModal = (s: Student) => {
     setModalMode("edit");
-    setCurrentStudent(student);
+    setCurrentStudent(s);
     setIsModalOpen(true);
   };
 
-  const handleSaveModal = (e: React.FormEvent) => {
+  const handleSaveModal = async (e: React.FormEvent) => {
     e.preventDefault();
     if (modalMode === "add") {
-      const newId = currentStudent.id || `ADM${Math.floor(Math.random() * 10000)}`;
-      const name = currentStudent.name || "Unknown Student";
-      const initials = name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase() || 'U';
-      const newStudent: Student = {
-        id: newId,
-        name: name,
-        initials: initials,
-        grade: currentStudent.grade || "Grade 1",
-        stream: currentStudent.stream || "East",
-        branch: "Main Campus",
-        status: (currentStudent.status as any) || "Active",
-        attendance: 100,
-        phone: currentStudent.phone || "N/A",
-        parent: currentStudent.parent || "N/A",
-        joined: currentStudent.joined || new Date().toLocaleDateString(),
-      };
-      setStudents(prev => [newStudent, ...prev]);
+      const res = await createStudent(currentStudent);
+      if (res.success) {
+        const s = res.data;
+        const newStudent: Student = {
+          id: s.id,
+          name: `${s.firstName} ${s.lastName}`,
+          initials: (s.firstName[0] || 'U') + (s.lastName?.[0] || ''),
+          grade: currentStudent.grade || "Grade 1",
+          stream: currentStudent.stream || "East",
+          branch: "Main Campus",
+          status: s.status === 'ACTIVE' ? "Active" : s.status === 'SUSPENDED' ? "Suspended" : "Alumni",
+          attendance: 100,
+          phone: currentStudent.phone || "N/A",
+          parent: currentStudent.parent || "N/A",
+          joined: new Date().toLocaleDateString(),
+        };
+        setStudents(prev => [newStudent, ...prev]);
+      } else {
+        alert("Failed to create student: " + res.error);
+      }
     } else {
-      setStudents(prev => prev.map(s => s.id === currentStudent.id ? { ...s, ...currentStudent } as Student : s));
+      if (currentStudent.id) {
+        const res = await updateStudent(currentStudent.id, currentStudent);
+        if (res.success) {
+          setStudents(prev => prev.map(s => s.id === currentStudent.id ? { ...s, ...currentStudent } as Student : s));
+        } else {
+          alert("Failed to update student: " + res.error);
+        }
+      }
     }
     setIsModalOpen(false);
   };

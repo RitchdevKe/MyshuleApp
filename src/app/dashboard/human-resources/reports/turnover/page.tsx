@@ -1,15 +1,19 @@
-"use client";
-
 import React from "react";
-import { UserMinus, Users, Calendar, ArrowRight, ArrowDownRight, Filter, Download } from "lucide-react";
+import { UserMinus, Users, Calendar, ArrowRight, ArrowDownRight, Filter } from "lucide-react";
+import { getTurnoverData } from "./actions";
+import ExportButton from "./ExportButton";
 
-export default function TurnoverPage() {
-  const departures = [
-    { id: "OFF-24-12", employee: "David Kim", department: "IT & Technology", reason: "Resignation (Better Offer)", date: "Jul 31, 2024", tenure: "2.1 yrs" },
-    { id: "OFF-24-11", employee: "Alice Wanjiku", department: "Academic Staff", reason: "Relocation", date: "Jul 15, 2024", tenure: "5.5 yrs" },
-    { id: "OFF-24-10", employee: "Robert Kiprono", department: "Support & Maintenance", reason: "Contract Ended", date: "Jun 30, 2024", tenure: "1.0 yrs" },
-    { id: "OFF-24-09", employee: "Sarah Palmer", department: "Management", reason: "Retirement", date: "Jun 15, 2024", tenure: "12.4 yrs" },
-  ];
+export const dynamic = 'force-dynamic';
+
+export default async function TurnoverPage() {
+  const result = await getTurnoverData();
+  const data = result.success ? result.data : null;
+
+  const turnoverRate = data?.turnoverRateYTD || "0.0";
+  const retention = data?.avgRetentionYears || "0.0";
+  const headcountChange = data?.netHeadcountChange || "0";
+  const reasons = data?.reasons || [];
+  const departures = data?.recentDepartures || [];
 
   return (
     <div className="space-y-6">
@@ -20,10 +24,7 @@ export default function TurnoverPage() {
                <Filter className="w-4 h-4" />
                Filter Period
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-primary-900 hover:bg-primary-800 text-white rounded-xl font-bold text-sm transition-all shadow-sm shadow-primary-900/20">
-               <Download className="w-4 h-4" />
-               Export PDF
-            </button>
+            <ExportButton />
          </div>
       </div>
 
@@ -36,9 +37,10 @@ export default function TurnoverPage() {
              </div>
              <div>
                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">YTD Turnover Rate</p>
-               <p className="text-2xl font-black text-slate-800">8.4%</p>
+               <p className="text-2xl font-black text-slate-800">{turnoverRate}%</p>
              </div>
            </div>
+           {/* Hardcoded percentage change for demonstration, since we don't have historical data to compare to right now */}
            <div className="flex items-center gap-1 text-sm font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">
               <ArrowDownRight className="w-4 h-4" /> 1.2%
            </div>
@@ -51,7 +53,7 @@ export default function TurnoverPage() {
              </div>
              <div>
                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Average Retention</p>
-               <p className="text-2xl font-black text-slate-800">4.2 yrs</p>
+               <p className="text-2xl font-black text-slate-800">{retention} yrs</p>
              </div>
            </div>
         </div>
@@ -63,7 +65,7 @@ export default function TurnoverPage() {
              </div>
              <div>
                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Net Headcount Change</p>
-               <p className="text-2xl font-black text-slate-800">+12</p>
+               <p className="text-2xl font-black text-slate-800">{headcountChange}</p>
              </div>
            </div>
            <div className="text-right">
@@ -77,13 +79,7 @@ export default function TurnoverPage() {
          <div className="lg:col-span-1 bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 shadow-sm">
             <h3 className="text-lg font-black text-slate-800 mb-6">Reasons for Departure (YTD)</h3>
             <div className="space-y-5">
-               {[
-                  { reason: "Resignation (Other Offers)", count: 8, percent: 45, color: "bg-rose-500" },
-                  { reason: "Contract Ended", count: 4, percent: 22, color: "bg-amber-500" },
-                  { reason: "Relocation", count: 3, percent: 16, color: "bg-blue-500" },
-                  { reason: "Retirement", count: 2, percent: 11, color: "bg-emerald-500" },
-                  { reason: "Termination", count: 1, percent: 6, color: "bg-slate-800" },
-               ].map((item, index) => (
+               {reasons.length > 0 ? reasons.map((item: any, index: number) => (
                   <div key={index}>
                      <div className="flex justify-between items-end mb-2">
                         <span className="text-sm font-bold text-slate-700">{item.reason}</span>
@@ -95,7 +91,9 @@ export default function TurnoverPage() {
                         <div className={`h-full rounded-full ${item.color}`} style={{ width: `${item.percent}%` }}></div>
                      </div>
                   </div>
-               ))}
+               )) : (
+                  <div className="text-sm text-slate-500 font-medium text-center py-4">No departures recorded YTD</div>
+               )}
             </div>
          </div>
 
@@ -119,7 +117,7 @@ export default function TurnoverPage() {
                      </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                     {departures.map((dep) => (
+                     {departures.length > 0 ? departures.map((dep: any) => (
                         <tr key={dep.id} className="hover:bg-slate-50/50 transition-colors">
                            <td className="py-4 px-6">
                               <p className="font-bold text-slate-800 text-sm">{dep.employee}</p>
@@ -135,7 +133,13 @@ export default function TurnoverPage() {
                               <span className="font-medium text-slate-600 text-sm">{dep.date}</span>
                            </td>
                         </tr>
-                     ))}
+                     )) : (
+                        <tr>
+                           <td colSpan={4} className="py-8 px-6 text-center text-slate-500 text-sm font-medium">
+                              No recent departures
+                           </td>
+                        </tr>
+                     )}
                   </tbody>
                </table>
             </div>

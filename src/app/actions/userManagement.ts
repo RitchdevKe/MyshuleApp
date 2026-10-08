@@ -134,6 +134,18 @@ export async function deleteGroup(groupId: string) {
   return { success: true };
 }
 
+export async function updateGroup(groupId: string, data: { name: string; description?: string }) {
+  const group = await prisma.userGroup.update({
+    where: { id: groupId },
+    data: {
+      name: data.name,
+      description: data.description,
+    }
+  });
+  revalidatePath("/dashboard/administration/users/groups");
+  return { success: true, group };
+}
+
 // =====================================
 // INVITATIONS
 // =====================================

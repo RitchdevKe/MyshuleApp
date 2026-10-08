@@ -1,25 +1,46 @@
 "use client";
 
-import React from "react";
+import React, { useTransition } from "react";
 import { Link as LinkIcon, CreditCard, MessageSquare, BookOpen, ExternalLink, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { togglePaymentGateway, toggleCommunicationIntegration, toggleLMSIntegration } from "./actions";
 
-export default function IntegrationsClient() {
+export default function IntegrationsClient({ paymentGateways }: { paymentGateways: any[] }) {
+  const [isPending, startTransition] = useTransition();
+
+  const getPaymentStatus = (name: string) => {
+    const gateway = paymentGateways?.find(g => g.providerName === name);
+    return gateway?.isActive ? "Connected" : "Available";
+  };
+
+  const handleToggle = (category: string, name: string, currentStatus: string) => {
+    startTransition(async () => {
+      const newActive = currentStatus !== "Connected";
+      if (category === "Payment Gateways") {
+        await togglePaymentGateway(name, newActive);
+      } else if (category === "Communication") {
+        await toggleCommunicationIntegration(name, newActive);
+      } else if (category === "Learning Management") {
+        await toggleLMSIntegration(name, newActive);
+      }
+    });
+  };
+
   const integrations = [
     {
       category: "Payment Gateways",
       icon: CreditCard,
       items: [
-        { name: "Stripe", description: "Accept credit card payments globally.", status: "Connected", logo: "S" },
-        { name: "M-Pesa", description: "Mobile money integration for East Africa.", status: "Connected", logo: "M" },
-        { name: "PayPal", description: "Secure online payments and subscriptions.", status: "Available", logo: "P" },
+        { name: "Stripe", description: "Accept credit card payments globally.", status: getPaymentStatus("Stripe"), logo: "S" },
+        { name: "M-Pesa", description: "Mobile money integration for East Africa.", status: getPaymentStatus("M-Pesa"), logo: "M" },
+        { name: "PayPal", description: "Secure online payments and subscriptions.", status: getPaymentStatus("PayPal"), logo: "P" },
       ]
     },
     {
       category: "Communication",
       icon: MessageSquare,
       items: [
-        { name: "Twilio", description: "SMS gateway for bulk messaging.", status: "Connected", logo: "T" },
-        { name: "SendGrid", description: "Reliable transactional email delivery.", status: "Connected", logo: "SG" },
+        { name: "Twilio", description: "SMS gateway for bulk messaging.", status: "Available", logo: "T" },
+        { name: "SendGrid", description: "Reliable transactional email delivery.", status: "Available", logo: "SG" },
         { name: "WhatsApp Business", description: "Direct messaging for parents.", status: "Available", logo: "W" },
       ]
     },
@@ -78,11 +99,17 @@ export default function IntegrationsClient() {
                            
                            <div className="flex items-center justify-between pt-4 border-t border-slate-100/80 mt-auto">
                               {item.status === 'Connected' ? (
-                                 <button className="flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-800">
-                                    Configure <ExternalLink className="w-3.5 h-3.5" />
+                                 <button 
+                                   onClick={() => handleToggle(section.category, item.name, item.status)}
+                                   disabled={isPending}
+                                   className="flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-rose-600 disabled:opacity-50">
+                                    Disconnect
                                  </button>
                               ) : (
-                                 <button className="text-xs font-bold text-primary-600 hover:text-primary-800 transition-colors">
+                                 <button 
+                                   onClick={() => handleToggle(section.category, item.name, item.status)}
+                                   disabled={isPending}
+                                   className="text-xs font-bold text-primary-600 hover:text-primary-800 transition-colors disabled:opacity-50">
                                     Connect
                                  </button>
                               )}

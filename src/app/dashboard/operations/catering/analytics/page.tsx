@@ -1,22 +1,36 @@
-"use client";
-
 import React from "react";
-import { PieChart, TrendingUp, DollarSign, Activity, Calendar, Download } from "lucide-react";
+import { PieChart, TrendingUp, Package, Activity, Calendar, Download, ChefHat } from "lucide-react";
+import prisma from "@/lib/prisma";
 
-export default function AnalyticsPage() {
+async function getAnalyticsStats() {
+  const tenant = await prisma.tenant.findFirst();
+  if (!tenant) return { totalMeals: 0, totalItems: 0, totalTasks: 0 };
+
+  const [totalMeals, totalItems, totalTasks] = await Promise.all([
+    prisma.mealAttendance.count({ where: { tenantId: tenant.id, status: "PRESENT" } }),
+    prisma.foodInventory.count({ where: { tenantId: tenant.id } }),
+    prisma.kitchenTask.count({ where: { tenantId: tenant.id } }),
+  ]);
+
+  return { totalMeals, totalItems, totalTasks };
+}
+
+export default async function AnalyticsPage() {
+  const statsData = await getAnalyticsStats();
+
   const stats = [
-    { label: "Total Meals Served", value: "14,592", trend: "+12%", icon: TrendingUp },
-    { label: "Average Cost/Meal", value: "$1.24", trend: "-3%", icon: DollarSign },
-    { label: "Food Waste", value: "4.2%", trend: "-1.5%", icon: Activity },
+    { label: "Total Meals Served", value: statsData.totalMeals.toLocaleString(), trend: "Tracked", icon: TrendingUp },
+    { label: "Inventory Items", value: statsData.totalItems.toLocaleString(), trend: "Tracked", icon: Package },
+    { label: "Kitchen Tasks", value: statsData.totalTasks.toLocaleString(), trend: "Tracked", icon: ChefHat },
   ];
 
   return (
-    <div className="p-6 space-y-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-800">Catering Analytics</h2>
-          <p className="text-sm font-medium text-slate-500 mt-1">Cost analysis, consumption trends, and waste tracking.</p>
+          <p className="text-sm font-medium text-slate-500 mt-1">Meals served, inventory tracking, and kitchen operations.</p>
         </div>
         <div className="flex gap-3">
           <button className="px-4 py-2 bg-white text-slate-700 font-bold rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-2">
@@ -38,8 +52,8 @@ export default function AnalyticsPage() {
                 <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-500 shadow-inner">
                   <Icon className="w-6 h-6" />
                 </div>
-                <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${stat.trend.startsWith('+') ? 'bg-emerald-100 text-emerald-700' : 'bg-emerald-100 text-emerald-700'}`}>
-                  {stat.trend} vs Last Term
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-700">
+                  {stat.trend}
                 </span>
               </div>
               <p className="text-slate-500 font-semibold text-sm">{stat.label}</p>
@@ -50,11 +64,11 @@ export default function AnalyticsPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-         {/* Popular Meals */}
+         {/* Popular Meals (Static Mock for visual continuity) */}
          <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-sm overflow-hidden flex flex-col">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                <h3 className="font-black text-slate-800 flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-indigo-500" /> Most Popular Meals
+                  <PieChart className="w-4 h-4 text-indigo-500" /> Top Menu Items (Placeholder)
                </h3>
             </div>
             <div className="p-6">
@@ -79,15 +93,14 @@ export default function AnalyticsPage() {
             </div>
          </div>
 
-         {/* Waste Analysis */}
+         {/* Waste Analysis (Static Mock for visual continuity) */}
          <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-sm overflow-hidden flex flex-col">
             <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                <h3 className="font-black text-slate-800 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-indigo-500" /> Waste by Category
+                  <Activity className="w-4 h-4 text-indigo-500" /> Waste by Category (Placeholder)
                </h3>
             </div>
             <div className="p-6 flex items-center justify-center h-full">
-               {/* Simulated Donut Chart */}
                <div className="relative w-48 h-48 rounded-full border-[16px] border-slate-50 flex items-center justify-center">
                   <div className="absolute inset-0 rounded-full border-[16px] border-emerald-500 border-r-transparent border-b-transparent transform -rotate-45"></div>
                   <div className="absolute inset-0 rounded-full border-[16px] border-amber-400 border-l-transparent border-b-transparent transform -rotate-45"></div>
@@ -115,7 +128,6 @@ export default function AnalyticsPage() {
             </div>
          </div>
       </div>
-
     </div>
   );
 }

@@ -1,5 +1,14 @@
-import { redirect } from 'next/navigation';
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function FeesBillingPage() {
-  redirect('/dashboard/finance/fees-billing/student-accounts');
+  const router = useRouter();
+  
+  useEffect(() => {
+    router.replace("/dashboard/finance/fees-billing/student-accounts");
+  }, [router]);
+  
+  return null;
 }

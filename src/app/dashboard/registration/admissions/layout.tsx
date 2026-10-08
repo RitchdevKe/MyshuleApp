@@ -38,10 +38,13 @@ export default function WorkspaceLayout({ children }: { children: React.ReactNod
           getStudentsDirectory()
         ]);
 
-        const totalApps = applications.length;
-        const pendingReview = applications.filter(a => a.stage === 'REVIEW').length;
-        const admitted = applications.filter(a => a.stage === 'ADMITTED').length;
-        const enrolled = students.length;
+        const appsData = applications.data || [];
+        const studentsData = students.data || [];
+
+        const totalApps = appsData.length;
+        const pendingReview = appsData.filter((a: any) => a.stage === 'REVIEW').length;
+        const admitted = appsData.filter((a: any) => a.stage === 'ADMITTED').length;
+        const enrolled = studentsData.length;
 
         setStats([
           { label: "Total Applications", value: totalApps.toString(), icon: FileText, color: "bg-primary-900 text-white", sub: "All time" },

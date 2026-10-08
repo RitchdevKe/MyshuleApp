@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import { Users, Plus, Shield, Briefcase, Mail, CheckCircle2 } from "lucide-react";
-import { createStaff, suspendStaff } from "@/app/actions/staff";
+import { createStaff, suspendStaff, updateStaff } from "@/app/actions/staff";
 import { changeUserRole } from "@/app/actions/userManagement";
 import { useRouter } from "next/navigation";
 
@@ -20,6 +20,9 @@ export default function StaffClient({ staffMembers, roles }: { staffMembers: any
   const [department, setDepartment] = useState<"ACADEMIC" | "ADMINISTRATION" | "FINANCE" | "SUPPORT">("ACADEMIC");
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [roleId, setRoleId] = useState("");
+
+  const [showEdit, setShowEdit] = useState(false);
+  const [editStaffId, setEditStaffId] = useState("");
 
   const triggerToast = (msg: string) => {
     setToastMessage(msg);
@@ -39,6 +42,43 @@ export default function StaffClient({ staffMembers, roles }: { staffMembers: any
       setEmployeeNumber("");
       setRoleId("");
       triggerToast("Staff member created successfully");
+      router.refresh();
+    });
+  };
+
+  const openEdit = (staff: any) => {
+    setEditStaffId(staff.id);
+    setFirstName(staff.firstName);
+    setLastName(staff.lastName);
+    setEmail(staff.user?.email || "");
+    setJobTitle(staff.jobTitle);
+    setDepartment(staff.department);
+    setEmployeeNumber(staff.employeeNumber);
+    setRoleId(staff.user?.tenantUsers?.[0]?.roleId || "");
+    setShowEdit(true);
+  };
+
+  const handleEdit = () => {
+    if (!firstName || !lastName) return;
+    startTransition(async () => {
+      await updateStaff(editStaffId, { firstName, lastName, jobTitle, department, employeeNumber });
+      if (roleId) {
+         // handle role update if we had user access, but mostly updateStaff deals with staff.
+         // user email update is complex, skipping email update for now
+         // update role via changeUserRole if role changed
+         const staff = staffMembers.find(s => s.id === editStaffId);
+         if (staff?.userId && staff.user?.tenantUsers?.[0]?.roleId !== roleId) {
+            await changeUserRole(staff.userId, roleId);
+         }
+      }
+      setShowEdit(false);
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setJobTitle("");
+      setEmployeeNumber("");
+      setRoleId("");
+      triggerToast("Staff member updated successfully");
       router.refresh();
     });
   };
@@ -145,14 +185,22 @@ export default function StaffClient({ staffMembers, roles }: { staffMembers: any
                     </span>
                   </td>
                   <td className="p-4 pr-6 text-right">
-                     {staff.status === 'ACTIVE' && (
+                     <div className="flex items-center justify-end gap-2">
                        <button 
-                         onClick={() => handleSuspend(staff.id)}
-                         className="text-xs font-bold text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-colors border border-transparent hover:border-rose-100"
+                         onClick={() => openEdit(staff)}
+                         className="text-xs font-bold text-slate-500 hover:text-slate-700 hover:bg-slate-100 px-3 py-1.5 rounded-lg transition-colors border border-transparent hover:border-slate-200"
                        >
-                         Suspend
+                         Edit
                        </button>
-                     )}
+                       {staff.status === 'ACTIVE' && (
+                         <button 
+                           onClick={() => handleSuspend(staff.id)}
+                           className="text-xs font-bold text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-colors border border-transparent hover:border-rose-100"
+                         >
+                           Suspend
+                         </button>
+                       )}
+                     </div>
                   </td>
                 </tr>
               )})}
@@ -226,6 +274,71 @@ export default function StaffClient({ staffMembers, roles }: { staffMembers: any
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
               <button onClick={() => setShowAdd(false)} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
               <button onClick={handleAdd} disabled={isPending || !firstName || !email || !roleId} className="px-5 py-2.5 text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 rounded-xl shadow-sm disabled:opacity-50">Create Staff Profile</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEdit && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl w-full max-w-xl shadow-2xl overflow-hidden border border-slate-200">
+            <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+              <h3 className="text-lg font-black text-slate-800">Edit Staff Member</h3>
+            </div>
+            <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">First Name</label>
+                  <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Last Name</label>
+                  <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white" />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
+                <div className="relative">
+                  <Mail className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <input type="email" value={email} disabled className="w-full bg-slate-100 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium text-slate-500 cursor-not-allowed" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Employee Number</label>
+                  <input type="text" value={employeeNumber} onChange={(e) => setEmployeeNumber(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Job Title</label>
+                  <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} placeholder="e.g. Math Teacher" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Department</label>
+                  <select value={department} onChange={(e) => setDepartment(e.target.value as any)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white">
+                    <option value="ACADEMIC">Academic</option>
+                    <option value="ADMINISTRATION">Administration</option>
+                    <option value="FINANCE">Finance</option>
+                    <option value="SUPPORT">Support</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">System Role</label>
+                  <select value={roleId} onChange={(e) => setRoleId(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-purple-500 focus:bg-white">
+                    <option value="">Select a Role...</option>
+                    {roles.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
+              <button onClick={() => setShowEdit(false)} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
+              <button onClick={handleEdit} disabled={isPending || !firstName} className="px-5 py-2.5 text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 rounded-xl shadow-sm disabled:opacity-50">Save Changes</button>
             </div>
           </div>
         </div>

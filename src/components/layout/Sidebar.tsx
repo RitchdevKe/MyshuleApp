@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, UserPlus, GraduationCap, Wallet, 
   Users, Building2, MessageSquare, BarChart3, Shield, Settings,
-  ChevronDown, Layers
+  ChevronDown, Layers, LogOut
 } from "lucide-react";
 import { useSidebar } from "@/contexts/SidebarContext";
 import { useSchoolLevel } from "@/contexts/SchoolLevelContext";
@@ -26,7 +26,19 @@ const LEVEL_DOT: Record<string, string> = {
   "Senior":      "bg-violet-400",
 };
 
-const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: string }) => {
+const Sidebar = ({ 
+  tenantName, 
+  logoUrl, 
+  role,
+  userName,
+  userEmail
+}: { 
+  tenantName?: string, 
+  logoUrl?: string, 
+  role?: string,
+  userName?: string,
+  userEmail?: string 
+}) => {
   const pathname = usePathname();
   const { isSidebarOpen, closeSidebar } = useSidebar();
   const { schoolLevel, setSchoolLevel } = useSchoolLevel();
@@ -64,19 +76,20 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
     setExpandedMenu(expandedMenu === name ? null : name);
   };
 
-  const navigation = [
-    { 
-      name: "Dashboard",
-      icon: LayoutDashboard,
-      href: "/dashboard",
-      subItems: [
-        { name: "Overview", href: "/dashboard" },
-        { name: "Quick Search", href: "/dashboard/quick-search" },
-        { name: "Timetable", href: "/dashboard/timetable" },
-        { name: "Calendar", href: "/dashboard/calendar" },
-        { name: "AI Insights", href: "/dashboard/ai-insights" },
-      ]
-    },
+  const getNavigationForRole = (roleStr: string) => {
+    const rawNavigation = [
+      { 
+        name: "Dashboard",
+        icon: LayoutDashboard,
+        href: "/dashboard",
+        subItems: [
+          { name: "Overview", href: "/dashboard" },
+          { name: "Quick Search", href: "/dashboard/quick-search" },
+          { name: "Timetable", href: "/dashboard/timetable" },
+          { name: "Calendar", href: "/dashboard/calendar" },
+          { name: "AI Insights", href: "/dashboard/ai-insights" },
+        ]
+      },
     { 
       name: "Registration",
       icon: UserPlus,
@@ -172,6 +185,7 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
         { name: "Roles & Permissions", href: "/dashboard/administration/roles" },
         { name: "Subscription & Billing", href: "/dashboard/administration/billing" },
         { name: "Security & Compliance", href: "/dashboard/administration/security" },
+        { name: "AI Configuration", href: "/dashboard/administration/ai-settings" },
         { name: "System Management", href: "/dashboard/administration/system" },
       ]
     },
@@ -200,6 +214,35 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
       ]
     },
   ];
+
+    const safeRole = (roleStr || "").toUpperCase();
+
+    if (safeRole === "PARENT") {
+      return rawNavigation.filter(item => 
+        ["Dashboard", "Finance", "Communication", "Student Life", "Settings"].includes(item.name)
+      ).map(item => {
+        if (item.name === "Settings") {
+          return { ...item, subItems: [{ name: "My Profile", href: "/dashboard/settings/school" }] };
+        }
+        return item;
+      });
+    }
+
+    if (safeRole === "TEACHER") {
+      return rawNavigation.filter(item => 
+        ["Dashboard", "Academics", "Student Life", "Communication", "Reports", "Settings"].includes(item.name)
+      ).map(item => {
+        if (item.name === "Settings") {
+          return { ...item, subItems: [{ name: "My Profile", href: "/dashboard/settings/school" }] };
+        }
+        return item;
+      });
+    }
+
+    return rawNavigation; // Admins get everything
+  };
+
+  const navigation = getNavigationForRole(role || "SUPER_ADMIN");
 
   return (
     <>
@@ -257,7 +300,7 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
                         }
                       }}
                       className={`block py-2 px-2 text-xs font-bold rounded-md transition-colors ${
-                        pathname === subItem.href
+                        (pathname === subItem.href || (pathname.startsWith(subItem.href + "/") && subItem.href !== "/dashboard"))
                           ? "text-secondary-500 bg-white/5"
                           : "text-white/60 hover:text-white hover:bg-white/5"
                       }`}
@@ -275,15 +318,33 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
       {/* Footer Profile */}
       <div className="p-3 mb-2 shrink-0 border-t border-primary-900/50">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <button className="h-7 w-7 rounded-full bg-secondary-500 flex items-center justify-center text-white font-bold hover:bg-secondary-600 text-xs">
-               ...
-            </button>
-            <div className="flex flex-col">
-              <span className="text-[11px] font-bold text-white leading-tight">LOADING...</span>
-              <span className="text-[9px] text-white/60 leading-tight">jose.mfavour...</span>
+          <div className="flex items-center gap-2 overflow-hidden">
+            <div className="h-8 w-8 rounded-full bg-secondary-500 shrink-0 flex items-center justify-center text-white font-bold text-xs uppercase shadow-sm">
+              {userName ? userName.substring(0, 2) : (role ? role.substring(0, 2) : 'U')}
+            </div>
+            <div className="flex flex-col truncate">
+              <span className="text-[12px] font-bold text-white leading-tight truncate">
+                {userName || "Loading..."}
+              </span>
+              <span className="text-[10px] text-white/60 leading-tight truncate">
+                {userEmail || "user@example.com"}
+              </span>
             </div>
           </div>
+          <button 
+            onClick={async () => {
+              try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+              } catch (e) {
+                console.error(e);
+              }
+              window.location.href = '/login';
+            }}
+            title="Log Out"
+            className="p-1.5 rounded-lg text-white/60 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </div>
       
@@ -295,3 +356,4 @@ const Sidebar = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: strin
 };
 
 export default Sidebar;
+

@@ -95,3 +95,61 @@ export async function deactivateModule(moduleId: string) {
   
   return { success: true };
 }
+
+export async function createInvoice(data: any) {
+  const invoiceNumber = `INV-${Date.now()}`;
+  await prisma.invoice.create({
+    data: {
+      tenantId: DEFAULT_TENANT_ID,
+      studentId: data.studentId,
+      academicTermId: data.academicTermId,
+      invoiceNumber,
+      dueDate: new Date(data.dueDate),
+      subTotal: parseFloat(data.amount),
+      totalAmount: parseFloat(data.amount),
+      balanceDue: parseFloat(data.amount),
+      status: 'UNPAID',
+    }
+  });
+  return { success: true };
+}
+
+export async function recordPayment(data: any) {
+  const amount = parseFloat(data.amount);
+  
+  // 1. Create the Payment record
+  await prisma.payment.create({
+    data: {
+      tenantId: DEFAULT_TENANT_ID,
+      invoiceId: data.invoiceId,
+      receiptNumber: `RCPT-${Date.now()}`,
+      amount,
+      paymentDate: new Date(data.paymentDate),
+      method: data.method || 'CASH',
+      status: 'ALLOCATED',
+    }
+  });
+
+  // 2. Update the Invoice balance and status
+  const invoice = await prisma.invoice.findUnique({
+    where: { id: data.invoiceId }
+  });
+
+  if (invoice) {
+    const newAmountPaid = invoice.amountPaid + amount;
+    const newBalanceDue = invoice.totalAmount - newAmountPaid;
+    const newStatus = newBalanceDue <= 0 ? 'PAID' : (newAmountPaid > 0 ? 'PARTIAL' : 'UNPAID');
+
+    await prisma.invoice.update({
+      where: { id: data.invoiceId },
+      data: {
+        amountPaid: newAmountPaid,
+        balanceDue: newBalanceDue,
+        status: newStatus,
+      }
+    });
+  }
+
+  return { success: true };
+}
+

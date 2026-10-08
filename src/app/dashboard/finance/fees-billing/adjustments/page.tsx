@@ -1,20 +1,38 @@
-"use client";
-
 import React from "react";
-import { ArrowRightLeft, Plus } from "lucide-react";
+import prisma from "@/lib/prisma";
+import AdjustmentsClient from "./AdjustmentsClient";
 
-export default function AdjustmentsPage() {
-  return (
-    <div className="bg-white/80 backdrop-blur-lg rounded-3xl border border-slate-200/80 shadow-sm p-8 text-center">
-      <div className="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
-        <ArrowRightLeft className="w-10 h-10" />
-      </div>
-      <h3 className="text-xl font-black text-slate-800 mb-2">Debit & Credit Notes</h3>
-      <p className="text-sm text-slate-500 font-medium max-w-md mx-auto mb-6">Create manual adjustments for overcharges, penalties, or bespoke corrections to individual student accounts.</p>
-      <button className="inline-flex items-center gap-2 px-5 py-3 bg-primary-900 hover:bg-primary-800 text-white rounded-xl font-bold text-sm transition-all shadow-md shadow-primary-900/20">
-        <Plus className="w-4 h-4" />
-        New Adjustment
-      </button>
-    </div>
-  );
+export default async function AdjustmentsPage() {
+  const tenant = await prisma.tenant.findFirst();
+
+  let adjustments = [];
+  let invoices = [];
+
+  if (tenant) {
+    // Fetch adjustments (simulate by filtering invoice items with "Adjustment" in description)
+    adjustments = await prisma.invoiceItem.findMany({
+      where: {
+        invoice: { tenantId: tenant.id },
+        description: { contains: "Adjustment", mode: "insensitive" }
+      },
+      include: {
+        invoice: {
+          include: { student: true }
+        }
+      },
+      orderBy: {
+        id: "desc"
+      }
+    });
+
+    invoices = await prisma.invoice.findMany({
+      where: { tenantId: tenant.id },
+      include: { student: true },
+      orderBy: {
+        invoiceNumber: "desc"
+      }
+    });
+  }
+
+  return <AdjustmentsClient adjustments={adjustments} invoices={invoices} />;
 }

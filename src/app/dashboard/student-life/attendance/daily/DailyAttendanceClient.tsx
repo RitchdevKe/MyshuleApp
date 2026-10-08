@@ -3,7 +3,7 @@
 import React, { useState, useTransition } from "react";
 import { CheckCircle2, Search, Filter, Save, Loader2 } from "lucide-react";
 import { AttendanceStatus } from "@prisma/client";
-import { saveDailyAttendance } from "@/app/actions/studentLife";
+import { saveDailyAttendance } from "./actions";
 
 type StudentData = {
   id: string;

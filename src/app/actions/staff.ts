@@ -115,3 +115,27 @@ export async function deleteRole(id: string) {
   revalidatePath("/dashboard/administration/roles/roles");
   return { success: true };
 }
+
+export async function updateRole(id: string, name: string) {
+  await prisma.role.update({
+    where: { id },
+    data: { name }
+  });
+  revalidatePath("/dashboard/administration/roles/roles");
+  return { success: true };
+}
+
+export async function updateStaff(id: string, data: {
+  firstName?: string;
+  lastName?: string;
+  jobTitle?: string;
+  department?: any;
+  employeeNumber?: string;
+}) {
+  await prisma.staff.update({
+    where: { id },
+    data
+  });
+  revalidatePath("/dashboard/administration/users");
+  return { success: true };
+}

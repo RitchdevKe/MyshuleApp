@@ -2,13 +2,16 @@
 
 import React, { useState } from "react";
 import { Users, Search, MoreHorizontal, Plus, X, Edit, Trash2 } from "lucide-react";
-import { createClub, updateClub, deleteClub } from "./actions";
+import { createClub, updateClub, deleteClub, addMember } from "./actions";
 
-export default function ClubsClient({ initialClubs, staff }: { initialClubs: any[], staff: any[] }) {
+export default function ClubsClient({ initialClubs, staff, students }: { initialClubs: any[], staff: any[], students?: any[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [editingClub, setEditingClub] = useState<any>(null);
+  const [isMemberModalOpen, setIsMemberModalOpen] = useState(false);
+  const [selectedStudentId, setSelectedStudentId] = useState("");
+  const [selectedClubId, setSelectedClubId] = useState("");
   const [formData, setFormData] = useState({ name: "", patronId: "" });
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
@@ -114,6 +117,9 @@ export default function ClubsClient({ initialClubs, staff }: { initialClubs: any
                     <button onClick={() => handleOpenEdit(club)} className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                       <Edit className="w-4 h-4" /> Edit
                     </button>
+                    <button onClick={() => { setOpenDropdownId(null); setSelectedClubId(club.id); setIsMemberModalOpen(true); }} className="w-full text-left px-4 py-2 text-sm text-indigo-600 hover:bg-indigo-50 flex items-center gap-2">
+                      <Users className="w-4 h-4" /> Add Member
+                    </button>
                     <button onClick={() => handleDelete(club.id)} className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
                       <Trash2 className="w-4 h-4" /> Delete
                     </button>
@@ -208,6 +214,70 @@ export default function ClubsClient({ initialClubs, staff }: { initialClubs: any
                   className="px-5 py-2.5 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 rounded-xl transition-colors shadow-sm"
                 >
                   {isSubmitting ? "Saving..." : "Save Club"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/* Member Modal */}
+      {isMemberModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl shadow-xl w-full max-w-md overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50/50">
+              <h3 className="font-black text-lg text-slate-800">
+                Add Member to Club
+              </h3>
+              <button 
+                onClick={() => setIsMemberModalOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              setIsSubmitting(true);
+              try {
+                await addMember(selectedClubId, selectedStudentId);
+                setIsMemberModalOpen(false);
+              } catch (err) {
+                console.error(err);
+                alert("Failed to add member");
+              } finally {
+                setIsSubmitting(false);
+              }
+            }} className="p-6 space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Student</label>
+                  <select 
+                    value={selectedStudentId}
+                    onChange={e => setSelectedStudentId(e.target.value)}
+                    required
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  >
+                    <option value="">Select a Student</option>
+                    {(students || []).map(s => (
+                      <option key={s.id} value={s.id}>{s.firstName} {s.lastName} - {s.admissionNumber}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                <button 
+                  type="button" 
+                  onClick={() => setIsMemberModalOpen(false)}
+                  className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="px-5 py-2.5 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 rounded-xl transition-colors shadow-sm"
+                >
+                  {isSubmitting ? "Adding..." : "Add Member"}
                 </button>
               </div>
             </form>

@@ -15,6 +15,9 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
   const [primaryColor, setPrimaryColor] = useState(initialData?.primaryColor || "#0ea5e9");
   const [secondaryColor, setSecondaryColor] = useState(initialData?.secondaryColor || "#1e293b");
   const [logoUrl, setLogoUrl] = useState(initialData?.logoUrl || "");
+  const [loginBackgroundUrl, setLoginBackgroundUrl] = useState(initialData?.loginBackgroundUrl || "");
+  const [loginDisplayName, setLoginDisplayName] = useState(initialData?.loginDisplayName || "");
+  const [showSchoolNameOnLogin, setShowSchoolNameOnLogin] = useState(initialData?.showSchoolNameOnLogin ?? true);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
@@ -29,20 +32,40 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
     }
   };
 
+  const handleBackgroundUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLoginBackgroundUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSave = () => {
     setSuccess(false);
     setError("");
     startTransition(async () => {
       try {
-        await updateSchoolProfile({ 
+        const res = await updateSchoolProfile({ 
           name, 
           domainPrefix,
           motto,
           timezone,
           primaryColor,
           secondaryColor,
-          logoUrl
+          logoUrl,
+          loginBackgroundUrl,
+          loginDisplayName,
+          showSchoolNameOnLogin,
         });
+        
+        if (res?.success === false) {
+          setError(res.error || "Failed to save profile");
+          return;
+        }
+
         router.refresh();
         setSuccess(true);
         setTimeout(() => setSuccess(false), 3000);
@@ -85,8 +108,67 @@ export default function ProfileClient({ initialData }: { initialData: any }) {
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-bold text-slate-700 mb-2">School Name</label>
+        {/* Login Background Upload */}
+        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-6">
+          <div className="w-40 h-24 rounded-2xl bg-white border border-slate-200 flex items-center justify-center overflow-hidden shadow-sm">
+             {loginBackgroundUrl ? (
+                <img src={loginBackgroundUrl} alt="Login Background" className="w-full h-full object-cover" />
+             ) : (
+                <div className="text-xs text-slate-400 font-medium">Default Image</div>
+             )}
+          </div>
+          <div>
+             <h4 className="font-bold text-slate-800 mb-2">Login Background</h4>
+             <p className="text-sm text-slate-500 mb-4">Set a custom background image for your school's login portal.</p>
+             <div className="flex items-center gap-3">
+               <label className="cursor-pointer flex items-center justify-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm">
+                  <Upload className="w-4 h-4" /> Upload Background
+                  <input type="file" accept="image/*" className="hidden" onChange={handleBackgroundUpload} />
+               </label>
+               {loginBackgroundUrl && (
+                 <button 
+                   type="button" 
+                   onClick={() => setLoginBackgroundUrl("")}
+                   className="flex items-center justify-center gap-2 bg-rose-50 border border-rose-200 px-4 py-2 rounded-xl text-sm font-bold text-rose-600 hover:bg-rose-100 transition-colors shadow-sm"
+                 >
+                   Reset to Default
+                 </button>
+               )}
+               </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
+            <h4 className="font-bold text-slate-800">Login Page Display Settings</h4>
+            
+            <div className="flex items-center gap-3 mt-2">
+              <input
+                type="checkbox"
+                id="showSchoolName"
+                checked={showSchoolNameOnLogin}
+                onChange={(e) => setShowSchoolNameOnLogin(e.target.checked)}
+                className="w-4 h-4 text-primary-600 rounded border-slate-300 focus:ring-primary-500"
+              />
+              <label htmlFor="showSchoolName" className="text-sm font-medium text-slate-700">
+                Show School Name on Login Page
+              </label>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Custom Login Display Name (Optional)</label>
+              <input 
+                type="text" 
+                value={loginDisplayName}
+                onChange={(e) => setLoginDisplayName(e.target.value)}
+                placeholder="Leave blank to use the main School Name"
+                disabled={!showSchoolNameOnLogin}
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+            </div>
+          </div>
+  
+          <div>
+            <label className="block text-sm font-bold text-slate-700 mb-2">School Name</label>
           <input 
             type="text" 
             value={name}

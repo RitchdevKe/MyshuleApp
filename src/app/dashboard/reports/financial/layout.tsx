@@ -1,8 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Calculator, DollarSign, PieChart, TrendingUp, Filter, Lock } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getFinancialFilterOptions } from "./layout-actions";
+
+type FilterOptions = Awaited<ReturnType<typeof getFinancialFilterOptions>>;
 
 export default function FinancialReportsLayout({
   children,
@@ -10,6 +13,11 @@ export default function FinancialReportsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [filters, setFilters] = useState<FilterOptions | null>(null);
+
+  useEffect(() => {
+    getFinancialFilterOptions().then(setFilters).catch(console.error);
+  }, []);
 
   const tabs = [
     { id: "overview", label: "Overview", icon: PieChart },
@@ -21,8 +29,6 @@ export default function FinancialReportsLayout({
     { id: "statements", label: "Statements", icon: Calculator },
   ];
 
-  // Simulation of a tenant that HAS subscribed to Finance.
-  // If not subscribed, we would show a lock screen instead of the dashboard.
   const hasFinanceModule = true; 
 
   if (!hasFinanceModule) {
@@ -44,6 +50,9 @@ export default function FinancialReportsLayout({
     );
   }
 
+  const activeYear = filters?.years.find(y => y.isActiveYear) || filters?.years[0];
+  const activeTerms = filters?.terms.filter(t => t.academicYearId === activeYear?.id) || [];
+
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
       
@@ -60,16 +69,29 @@ export default function FinancialReportsLayout({
       </div>
 
       {/* Universal Filter Bar Component */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4 print:hidden">
         <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-wider mr-2">
           <Filter className="w-4 h-4" /> Global Filter
         </div>
         
         <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Financial Year: 2026</option>
+          {filters?.years.length ? (
+            filters.years.map(y => (
+              <option key={y.id} value={y.id}>
+                Academic Year: {y.name}{y.isActiveYear ? " (Active)" : ""}
+              </option>
+            ))
+          ) : (
+            <option>Academic Year: Loading...</option>
+          )}
         </select>
         <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Period: Term 2</option>
+          <option value="">Term: All Terms</option>
+          {activeTerms.map(t => (
+            <option key={t.id} value={t.id}>
+              Term: {t.name}{t.isActiveTerm ? " (Active)" : ""}
+            </option>
+          ))}
         </select>
         
         <button className="bg-primary-900 text-white text-xs font-bold px-4 py-1.5 rounded-lg shadow-sm hover:bg-secondary-500 transition-colors ml-auto">
@@ -78,7 +100,7 @@ export default function FinancialReportsLayout({
       </div>
 
       {/* Dynamic Tab Navigation */}
-      <div className="flex space-x-2 bg-white/80 backdrop-blur-xl p-1.5 rounded-2xl overflow-x-auto border border-white/60 backdrop-blur-md shadow-sm hide-scrollbar">
+      <div className="flex space-x-2 bg-white/80 backdrop-blur-xl p-1.5 rounded-2xl overflow-x-auto border border-white/60 backdrop-blur-md shadow-sm hide-scrollbar print:hidden">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = pathname === `/dashboard/reports/financial/${tab.id}`;
@@ -88,7 +110,7 @@ export default function FinancialReportsLayout({
               href={`/dashboard/reports/financial/${tab.id}`}
               className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-all duration-300 ${
                 isActive
-                  ? "bg-secondary-500 text-white shadow-sm"
+                  ? "bg-secondary-500 text-white shadow-sm border border-secondary-600"
                   : "text-slate-500 hover:text-slate-800 hover:bg-white/50 border border-transparent"
               }`}
             >

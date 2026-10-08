@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import { Search, Users, Plus, Edit, Trash2 } from "lucide-react";
-import { createGroup, deleteGroup } from "@/app/actions/userManagement";
+import { createGroup, deleteGroup, updateGroup } from "@/app/actions/userManagement";
 import { useRouter } from "next/navigation";
 
 export default function GroupsClient({ initialGroups }: { initialGroups: any[] }) {
@@ -12,12 +12,28 @@ export default function GroupsClient({ initialGroups }: { initialGroups: any[] }
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleCreate = async () => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editGroup, setEditGroup] = useState<{id: string, name: string, description: string} | null>(null);
+
+  const handleCreate = () => {
     if (!name) return;
-    await createGroup({ name, description });
-    setShowModal(false);
-    setName("");
-    setDescription("");
+    startTransition(async () => {
+      await createGroup({ name, description });
+      setShowModal(false);
+      setName("");
+      setDescription("");
+      router.refresh();
+    });
+  };
+
+  const handleEdit = () => {
+    if (!editGroup || !editGroup.name) return;
+    startTransition(async () => {
+      await updateGroup(editGroup.id, { name: editGroup.name, description: editGroup.description });
+      setShowEditModal(false);
+      setEditGroup(null);
+      router.refresh();
+    });
   };
 
   const handleDelete = async (id: string) => {
@@ -59,7 +75,10 @@ export default function GroupsClient({ initialGroups }: { initialGroups: any[] }
                      <span className="text-primary-600">{group._count?.members || 0}</span> Members
                   </div>
                   <div className="flex gap-2">
-                     <button className="p-2 text-slate-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                     <button onClick={() => {
+                       setEditGroup({ id: group.id, name: group.name, description: group.description || "" });
+                       setShowEditModal(true);
+                     }} className="p-2 text-slate-400 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
                         <Edit className="w-4 h-4" />
                      </button>
                      <button onClick={() => handleDelete(group.id)} className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors">
@@ -94,7 +113,31 @@ export default function GroupsClient({ initialGroups }: { initialGroups: any[] }
             </div>
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
               <button onClick={() => setShowModal(false)} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
-              <button onClick={handleCreate} disabled={!name} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Save Group</button>
+              <button onClick={handleCreate} disabled={!name || isPending} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Save Group</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEditModal && editGroup && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden border border-slate-200">
+            <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+              <h3 className="text-lg font-black text-slate-800">Edit Group</h3>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">Group Name</label>
+                <input type="text" value={editGroup.name} onChange={(e) => setEditGroup({...editGroup, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-primary-500 focus:bg-white" />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">Description</label>
+                <textarea value={editGroup.description} onChange={(e) => setEditGroup({...editGroup, description: e.target.value})} rows={3} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-primary-500 focus:bg-white"></textarea>
+              </div>
+            </div>
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
+              <button onClick={() => { setShowEditModal(false); setEditGroup(null); }} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
+              <button onClick={handleEdit} disabled={!editGroup.name || isPending} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Update Group</button>
             </div>
           </div>
         </div>

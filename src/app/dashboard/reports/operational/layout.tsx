@@ -1,8 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Users, Building, AlertTriangle, ShieldCheck, Activity, Filter, Server } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { getOperationalFilterOptions } from "./layout-actions";
+
+type FilterOptions = Awaited<ReturnType<typeof getOperationalFilterOptions>>;
 
 export default function OperationalReportsLayout({
   children,
@@ -10,6 +13,28 @@ export default function OperationalReportsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [filters, setFilters] = useState<FilterOptions | null>(null);
+  const [branchId, setBranchId] = useState(searchParams?.get("branchId") || "");
+  const [dateRange, setDateRange] = useState(searchParams?.get("dateRange") || "today");
+
+  useEffect(() => {
+    getOperationalFilterOptions().then(setFilters).catch(console.error);
+  }, []);
+
+  const handleApplyFilters = () => {
+    const params = new URLSearchParams(searchParams?.toString() || "");
+    if (branchId) params.set("branchId", branchId);
+    else params.delete("branchId");
+    
+    if (dateRange) params.set("dateRange", dateRange);
+    else params.delete("dateRange");
+
+    router.push(`${pathname}?${params.toString()}`);
+    router.refresh();
+  };
 
   const tabs = [
     { id: "overview", label: "Overview", icon: Activity },
@@ -36,25 +61,44 @@ export default function OperationalReportsLayout({
       </div>
 
       {/* Universal Filter Bar Component */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4 print:hidden">
         <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-wider mr-2">
           <Filter className="w-4 h-4" /> Global Filter
         </div>
         
-        <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Campus: All Campuses</option>
+        <select 
+          value={branchId}
+          onChange={(e) => setBranchId(e.target.value)}
+          className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500"
+        >
+          <option value="">Campus: All Campuses</option>
+          {filters?.branches.map(b => (
+            <option key={b.id} value={b.id}>
+              Campus: {b.name}
+            </option>
+          ))}
         </select>
-        <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Date Range: Today</option>
+        <select 
+          value={dateRange}
+          onChange={(e) => setDateRange(e.target.value)}
+          className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500"
+        >
+          <option value="today">Date Range: Today</option>
+          <option value="this_week">Date Range: This Week</option>
+          <option value="this_month">Date Range: This Month</option>
+          <option value="all">Date Range: All Time</option>
         </select>
         
-        <button className="bg-primary-900 text-white text-xs font-bold px-4 py-1.5 rounded-lg shadow-sm hover:bg-secondary-500 transition-colors ml-auto">
+        <button 
+          onClick={handleApplyFilters}
+          className="bg-primary-900 text-white text-xs font-bold px-4 py-1.5 rounded-lg shadow-sm hover:bg-secondary-500 transition-colors ml-auto cursor-pointer"
+        >
           Apply Filters
         </button>
       </div>
 
       {/* Dynamic Tab Navigation */}
-      <div className="flex space-x-2 bg-white/80 backdrop-blur-xl p-1.5 rounded-2xl overflow-x-auto border border-white/60 backdrop-blur-md shadow-sm hide-scrollbar">
+      <div className="flex space-x-2 bg-white/80 backdrop-blur-xl p-1.5 rounded-2xl overflow-x-auto border border-white/60 backdrop-blur-md shadow-sm hide-scrollbar print:hidden">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = pathname === `/dashboard/reports/operational/${tab.id}`;
@@ -64,7 +108,7 @@ export default function OperationalReportsLayout({
               href={`/dashboard/reports/operational/${tab.id}`}
               className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-all duration-300 ${
                 isActive
-                  ? "bg-secondary-500 text-white shadow-sm"
+                  ? "bg-secondary-500 text-white shadow-sm border border-secondary-600"
                   : "text-slate-500 hover:text-slate-800 hover:bg-white/50 border border-transparent"
               }`}
             >

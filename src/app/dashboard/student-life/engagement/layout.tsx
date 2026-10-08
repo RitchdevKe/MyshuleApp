@@ -38,6 +38,7 @@ export default function EngagementLayout({
   }, []);
 
   const tabs = [
+    { id: "campaigns", label: "Campaigns & Surveys", icon: Target },
     { id: "overview", label: "Overview", icon: Star },
     { id: "portfolio", label: "Student Portfolio", icon: BookOpen },
     { id: "participation", label: "Participation", icon: Target },

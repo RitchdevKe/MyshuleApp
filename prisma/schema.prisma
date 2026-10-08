@@ -8,10 +8,60 @@ datasource db {
 }
 
 model Tenant {
+  aiAuditLogs         AIAuditLog[]
+  aiKnowledge         AIKnowledgeBase[]
+  engagementCampaigns EngagementCampaign[]
+  engagementEvents    EngagementEvent[]
+  engagementSurveys   EngagementSurvey[]
+  cateringMenus       CateringMenu[]
+  kitchenTasks        KitchenTask[]
+  foodInventories     FoodInventory[]
+  mealAttendances     MealAttendance[]
+
+  clinicInventories ClinicInventory[]
+  medicalRecords    MedicalRecord[]
+  clinicVisits      ClinicVisit[]
+  emergencyContacts EmergencyContact[]
+  welfareSessions   WelfareSession[]
+
+  hostels             Hostel[]
+  hostelRooms         HostelRoom[]
+  hostelAllocations   HostelAllocation[]
+  boardingAttendances BoardingAttendance[]
+
+  libraryBooks       LibraryBook[]
+  libraryMembers     LibraryMember[]
+  libraryCirculation LibraryCirculation[]
+  digitalResources   DigitalResource[]
+
+  vehicles    Vehicle[]
+  trips       Trip[]
+  fuelRecords FuelRecord[]
+
+  facilities         Facility[]
+  assets             Asset[]
+  maintenanceRecords MaintenanceRecord[]
+  workOrders         WorkOrder[]
+  inspections        Inspection[]
+
+  stores            Store[]
+  inventoryItems    InventoryItem[]
+  inventoryBalances InventoryBalance[]
+  stockMovements    StockMovement[]
+  stockIssues       StockIssue[]
+
+  suppliers        Supplier[]
+  purchaseRequests PurchaseRequest[]
+  purchaseOrders   PurchaseOrder[]
+  grns             GoodsReceivedNote[]
+
   id                    String                    @id @default(uuid())
   name                  String
   domainPrefix          String                    @unique
   logoUrl               String?
+  loginBackgroundUrl    String?
+  loginDisplayName      String?
+  showSchoolNameOnLogin Boolean                   @default(true)
   status                TenantStatus              @default(ACTIVE)
   createdAt             DateTime                  @default(now())
   updatedAt             DateTime                  @updatedAt
@@ -25,18 +75,21 @@ model Tenant {
   primaryColor          String?                   @default("#0ea5e9")
   secondaryColor        String?                   @default("#1e293b")
   subscriptionPlan      String                    @default("Free")
+  aiSystemState         AiSystemState?
   academicSettings      AcademicSettings?
   academicTerms         AcademicTerm[]
   academicYears         AcademicYear[]
   admissionApplications AdmissionApplication[]
   studentDocuments      StudentDocument[]
+  chartOfAccounts       ChartOfAccount[]
+  financialYears        FinancialYear[]
+  journalEntries        JournalEntry[]
   accessRequests        AccessRequest[]
   announcements         Announcement[]
   attendanceRegisters   AttendanceRegister[]
   auditLogs             AuditLog[]
   bankAccounts          BankAccount[]
   branches              Branch[]
-  chartOfAccounts       ChartOfAccount[]
   classes               Class[]
   communicationLogs     CommunicationLog[]
   communicationSettings CommunicationSettings?
@@ -71,6 +124,12 @@ model Tenant {
   transportRoutes       TransportRoute[]
   userGroups            UserGroup[]
   userInvitations       UserInvitation[]
+  pettyCashAccounts     PettyCashAccount[]
+  budgets               Budget[]
+  budgetApprovals       BudgetApproval[]
+  customReports         CustomReport[]
+  leadershipPositions   LeadershipPosition[]
+  elections             Election[]
   salaryStructures      SalaryStructure[]
   payrollRuns           PayrollRun[]
   deductions            Deduction[]
@@ -90,6 +149,9 @@ model Tenant {
   leaveBalances         LeaveBalance[]
   timesheets            Timesheet[]
   grievances            Grievance[]
+  refunds               Refund[]
+  aiDailyBriefs         AiDailyBrief[]
+  aiFaqCaches           AiFaqCache[]
 }
 
 model SystemModule {
@@ -158,6 +220,7 @@ model AcademicTerm {
 }
 
 model User {
+  aiAuditLogs                   AIAuditLog[]
   id                            String             @id @default(uuid())
   email                         String             @unique
   passwordHash                  String
@@ -180,6 +243,7 @@ model User {
   students                      Student[]
   tenantUsers                   TenantUser[]
   groupMemberships              UserGroupMember[]
+  refunds                       Refund[]
 }
 
 model Role {
@@ -253,6 +317,7 @@ model Student {
   disciplinaryIncidents      DisciplinaryIncident[]
   examResults                ExamResult[]
   extracurricularMemberships ExtracurricularMembership[]
+  leadershipPositions        LeadershipPosition[]
   invoices                   Invoice[]
   reportCards                ReportCard[]
   documents                  StudentDocument[]
@@ -261,6 +326,15 @@ model Student {
   enrollments                StudentEnrollment[]
   parents                    StudentParent[]
   transportAssignments       TransportAssignment[]
+  libraryMember              LibraryMember?
+  hostelAllocation           HostelAllocation?
+  boardingAttendances        BoardingAttendance[]
+  medicalRecord              MedicalRecord?
+  clinicVisits               ClinicVisit[]
+  emergencyContacts          EmergencyContact[]
+  welfareSessions            WelfareSession[]
+  mealAttendances            MealAttendance[]
+  payments                   Payment[]
 
   @@unique([tenantId, admissionNumber])
 }
@@ -305,7 +379,10 @@ model Staff {
   lastName              String
   jobTitle              String
   department            Department
+  gender                String?
+  dateOfBirth           DateTime?
   hireDate              DateTime
+  endDate               DateTime?
   status                StaffStatus               @default(ACTIVE)
   attendanceRegisters   AttendanceRegister[]
   disciplinaryIncidents DisciplinaryIncident[]
@@ -332,6 +409,9 @@ model Staff {
   leaveBalances         LeaveBalance[]
   timesheets            Timesheet[]
   grievances            Grievance[]
+  stores                Store[]
+  vehicles              Vehicle[]
+  trips                 Trip[]
 
   @@unique([tenantId, employeeNumber])
 }
@@ -637,35 +717,63 @@ model InvoiceItem {
   invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 }
 
+enum PaymentStatus {
+  ALLOCATED
+  UNALLOCATED
+  REFUNDED
+  REVERSED
+  FAILED
+}
+
 model Payment {
   id              String        @id @default(uuid())
   tenantId        String
-  invoiceId       String
+  invoiceId       String?
+  studentId       String?
   recordedById    String
   receiptNumber   String
   amount          Float
   paymentDate     DateTime      @default(now())
   paymentMethod   PaymentMethod
+  status          PaymentStatus @default(ALLOCATED)
   referenceNumber String?
   notes           String?
-  invoice         Invoice       @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  invoice         Invoice?      @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  student         Student?      @relation(fields: [studentId], references: [id], onDelete: SetNull)
   recordedBy      User          @relation(fields: [recordedById], references: [id])
   tenant          Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  refunds         Refund[]
 
   @@unique([tenantId, receiptNumber])
 }
 
+model Refund {
+  id           String   @id @default(uuid())
+  tenantId     String
+  paymentId    String
+  amount       Float
+  reason       String?
+  refundDate   DateTime @default(now())
+  recordedById String
+
+  payment    Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  recordedBy User    @relation(fields: [recordedById], references: [id])
+  tenant     Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
 model BankAccount {
-  id            String  @id @default(uuid())
-  tenantId      String
-  bankName      String
-  accountName   String
-  accountNumber String
-  branchName    String?
-  swiftCode     String?
-  currency      String  @default("KES")
-  isActive      Boolean @default(true)
-  tenant        Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  id              String               @id @default(uuid())
+  tenantId        String
+  bankName        String
+  accountName     String
+  accountNumber   String
+  branchName      String?
+  swiftCode       String?
+  currency        String               @default("KES")
+  isActive        Boolean              @default(true)
+  tenant          Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  transactions    BankTransaction[]
+  reconciliations BankReconciliation[]
 }
 
 model PaymentGateway {
@@ -680,14 +788,15 @@ model PaymentGateway {
 }
 
 model ChartOfAccount {
-  id          String      @id @default(uuid())
-  tenantId    String
-  accountCode String
-  accountName String
-  accountType AccountType
-  description String?
-  isActive    Boolean     @default(true)
-  tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  id           String        @id @default(uuid())
+  tenantId     String
+  accountCode  String
+  accountName  String
+  accountType  AccountType
+  description  String?
+  isActive     Boolean       @default(true)
+  tenant       Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  journalLines JournalLine[]
 
   @@unique([tenantId, accountCode])
 }
@@ -781,6 +890,7 @@ model TransportRoute {
   assignments  TransportAssignment[]
   driver       Staff?                @relation(fields: [driverId], references: [id])
   tenant       Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  trips        Trip[]
 }
 
 model TransportAssignment {
@@ -1439,16 +1549,932 @@ model Grievance {
 }
 
 model DisciplinaryAction {
+  id        String   @id @default(uuid())
+  tenantId  String
+  staffId   String
+  offense   String
+  action    String
+  date      DateTime @default(now())
+  status    String   @default("Active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  staff  Staff  @relation(fields: [staffId], references: [id], onDelete: Cascade)
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model Supplier {
+  id          String   @id @default(uuid())
+  tenantId    String
+  name        String
+  contactName String?
+  email       String?
+  phone       String?
+  address     String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant           Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  purchaseRequests PurchaseRequest[]
+  purchaseOrders   PurchaseOrder[]
+  grns             GoodsReceivedNote[]
+}
+
+model PurchaseRequest {
+  id            String   @id @default(uuid())
+  tenantId      String
+  requestNumber String   @unique
+  department    String?
+  requestedBy   String
+  description   String
+  amount        Float
+  status        String   @default("PENDING")
+  supplierId    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  tenant         Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  supplier       Supplier?       @relation(fields: [supplierId], references: [id])
+  purchaseOrders PurchaseOrder[]
+}
+
+model PurchaseOrder {
+  id           String    @id @default(uuid())
+  tenantId     String
+  poNumber     String    @unique
+  requestId    String
+  supplierId   String
+  totalAmount  Float
+  status       String    @default("DRAFT")
+  issueDate    DateTime  @default(now())
+  deliveryDate DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  tenant   Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  request  PurchaseRequest     @relation(fields: [requestId], references: [id])
+  supplier Supplier            @relation(fields: [supplierId], references: [id])
+  grns     GoodsReceivedNote[]
+}
+
+model GoodsReceivedNote {
   id           String   @id @default(uuid())
   tenantId     String
-  staffId      String
-  offense      String
-  action       String
-  date         DateTime @default(now())
-  status       String   @default("Active")
+  grnNumber    String   @unique
+  poId         String
+  supplierId   String
+  receivedDate DateTime @default(now())
+  receivedBy   String
+  condition    String   @default("GOOD")
+  status       String   @default("COMPLETED")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  
-  staff        Staff    @relation(fields: [staffId], references: [id], onDelete: Cascade)
-  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  purchaseOrder PurchaseOrder @relation(fields: [poId], references: [id])
+  supplier      Supplier      @relation(fields: [supplierId], references: [id])
+}
+
+model Store {
+  id        String   @id @default(uuid())
+  tenantId  String
+  name      String
+  location  String?
+  managerId String?
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant            Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  manager           Staff?             @relation(fields: [managerId], references: [id])
+  movementsFrom     StockMovement[]    @relation("SourceStore")
+  movementsTo       StockMovement[]    @relation("DestinationStore")
+  stockIssues       StockIssue[]
+  inventoryBalances InventoryBalance[]
+}
+
+model InventoryItem {
+  id            String   @id @default(uuid())
+  tenantId      String
+  code          String   @unique
+  name          String
+  category      String
+  unit          String
+  minStockLevel Int      @default(0)
+  unitCost      Float    @default(0)
+  status        String   @default("ACTIVE")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  tenant            Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  movements         StockMovement[]
+  stockIssues       StockIssue[]
+  inventoryBalances InventoryBalance[]
+}
+
+model InventoryBalance {
+  id          String   @id @default(uuid())
+  tenantId    String
+  storeId     String
+  itemId      String
+  quantity    Int      @default(0)
+  lastUpdated DateTime @default(now()) @updatedAt
+
+  tenant Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  store  Store         @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  item   InventoryItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, itemId])
+}
+
+model StockMovement {
+  id                 String   @id @default(uuid())
+  tenantId           String
+  movementType       String // "IN", "OUT", "TRANSFER"
+  itemId             String
+  quantity           Int
+  sourceStoreId      String?
+  destinationStoreId String?
+  reference          String?
+  notes              String?
+  date               DateTime @default(now())
+  createdAt          DateTime @default(now())
+
+  tenant           Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  item             InventoryItem @relation(fields: [itemId], references: [id])
+  sourceStore      Store?        @relation("SourceStore", fields: [sourceStoreId], references: [id])
+  destinationStore Store?        @relation("DestinationStore", fields: [destinationStoreId], references: [id])
+}
+
+model StockIssue {
+  id          String   @id @default(uuid())
+  tenantId    String
+  issueNumber String   @unique
+  itemId      String
+  storeId     String
+  quantity    Int
+  issuedTo    String // could be relation to Staff, keeping as String for flexibility if it's external
+  department  String?
+  status      String   @default("COMPLETED")
+  date        DateTime @default(now())
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  item   InventoryItem @relation(fields: [itemId], references: [id])
+  store  Store         @relation(fields: [storeId], references: [id])
+}
+
+model Facility {
+  id        String   @id @default(uuid())
+  tenantId  String
+  name      String
+  type      String
+  capacity  Int?
+  location  String?
+  status    String   @default("ACTIVE") // ACTIVE, MAINTENANCE, INACTIVE
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant      Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  assets      Asset[]
+  workOrders  WorkOrder[]
+  inspections Inspection[]
+}
+
+model Asset {
+  id           String    @id @default(uuid())
+  tenantId     String
+  assetTag     String    @unique
+  name         String
+  category     String
+  status       String    @default("ACTIVE") // ACTIVE, MAINTENANCE, RETIRED, LOST
+  purchaseDate DateTime?
+  purchaseCost Float     @default(0)
+  condition    String    @default("GOOD") // GOOD, FAIR, POOR, CRITICAL
+  facilityId   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  tenant             Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  facility           Facility?           @relation(fields: [facilityId], references: [id])
+  maintenanceRecords MaintenanceRecord[]
+  workOrders         WorkOrder[]
+}
+
+model MaintenanceRecord {
+  id          String   @id @default(uuid())
+  tenantId    String
+  assetId     String
+  type        String // PREVENTIVE, CORRECTIVE
+  description String
+  cost        Float    @default(0)
+  date        DateTime @default(now())
+  status      String   @default("COMPLETED") // SCHEDULED, IN_PROGRESS, COMPLETED
+  performedBy String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  asset  Asset  @relation(fields: [assetId], references: [id], onDelete: Cascade)
+}
+
+model WorkOrder {
+  id          String    @id @default(uuid())
+  tenantId    String
+  orderNumber String    @unique
+  title       String
+  description String?
+  priority    String    @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status      String    @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, CANCELLED
+  assignedTo  String?
+  facilityId  String?
+  assetId     String?
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  facility Facility? @relation(fields: [facilityId], references: [id])
+  asset    Asset?    @relation(fields: [assetId], references: [id])
+}
+
+model Inspection {
+  id         String   @id @default(uuid())
+  tenantId   String
+  facilityId String
+  inspector  String
+  date       DateTime @default(now())
+  status     String   @default("PENDING") // PENDING, PASSED, FAILED, NEEDS_ATTENTION
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  tenant   Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+}
+
+model Vehicle {
+  id                 String   @id @default(uuid())
+  tenantId           String
+  registrationNumber String   @unique
+  make               String?
+  model              String?
+  capacity           Int      @default(0)
+  status             String   @default("ACTIVE") // ACTIVE, MAINTENANCE, INACTIVE
+  driverId           String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  tenant      Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  driver      Staff?       @relation(fields: [driverId], references: [id])
+  trips       Trip[]
+  fuelRecords FuelRecord[]
+}
+
+model Trip {
+  id        String   @id @default(uuid())
+  tenantId  String
+  routeId   String
+  vehicleId String
+  driverId  String?
+  date      DateTime @default(now())
+  status    String   @default("SCHEDULED") // SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant  Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  route   TransportRoute @relation(fields: [routeId], references: [id])
+  vehicle Vehicle        @relation(fields: [vehicleId], references: [id])
+  driver  Staff?         @relation(fields: [driverId], references: [id])
+}
+
+model FuelRecord {
+  id        String   @id @default(uuid())
+  tenantId  String
+  vehicleId String
+  amount    Float    @default(0) // liters/gallons
+  cost      Float    @default(0) // total cost
+  odometer  Int?
+  date      DateTime @default(now())
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+}
+
+model LibraryBook {
+  id        String   @id @default(uuid())
+  tenantId  String
+  title     String
+  author    String
+  isbn      String?
+  category  String?
+  status    String   @default("AVAILABLE") // AVAILABLE, BORROWED, LOST, MAINTENANCE
+  copies    Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant       Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  circulations LibraryCirculation[]
+}
+
+model LibraryMember {
+  id             String   @id @default(uuid())
+  tenantId       String
+  studentId      String   @unique
+  membershipDate DateTime @default(now())
+  status         String   @default("ACTIVE") // ACTIVE, SUSPENDED
+  maxBooks       Int      @default(3)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant       Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student      Student              @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  circulations LibraryCirculation[]
+}
+
+model LibraryCirculation {
+  id         String    @id @default(uuid())
+  tenantId   String
+  bookId     String
+  memberId   String
+  issueDate  DateTime  @default(now())
+  dueDate    DateTime
+  returnDate DateTime?
+  status     String    @default("ISSUED") // ISSUED, RETURNED, OVERDUE, LOST
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  tenant Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  book   LibraryBook   @relation(fields: [bookId], references: [id])
+  member LibraryMember @relation(fields: [memberId], references: [id])
+}
+
+model DigitalResource {
+  id         String   @id @default(uuid())
+  tenantId   String
+  title      String
+  author     String?
+  type       String // EBOOK, VIDEO, AUDIO, PDF (We'll use format here)
+  size       String?
+  status     String   @default("Active")
+  downloads  Int      @default(0)
+  url        String?
+  uploadedBy String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model Hostel {
+  id        String   @id @default(uuid())
+  tenantId  String
+  name      String
+  type      String // BOYS, GIRLS, MIXED
+  capacity  Int      @default(0)
+  warden    String?
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant      Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  rooms       HostelRoom[]
+  allocations HostelAllocation[]
+}
+
+model HostelRoom {
+  id         String   @id @default(uuid())
+  tenantId   String
+  hostelId   String
+  roomNumber String
+  capacity   Int      @default(1)
+  type       String // STANDARD, DELUXE, DORMATORY
+  status     String   @default("AVAILABLE") // AVAILABLE, FULL, MAINTENANCE
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  tenant      Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  hostel      Hostel             @relation(fields: [hostelId], references: [id], onDelete: Cascade)
+  allocations HostelAllocation[]
+}
+
+model HostelAllocation {
+  id            String   @id @default(uuid())
+  tenantId      String
+  hostelId      String
+  roomId        String
+  studentId     String   @unique
+  dateAllocated DateTime @default(now())
+  status        String   @default("ACTIVE") // ACTIVE, VACATED
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  tenant  Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  hostel  Hostel     @relation(fields: [hostelId], references: [id])
+  room    HostelRoom @relation(fields: [roomId], references: [id])
+  student Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model BoardingAttendance {
+  id        String   @id @default(uuid())
+  tenantId  String
+  studentId String
+  date      DateTime @default(now())
+  status    String // PRESENT, ABSENT, LEAVE
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model ClinicInventory {
+  id         String    @id @default(uuid())
+  tenantId   String
+  itemName   String
+  quantity   Int       @default(0)
+  unit       String?
+  expiryDate DateTime?
+  status     String    @default("IN_STOCK") // LOW_STOCK, OUT_OF_STOCK
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model MedicalRecord {
+  id            String   @id @default(uuid())
+  tenantId      String
+  studentId     String   @unique
+  bloodGroup    String?
+  allergies     String?
+  conditions    String?
+  immunizations String?
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model ClinicVisit {
+  id        String   @id @default(uuid())
+  tenantId  String
+  studentId String
+  visitDate DateTime @default(now())
+  reason    String
+  diagnosis String?
+  treatment String?
+  handledBy String?
+  status    String   @default("COMPLETED") // PENDING, REFERRED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model EmergencyContact {
+  id               String   @id @default(uuid())
+  tenantId         String
+  studentId        String
+  name             String
+  relationship     String
+  phoneNumber      String
+  alternativePhone String?
+  email            String?
+  priority         Int      @default(1)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model WelfareSession {
+  id          String   @id @default(uuid())
+  tenantId    String
+  studentId   String
+  sessionDate DateTime @default(now())
+  counselor   String
+  category    String // ACADEMIC, BEHAVIORAL, PERSONAL
+  notes       String?
+  status      String   @default("OPEN") // OPEN, RESOLVED, REFERRED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model CateringMenu {
+  id          String   @id @default(uuid())
+  tenantId    String
+  dayOfWeek   String // MONDAY, TUESDAY, etc
+  mealType    String // BREAKFAST, LUNCH, DINNER, SNACK
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model KitchenTask {
+  id          String   @id @default(uuid())
+  tenantId    String
+  title       String
+  description String?
+  assignedTo  String?
+  dueDate     DateTime
+  status      String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model FoodInventory {
+  id         String    @id @default(uuid())
+  tenantId   String
+  itemName   String
+  category   String // MEAT, VEGETABLE, DRY_GOODS, etc.
+  quantity   Float     @default(0)
+  unit       String
+  minLevel   Float     @default(0)
+  expiryDate DateTime?
+  status     String    @default("IN_STOCK") // IN_STOCK, LOW_STOCK, OUT_OF_STOCK
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model MealAttendance {
+  id        String   @id @default(uuid())
+  tenantId  String
+  studentId String
+  mealType  String // BREAKFAST, LUNCH, DINNER
+  date      DateTime @default(now())
+  status    String   @default("PRESENT") // PRESENT, ABSENT
+  scanned   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model EngagementCampaign {
+  id         String   @id @default(cuid())
+  tenantId   String
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name       String
+  target     String
+  status     String
+  conversion String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model EngagementEvent {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name      String
+  date      DateTime
+  location  String
+  rsvps     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EngagementSurvey {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name      String
+  audience  String
+  responses Int      @default(0)
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FinancialYear {
+  id        String   @id @default(uuid())
+  tenantId  String
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  isClosed  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant         Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  journalEntries JournalEntry[]
+  budgets        Budget[]
+
+  @@unique([tenantId, name])
+}
+
+model JournalEntry {
+  id              String        @id @default(uuid())
+  tenantId        String
+  financialYearId String?
+  entryNumber     String
+  entryDate       DateTime
+  description     String
+  status          JournalStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  tenant        Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  financialYear FinancialYear? @relation(fields: [financialYearId], references: [id])
+  lines         JournalLine[]
+
+  @@unique([tenantId, entryNumber])
+}
+
+model JournalLine {
+  id               String  @id @default(uuid())
+  journalEntryId   String
+  chartOfAccountId String
+  description      String?
+  debit            Float   @default(0)
+  credit           Float   @default(0)
+
+  journalEntry JournalEntry   @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  account      ChartOfAccount @relation(fields: [chartOfAccountId], references: [id])
+}
+
+enum JournalStatus {
+  DRAFT
+  POSTED
+  CANCELLED
+}
+
+model PettyCashAccount {
+  id        String   @id @default(uuid())
+  tenantId  String
+  name      String
+  balance   Float    @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant       Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  transactions PettyCashTransaction[]
+}
+
+model PettyCashTransaction {
+  id          String          @id @default(uuid())
+  accountId   String
+  type        TransactionType
+  amount      Float
+  description String
+  date        DateTime
+  receiptUrl  String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  account PettyCashAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+model BankTransaction {
+  id               String          @id @default(uuid())
+  bankAccountId    String
+  type             TransactionType
+  amount           Float
+  description      String
+  date             DateTime
+  reference        String?
+  isReconciled     Boolean         @default(false)
+  reconciliationId String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  bankAccount    BankAccount         @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)
+  reconciliation BankReconciliation? @relation(fields: [reconciliationId], references: [id])
+}
+
+model BankReconciliation {
+  id               String               @id @default(uuid())
+  bankAccountId    String
+  statementDate    DateTime
+  statementBalance Float
+  systemBalance    Float
+  difference       Float
+  status           ReconciliationStatus @default(DRAFT)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  bankAccount  BankAccount       @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)
+  transactions BankTransaction[]
+}
+
+enum TransactionType {
+  IN
+  OUT
+}
+
+enum ReconciliationStatus {
+  DRAFT
+  COMPLETED
+}
+
+// -----------------------------------------------------------------------------
+// BUDGET & PLANNING
+// -----------------------------------------------------------------------------
+
+model Budget {
+  id              String       @id @default(uuid())
+  tenantId        String
+  financialYearId String
+  name            String
+  totalAmount     Float        @default(0)
+  spentAmount     Float        @default(0)
+  status          BudgetStatus @default(DRAFT)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  tenant        Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  financialYear FinancialYear      @relation(fields: [financialYearId], references: [id])
+  departments   DepartmentBudget[]
+  scenarios     BudgetScenario[]
+}
+
+model DepartmentBudget {
+  id              String @id @default(uuid())
+  budgetId        String
+  departmentName  String
+  allocatedAmount Float  @default(0)
+  spentAmount     Float  @default(0)
+
+  budget Budget @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+}
+
+model BudgetScenario {
+  id             String   @id @default(uuid())
+  budgetId       String
+  name           String
+  description    String?
+  adjustedAmount Float    @default(0)
+  createdAt      DateTime @default(now())
+
+  budget Budget @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+}
+
+model BudgetApproval {
+  id          String         @id @default(uuid())
+  tenantId    String
+  budgetId    String
+  requestedBy String
+  status      ApprovalStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+enum BudgetStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  ACTIVE
+  CLOSED
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model CustomReport {
+  id          String   @id @default(uuid())
+  tenantId    String
+  name        String
+  description String?
+  type        String   @default("FINANCIAL")
+  config      Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model LeadershipPosition {
+  id           String   @id @default(uuid())
+  tenantId     String
+  title        String
+  category     String
+  studentId    String?
+  supervisorId String?
+  term         String?
+  status       String   @default("Vacant")
+  createdAt    DateTime @default(now())
+
+  tenant  Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  student Student? @relation(fields: [studentId], references: [id], onDelete: SetNull)
+}
+
+model Election {
+  id        String   @id @default(uuid())
+  tenantId  String
+  title     String
+  date      DateTime
+  status    String
+  audience  String   @default("Students")
+  voters    Int      @default(0)
+  createdAt DateTime @default(now())
+
+  tenant     Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  candidates ElectionCandidate[]
+}
+
+model ElectionCandidate {
+  id         String @id @default(uuid())
+  electionId String
+  name       String
+  role       String
+  votes      Int    @default(0)
+
+  election Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
+}
+
+// -----------------------------------------------------------------------------
+// MYSHULE AI
+// -----------------------------------------------------------------------------
+
+model AIAuditLog {
+  id        String   @id @default(uuid())
+  tenantId  String
+  userId    String
+  intent    String
+  prompt    String   @db.Text
+  response  String   @db.Text
+  toolUsed  String?
+  status    String   @default("SUCCESS")
+  createdAt DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AIKnowledgeBase {
+  id        String   @id @default(uuid())
+  tenantId  String
+  title     String
+  content   String   @db.Text
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model AiDailyBrief {
+  id        String   @id @default(uuid())
+  tenantId  String
+  date      DateTime @default(now())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model AiFaqCache {
+  id        String   @id @default(uuid())
+  tenantId  String
+  question  String   @db.Text
+  answer    String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model AiSystemState {
+  id        String   @id @default(uuid())
+  tenantId  String   @unique
+  state     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 }

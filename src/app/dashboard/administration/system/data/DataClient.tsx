@@ -1,9 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useTransition } from "react";
 import { Database, Upload, Download, Archive, Server, RefreshCw } from "lucide-react";
+import { triggerBackup, createExportJob, startImportWizard, archiveData } from "./actions";
 
 export default function DataClient() {
+  const [isPending, startTransition] = useTransition();
+
+  const handleAction = (action: () => Promise<any>) => {
+    startTransition(async () => {
+      const res = await action();
+      if (res?.message) {
+        alert(res.message);
+      }
+    });
+  };
+
   return (
     <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden min-h-[500px]">
       <div className="p-6 border-b border-slate-200/60 bg-slate-50/50">
@@ -23,8 +35,11 @@ export default function DataClient() {
                <p className="text-sm text-slate-500 font-medium mt-1 mb-6">
                   Upload CSV files to securely mass-import Students, Staff, Parents, or Inventory items into the database.
                </p>
-               <button className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all">
-                  Start Import Wizard
+               <button 
+                 onClick={() => handleAction(startImportWizard)} 
+                 disabled={isPending}
+                 className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all disabled:opacity-50">
+                  {isPending ? "Processing..." : "Start Import Wizard"}
                </button>
             </div>
 
@@ -37,8 +52,11 @@ export default function DataClient() {
                <p className="text-sm text-slate-500 font-medium mt-1 mb-6">
                   Generate CSV or Excel exports of your tabular data for external reporting or custom analysis.
                </p>
-               <button className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all">
-                  Create Export Job
+               <button 
+                 onClick={() => handleAction(createExportJob)} 
+                 disabled={isPending}
+                 className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all disabled:opacity-50">
+                  {isPending ? "Processing..." : "Create Export Job"}
                </button>
             </div>
 
@@ -56,8 +74,11 @@ export default function DataClient() {
                <p className="text-sm text-slate-500 font-medium mt-1 mb-6">
                   Your data is backed up automatically every 24 hours. You can also trigger a manual backup before major changes.
                </p>
-               <button className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all">
-                  Manage Backups
+               <button 
+                 onClick={() => handleAction(triggerBackup)} 
+                 disabled={isPending}
+                 className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all disabled:opacity-50">
+                  {isPending ? "Processing..." : "Create Backup"}
                </button>
             </div>
 
@@ -70,8 +91,11 @@ export default function DataClient() {
                <p className="text-sm text-slate-500 font-medium mt-1 mb-6">
                   Archive old academic years or graduated students to keep the active database fast and uncluttered.
                </p>
-               <button className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all">
-                  View Archives
+               <button 
+                 onClick={() => handleAction(archiveData)} 
+                 disabled={isPending}
+                 className="w-full py-2.5 bg-slate-50 border border-slate-200 hover:bg-primary-900 hover:border-primary-900 hover:text-white text-slate-700 rounded-xl font-bold text-sm transition-all disabled:opacity-50">
+                  {isPending ? "Processing..." : "Archive Data"}
                </button>
             </div>
             

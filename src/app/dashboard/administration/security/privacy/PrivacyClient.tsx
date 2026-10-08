@@ -1,25 +1,17 @@
 "use client";
 
-import React, { useState, useTransition, useEffect } from "react";
+import React, { useState, useTransition } from "react";
 import { Database, FileText, Globe, Download, Trash2, CheckCircle2 } from "lucide-react";
 import { handlePrivacyRequest } from "@/app/actions/security";
 import { getPrivacySettings, savePrivacySetting } from "@/app/actions/security_privacy_sessions";
 import { useRouter } from "next/navigation";
 
-export default function PrivacyClient({ initialRequests }: { initialRequests: any[] }) {
-  const [retentionPeriod, setRetentionPeriod] = useState("5 Years");
-  const [tosUrl, setTosUrl] = useState("https://example.com/tos");
-  const [privacyUrl, setPrivacyUrl] = useState("https://example.com/privacy");
+export default function PrivacyClient({ initialRequests, initialSettings }: { initialRequests: any[], initialSettings: any }) {
+  const [retentionPeriod, setRetentionPeriod] = useState(initialSettings.retention || "5 Years");
+  const [tosUrl, setTosUrl] = useState(initialSettings.tosUrl || "https://example.com/tos");
+  const [privacyUrl, setPrivacyUrl] = useState(initialSettings.privacyUrl || "https://example.com/privacy");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-
-  useEffect(() => {
-    getPrivacySettings().then(data => {
-      setRetentionPeriod(data.retention);
-      setTosUrl(data.tosUrl);
-      setPrivacyUrl(data.privacyUrl);
-    });
-  }, []);
 
   const handleAction = (id: string, action: string) => {
     startTransition(async () => {

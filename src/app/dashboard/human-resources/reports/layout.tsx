@@ -24,7 +24,10 @@ export default function ReportsLayout({ children }: { children: React.ReactNode 
             <p className="text-sm font-medium mt-1 text-primary-100">Analytics on headcount, retention, and payroll statistics.</p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-bold text-sm transition-all shadow-sm">
+            <button 
+              onClick={() => window.print()}
+              className="flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-bold text-sm transition-all shadow-sm"
+            >
               <Download className="w-4 h-4" />
               Export Full Report
             </button>

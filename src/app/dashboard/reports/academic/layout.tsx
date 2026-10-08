@@ -1,8 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GraduationCap, BarChart2, BookOpen, CheckSquare, Users, FileText, Briefcase, Filter } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getAcademicFilterOptions } from "./layout-actions";
+
+type FilterOptions = Awaited<ReturnType<typeof getAcademicFilterOptions>>;
 
 export default function AcademicReportsLayout({
   children,
@@ -10,6 +13,11 @@ export default function AcademicReportsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [filters, setFilters] = useState<FilterOptions | null>(null);
+
+  useEffect(() => {
+    getAcademicFilterOptions().then(setFilters).catch(console.error);
+  }, []);
 
   const tabs = [
     { id: "overview", label: "Overview", icon: GraduationCap },
@@ -20,6 +28,9 @@ export default function AcademicReportsLayout({
     { id: "teachers", label: "Teachers", icon: Briefcase },
     { id: "documents", label: "Documents", icon: FileText },
   ];
+
+  const activeYear = filters?.years.find(y => y.isActiveYear) || filters?.years[0];
+  const activeTerms = filters?.terms.filter(t => t.academicYearId === activeYear?.id) || [];
 
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
@@ -37,19 +48,37 @@ export default function AcademicReportsLayout({
       </div>
 
       {/* Universal Filter Bar Component */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white p-4 rounded-2xl shadow-sm flex flex-wrap items-center gap-4 print:hidden">
         <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-wider mr-2">
           <Filter className="w-4 h-4" /> Global Filter
         </div>
         
         <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Academic Year: 2026</option>
+          {filters?.years.length ? (
+            filters.years.map(y => (
+              <option key={y.id} value={y.id}>
+                Academic Year: {y.name}{y.isActiveYear ? " (Active)" : ""}
+              </option>
+            ))
+          ) : (
+            <option>Academic Year: Loading...</option>
+          )}
         </select>
         <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Term: Term 2</option>
+          <option value="">Term: All Terms</option>
+          {activeTerms.map(t => (
+            <option key={t.id} value={t.id}>
+              Term: {t.name}{t.isActiveTerm ? " (Active)" : ""}
+            </option>
+          ))}
         </select>
         <select className="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm focus:outline-none focus:border-indigo-500">
-          <option>Grade: All Grades</option>
+          <option value="">Grade: All Grades</option>
+          {filters?.classes.map(c => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
         </select>
         
         <button className="bg-primary-900 text-white text-xs font-bold px-4 py-1.5 rounded-lg shadow-sm hover:bg-secondary-500 transition-colors ml-auto">

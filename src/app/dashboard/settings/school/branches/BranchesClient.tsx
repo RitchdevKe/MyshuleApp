@@ -119,7 +119,7 @@ export default function BranchesClient({ branches }: { branches: any[] }) {
                       <div 
                          key={lvl.id} 
                          onClick={() => toggleLevel(lvl.id)}
-                         className={lex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors }
+                         className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${levelTypes.includes(lvl.id) ? 'bg-primary-50 border-primary-200' : 'hover:bg-slate-50 border-slate-200'}`}
                       >
                          {levelTypes.includes(lvl.id) ? <CheckSquare className="w-5 h-5 text-primary-500" /> : <Square className="w-5 h-5 text-slate-300" />}
                          <span className="font-bold text-sm">{lvl.label}</span>

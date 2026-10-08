@@ -16,5 +16,10 @@ export default async function ClubsPage() {
     orderBy: { firstName: "asc" },
   });
 
-  return <ClubsClient initialClubs={clubs} staff={staff} />;
+  const students = await prisma.student.findMany({
+    orderBy: { firstName: "asc" },
+    take: 200,
+  });
+
+  return <ClubsClient initialClubs={clubs} staff={staff} students={students} />;
 }

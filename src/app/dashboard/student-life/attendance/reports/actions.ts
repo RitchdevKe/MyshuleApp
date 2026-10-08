@@ -1,36 +1,28 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { AttendanceStatus } from "@prisma/client";
 
 export async function generateAttendanceReport(params: { type: string, cohort: string, startDate?: string, endDate?: string }) {
   try {
-    // We'll just fetch some generic stats for the demo if type is Detailed Attendance Log
-    const totalRecords = await prisma.attendanceRecord.count();
-    
-    // Fallback logic if there's no data
-    if (totalRecords === 0) {
-      return {
-        success: true,
-        summary: {
-          totalStudents: 150,
-          averageAttendance: "92.5%",
-          totalAbsences: 45,
-          chronicAbsentees: 12
-        },
-        data: Array.from({ length: 15 }).map((_, i) => ({
-          id: `rec-${i}`,
-          studentName: `Student ${i + 1}`,
-          grade: "Grade 8",
-          date: new Date(Date.now() - Math.random() * 10000000000).toISOString().split('T')[0],
-          status: Math.random() > 0.8 ? "ABSENT" : (Math.random() > 0.9 ? "LATE" : "PRESENT"),
-          remarks: Math.random() > 0.8 ? "Medical leave" : ""
-        }))
+    const whereClause: any = {};
+    if (params.startDate && params.endDate) {
+      whereClause.register = {
+        date: {
+          gte: new Date(params.startDate),
+          lte: new Date(params.endDate)
+        }
+      };
+    } else if (params.startDate) {
+      whereClause.register = {
+        date: {
+          gte: new Date(params.startDate)
+        }
       };
     }
 
-    // Try to get real stats
     const records = await prisma.attendanceRecord.findMany({
-      take: 50,
+      where: whereClause,
       include: {
         student: {
           select: {
@@ -51,24 +43,25 @@ export async function generateAttendanceReport(params: { type: string, cohort: s
       }
     });
 
-    const presentCount = await prisma.attendanceRecord.count({ where: { status: 'PRESENT' } });
-    const absentCount = await prisma.attendanceRecord.count({ where: { status: 'ABSENT' } });
-    const totalCount = await prisma.attendanceRecord.count();
+    const presentCount = records.filter(r => r.status === 'PRESENT').length;
+    const absentCount = records.filter(r => r.status === 'ABSENT').length;
+    const lateCount = records.filter(r => r.status === 'LATE').length;
+    const totalCount = records.length;
     
-    const avg = totalCount > 0 ? ((presentCount / totalCount) * 100).toFixed(1) + "%" : "0%";
+    const avg = totalCount > 0 ? (((presentCount + lateCount) / totalCount) * 100).toFixed(1) + "%" : "0%";
 
     return {
       success: true,
       summary: {
-        totalStudents: records.length,
+        totalStudents: new Set(records.map(r => r.studentId)).size,
         averageAttendance: avg,
         totalAbsences: absentCount,
-        chronicAbsentees: Math.floor(absentCount / 5) // dummy calculation
+        chronicAbsentees: 0 
       },
       data: records.map(r => ({
         id: r.id,
         studentName: `${r.student.firstName} ${r.student.lastName}`,
-        grade: "N/A", // If grade is not directly available, just placeholder
+        grade: "N/A",
         date: r.register.date.toISOString().split('T')[0],
         status: r.status,
         remarks: r.remarks || ""

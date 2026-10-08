@@ -1,9 +1,32 @@
-"use client";
-
 import React from "react";
-import { PieChart, TrendingUp, AlertTriangle, ArrowRight, DownloadCloud, ChevronDown } from "lucide-react";
+import { PieChart, TrendingUp, AlertTriangle, ArrowRight, DownloadCloud, ChevronDown, Plus } from "lucide-react";
+import prisma from "@/lib/prisma";
+import { createBudget } from "./actions";
 
-export default function BudgetOverviewPage() {
+export const dynamic = "force-dynamic";
+
+export default async function BudgetOverviewPage() {
+  // Fetch real data
+  const budgets = await prisma.budget.findMany({
+    include: { departments: true },
+  });
+
+  const totalBudget = budgets.reduce((sum, b) => sum + b.totalAmount, 0);
+  const totalSpent = budgets.reduce((sum, b) => sum + b.spentAmount, 0);
+  const utilization = totalBudget > 0 ? (totalSpent / totalBudget) * 100 : 0;
+
+  const allDepartments = budgets.flatMap(b => b.departments);
+  const overUtilizedCount = allDepartments.filter(d => d.spentAmount > d.allocatedAmount).length;
+  const totalDeptsCount = allDepartments.length;
+
+  const topDepartments = [...allDepartments].sort((a, b) => b.spentAmount - a.spentAmount).slice(0, 4);
+
+  const formatMoney = (amount: number) => {
+    if (amount >= 1000000) return `KSh ${(amount / 1000000).toFixed(1)}M`;
+    if (amount >= 1000) return `KSh ${(amount / 1000).toFixed(1)}K`;
+    return `KSh ${amount.toFixed(0)}`;
+  };
+
   return (
     <div className="space-y-8">
       {/* Filters and Controls */}
@@ -23,6 +46,15 @@ export default function BudgetOverviewPage() {
           <button className="p-2 bg-white border border-slate-200/60 rounded-xl shadow-sm text-slate-500 hover:text-primary-900 transition-colors">
             <DownloadCloud className="w-5 h-5" />
           </button>
+          
+          <form action={createBudget} className="flex">
+            <input type="hidden" name="name" value="New Budget (Auto)" />
+            <input type="hidden" name="totalAmount" value="5000000" />
+            <button type="submit" className="flex items-center gap-2 px-4 py-2 bg-primary-900 hover:bg-primary-800 text-white rounded-xl text-sm font-bold shadow-sm transition-colors">
+              <Plus className="w-4 h-4" />
+              New Budget
+            </button>
+          </form>
         </div>
       </div>
 
@@ -38,9 +70,9 @@ export default function BudgetOverviewPage() {
                   <PieChart className="w-5 h-5" />
                </div>
                <p className="text-xs font-bold text-primary-200 uppercase tracking-wider mb-1">Approved Budget</p>
-               <p className="text-3xl font-black text-white tracking-tight">KSh 150M</p>
+               <p className="text-3xl font-black text-white tracking-tight">{formatMoney(totalBudget)}</p>
                <p className="text-xs font-bold text-primary-300 mt-2 flex items-center gap-1">
-                  Across 8 Departments
+                  Across {totalDeptsCount} Departments
                </p>
             </div>
          </div>
@@ -53,12 +85,12 @@ export default function BudgetOverviewPage() {
                </div>
                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Utilized</p>
                <div className="flex items-end gap-2">
-                  <p className="text-3xl font-black text-slate-800 tracking-tight">KSh 45M</p>
-                  <p className="text-sm font-bold text-slate-400 mb-1">(30%)</p>
+                  <p className="text-3xl font-black text-slate-800 tracking-tight">{formatMoney(totalSpent)}</p>
+                  <p className="text-sm font-bold text-slate-400 mb-1">({utilization.toFixed(0)}%)</p>
                </div>
             </div>
             <div className="w-full bg-slate-100 rounded-full h-2 mt-4">
-               <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '30%' }}></div>
+               <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${Math.min(utilization, 100)}%` }}></div>
             </div>
             <p className="text-xs font-medium text-slate-500 mt-2 text-right">On track for Q1</p>
          </div>
@@ -70,7 +102,7 @@ export default function BudgetOverviewPage() {
                   <AlertTriangle className="w-5 h-5" />
                </div>
                <p className="text-rose-600 text-xs font-bold uppercase tracking-wider mb-1">Over-Utilized</p>
-               <p className="text-3xl font-black text-rose-900 tracking-tight">2 <span className="text-sm font-medium text-rose-700">Departments</span></p>
+               <p className="text-3xl font-black text-rose-900 tracking-tight">{overUtilizedCount} <span className="text-sm font-medium text-rose-700">Departments</span></p>
             </div>
             <div className="flex items-center gap-1 text-sm font-bold text-rose-700 mt-4 group">
                Review variances <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -131,27 +163,29 @@ export default function BudgetOverviewPage() {
          <div className="bg-white/80 backdrop-blur-lg rounded-3xl border border-slate-200/80 shadow-sm p-6 flex flex-col h-[400px]">
             <h3 className="font-bold text-slate-800 mb-6">Top Spending Departments</h3>
             <div className="flex-1 overflow-y-auto pr-2 space-y-6 hide-scrollbar">
-               {[
-                  { name: "Academic Resources", spent: "18.5M", budget: "40.0M", pct: 46, status: "normal" },
-                  { name: "Administration", spent: "12.0M", budget: "35.0M", pct: 34, status: "normal" },
-                  { name: "Infrastructure", spent: "9.2M", budget: "10.0M", pct: 92, status: "warning" },
-                  { name: "Transport", spent: "5.3M", budget: "15.0M", pct: 35, status: "normal" },
-               ].map((dept, idx) => (
-                  <div key={idx}>
-                     <div className="flex justify-between items-end mb-2">
-                        <div>
-                           <p className="text-sm font-bold text-slate-700">{dept.name}</p>
-                           <p className={`text-[10px] font-bold uppercase tracking-wider ${dept.status === 'warning' ? 'text-amber-600' : 'text-slate-500'}`}>
-                              {dept.pct}% Utilized
-                           </p>
+               {topDepartments.length > 0 ? topDepartments.map((dept, idx) => {
+                  const pct = dept.allocatedAmount > 0 ? (dept.spentAmount / dept.allocatedAmount) * 100 : 0;
+                  const status = pct > 100 ? "warning" : "normal";
+
+                  return (
+                     <div key={idx}>
+                        <div className="flex justify-between items-end mb-2">
+                           <div>
+                              <p className="text-sm font-bold text-slate-700">{dept.departmentName}</p>
+                              <p className={`text-[10px] font-bold uppercase tracking-wider ${status === 'warning' ? 'text-amber-600' : 'text-slate-500'}`}>
+                                 {pct.toFixed(0)}% Utilized
+                              </p>
+                           </div>
+                           <p className="text-sm font-black text-slate-800">{formatMoney(dept.spentAmount)} <span className="text-xs font-semibold text-slate-400">/ {formatMoney(dept.allocatedAmount)}</span></p>
                         </div>
-                        <p className="text-sm font-black text-slate-800">{dept.spent} <span className="text-xs font-semibold text-slate-400">/ {dept.budget}</span></p>
+                        <div className="w-full bg-slate-100 rounded-full h-1.5">
+                           <div className={`h-1.5 rounded-full ${status === 'warning' ? 'bg-amber-500' : 'bg-primary-500'}`} style={{ width: `${Math.min(pct, 100)}%` }}></div>
+                        </div>
                      </div>
-                     <div className="w-full bg-slate-100 rounded-full h-1.5">
-                        <div className={`h-1.5 rounded-full ${dept.status === 'warning' ? 'bg-amber-500' : 'bg-primary-500'}`} style={{ width: `${dept.pct}%` }}></div>
-                     </div>
-                  </div>
-               ))}
+                  );
+               }) : (
+                  <p className="text-sm text-slate-500">No department data available.</p>
+               )}
             </div>
             <button className="w-full mt-4 py-2.5 text-sm font-bold text-primary-900 bg-primary-50 hover:bg-primary-100 rounded-xl transition-colors">
                View All Departments

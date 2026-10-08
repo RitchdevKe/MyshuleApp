@@ -1,14 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AlertCircle, X, CheckCircle } from "lucide-react";
+import { getOverviewStats } from "./actions";
 
 export default function AttendanceOverviewTab() {
-  const [stats] = useState({
-    todayAttendance: 94.8,
-    present: 3842,
-    absent: 147,
-    late: 86
+  const [stats, setStats] = useState({
+    todayAttendance: 0,
+    present: 0,
+    absent: 0,
+    late: 0
   });
+
+  useEffect(() => {
+    getOverviewStats().then((res) => {
+      if (res.success) {
+        setStats(res.stats);
+      }
+    });
+  }, []);
 
   const [sections] = useState([
     { id: "s1", section: "Preschool", rate: 97.2, color: "bg-emerald-500" },

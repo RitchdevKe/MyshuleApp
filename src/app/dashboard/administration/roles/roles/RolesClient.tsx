@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import { Shield, Plus, Edit2, Trash2, ShieldAlert } from "lucide-react";
-import { createRole, deleteRole } from "@/app/actions/staff";
+import { createRole, deleteRole, updateRole } from "@/app/actions/staff";
 import { useRouter } from "next/navigation";
 
 export default function RolesClient({ initialRoles }: { initialRoles: any[] }) {
@@ -10,6 +10,9 @@ export default function RolesClient({ initialRoles }: { initialRoles: any[] }) {
   const [isPending, startTransition] = useTransition();
   const [showModal, setShowModal] = useState(false);
   const [roleName, setRoleName] = useState("");
+  
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editRole, setEditRole] = useState<{id: string, name: string} | null>(null);
 
   const handleCreate = () => {
     if (!roleName) return;
@@ -17,6 +20,16 @@ export default function RolesClient({ initialRoles }: { initialRoles: any[] }) {
       await createRole(roleName);
       setShowModal(false);
       setRoleName("");
+      router.refresh();
+    });
+  };
+
+  const handleEdit = () => {
+    if (!editRole || !editRole.name) return;
+    startTransition(async () => {
+      await updateRole(editRole.id, editRole.name);
+      setShowEditModal(false);
+      setEditRole(null);
       router.refresh();
     });
   };
@@ -64,7 +77,13 @@ export default function RolesClient({ initialRoles }: { initialRoles: any[] }) {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                 <button className="p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-colors">
+                 <button 
+                   onClick={() => {
+                     setEditRole({ id: role.id, name: role.name });
+                     setShowEditModal(true);
+                   }}
+                   className="p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-colors"
+                 >
                    <Edit2 className="w-4 h-4" />
                  </button>
                  {!isSystemDefault && (
@@ -119,7 +138,25 @@ export default function RolesClient({ initialRoles }: { initialRoles: any[] }) {
             </div>
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
               <button onClick={() => setShowModal(false)} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
-              <button onClick={handleCreate} disabled={!roleName} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Save Role</button>
+              <button onClick={handleCreate} disabled={!roleName || isPending} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Save Role</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEditModal && editRole && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl overflow-hidden border border-slate-200">
+            <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+              <h3 className="text-lg font-black text-slate-800">Edit Role</h3>
+            </div>
+            <div className="p-6">
+              <label className="block text-sm font-bold text-slate-700 mb-2">Role Name</label>
+              <input type="text" value={editRole.name} onChange={(e) => setEditRole({...editRole, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:border-primary-500 focus:bg-white" />
+            </div>
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-3 justify-end">
+              <button onClick={() => { setShowEditModal(false); setEditRole(null); }} className="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl">Cancel</button>
+              <button onClick={handleEdit} disabled={!editRole.name || isPending} className="px-5 py-2.5 text-sm font-bold text-white bg-primary-900 hover:bg-primary-800 rounded-xl shadow-sm disabled:opacity-50">Update Role</button>
             </div>
           </div>
         </div>

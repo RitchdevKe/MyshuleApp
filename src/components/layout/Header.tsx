@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Search, Menu, Bell, MessageSquare, User, GraduationCap, ChevronDown, School } from "lucide-react";
 import { useSidebar } from "@/contexts/SidebarContext";
 import { useSchoolLevel, SchoolLevel } from "@/contexts/SchoolLevelContext";
+import { AIAssistant } from "@/components/ai/AIAssistant";
 
 const LEVELS: { value: SchoolLevel; label: string; color: string; dot: string }[] = [
   { value: "All",         label: "All Schools",          color: "bg-white/15 text-white border-white/25",                    dot: "bg-secondary-400" },
@@ -109,10 +110,11 @@ const Header = ({ tenantName, logoUrl }: { tenantName?: string, logoUrl?: string
             )}
           </div>
 
-          <div className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm">
+          <div className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm flex items-center gap-2">
             <span className="font-black text-sm lg:text-base leading-tight tracking-[0.2em] text-white uppercase">
               My<span className="text-secondary-500">Shule</span> App
             </span>
+            <AIAssistant />
           </div>
         </div>
       </div>

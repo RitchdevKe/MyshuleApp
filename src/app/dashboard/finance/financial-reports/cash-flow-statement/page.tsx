@@ -1,10 +1,65 @@
 "use client";
 
-import React, { useState } from "react";
-import { TrendingDown, Download, Filter, Calendar, Activity, ArrowRightLeft, Landmark } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { TrendingDown, Download, Filter, Calendar, Activity, ArrowRightLeft, Landmark, Loader2 } from "lucide-react";
+import { getCashFlowData } from "./actions";
+
+interface CashFlowDetail {
+  name: string;
+  amount: number;
+}
+
+interface CashFlowCategory {
+  inflow: number;
+  outflow: number;
+  net: number;
+  details: CashFlowDetail[];
+}
+
+interface CashFlowData {
+  beginningBalance: number;
+  endingBalance: number;
+  netIncrease: number;
+  operating: CashFlowCategory;
+  investing: CashFlowCategory;
+  financing: CashFlowCategory;
+}
 
 export default function CashFlowStatementPage() {
   const [period, setPeriod] = useState("FY 2026/2027 - Q1");
+  const [data, setData] = useState<CashFlowData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      setLoading(true);
+      try {
+        const result = await getCashFlowData(period);
+        setData(result);
+      } catch (error) {
+        console.error("Failed to load cash flow data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, [period]);
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', minimumFractionDigits: 0 }).format(amount);
+  };
+
+  const formatMillions = (amount: number) => {
+    return `KSh ${(amount / 1000000).toFixed(1)}M`;
+  };
+
+  if (loading || !data) {
+    return (
+      <div className="flex h-64 items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary-900" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
@@ -45,21 +100,23 @@ export default function CashFlowStatementPage() {
             <div className="bg-primary-900 rounded-3xl border border-primary-800 p-8 shadow-xl shadow-primary-900/20 relative overflow-hidden group">
                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity"></div>
                
-               <p className="text-primary-200 text-sm font-bold uppercase tracking-wider mb-2">Net Cash Increase</p>
-               <p className="text-4xl font-black text-white tracking-tight mb-8">KSh 9.4M</p>
+               <p className="text-primary-200 text-sm font-bold uppercase tracking-wider mb-2">
+                 {data.netIncrease >= 0 ? 'Net Cash Increase' : 'Net Cash Decrease'}
+               </p>
+               <p className="text-4xl font-black text-white tracking-tight mb-8">{formatMillions(Math.abs(data.netIncrease))}</p>
                
                <div className="space-y-4 pt-6 border-t border-primary-800">
                   <div className="flex justify-between items-center text-primary-100">
                      <span className="text-sm font-medium">Beginning Cash Balance</span>
-                     <span className="font-bold">33,100,000</span>
+                     <span className="font-bold">{formatCurrency(data.beginningBalance)}</span>
                   </div>
                   <div className="flex justify-between items-center text-primary-100">
-                     <span className="text-sm font-medium">Net Increase in Cash</span>
-                     <span className="font-bold">+9,400,000</span>
+                     <span className="text-sm font-medium">Net Change in Cash</span>
+                     <span className="font-bold">{data.netIncrease > 0 ? '+' : ''}{formatCurrency(data.netIncrease)}</span>
                   </div>
                   <div className="flex justify-between items-center text-white pt-2">
                      <span className="text-sm font-bold uppercase">Ending Cash Balance</span>
-                     <span className="font-black text-lg">42,500,000</span>
+                     <span className="font-black text-lg">{formatCurrency(data.endingBalance)}</span>
                   </div>
                </div>
             </div>
@@ -73,7 +130,7 @@ export default function CashFlowStatementPage() {
                   </li>
                   <li className="flex gap-3 text-sm">
                      <div className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 shrink-0"></div>
-                     <p className="text-slate-600 font-medium">Heavy investment in fixed assets (-KSh 5.2M) this quarter due to new school bus purchase.</p>
+                     <p className="text-slate-600 font-medium">Heavy investment in fixed assets this quarter due to new school bus purchase.</p>
                   </li>
                </ul>
             </div>
@@ -94,27 +151,19 @@ export default function CashFlowStatementPage() {
                      <p className="text-xs font-semibold text-slate-500">Cash generated from core school operations.</p>
                   </div>
                   <div className="text-right">
-                     <p className="text-lg font-black text-emerald-600">+ KSh 16.1M</p>
+                     <p className={`text-lg font-black ${data.operating.net >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                       {data.operating.net > 0 ? '+' : ''} {formatMillions(data.operating.net)}
+                     </p>
                   </div>
                </div>
 
                <div className="space-y-3 text-sm pl-13">
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Net Income</span>
-                     <span className="font-bold">12,400,000</span>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Depreciation & Amortization</span>
-                     <span className="font-bold">2,100,000</span>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Decrease in Accounts Receivable</span>
-                     <span className="font-bold">800,000</span>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Increase in Accounts Payable</span>
-                     <span className="font-bold">800,000</span>
-                  </div>
+                  {data.operating.details.map((detail: CashFlowDetail, idx: number) => (
+                    <div key={idx} className="flex justify-between items-center text-slate-600">
+                       <span className="font-medium">{detail.name}</span>
+                       <span className="font-bold">{detail.amount < 0 ? `(${formatCurrency(Math.abs(detail.amount))})` : formatCurrency(detail.amount)}</span>
+                    </div>
+                  ))}
                </div>
             </div>
 
@@ -129,19 +178,19 @@ export default function CashFlowStatementPage() {
                      <p className="text-xs font-semibold text-slate-500">Cash spent on long-term assets and infrastructure.</p>
                   </div>
                   <div className="text-right">
-                     <p className="text-lg font-black text-rose-600">- KSh 5.2M</p>
+                     <p className={`text-lg font-black ${data.investing.net >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                       {data.investing.net > 0 ? '+' : ''} {formatMillions(data.investing.net)}
+                     </p>
                   </div>
                </div>
 
                <div className="space-y-3 text-sm pl-13">
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Purchase of Property & Equipment</span>
-                     <span className="font-bold">(5,000,000)</span>
-                  </div>
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Purchase of Intangible Assets (Software)</span>
-                     <span className="font-bold">(200,000)</span>
-                  </div>
+                  {data.investing.details.map((detail: CashFlowDetail, idx: number) => (
+                    <div key={idx} className="flex justify-between items-center text-slate-600">
+                       <span className="font-medium">{detail.name}</span>
+                       <span className="font-bold">{detail.amount < 0 ? `(${formatCurrency(Math.abs(detail.amount))})` : formatCurrency(detail.amount)}</span>
+                    </div>
+                  ))}
                </div>
             </div>
 
@@ -156,15 +205,19 @@ export default function CashFlowStatementPage() {
                      <p className="text-xs font-semibold text-slate-500">Cash from borrowing or shareholder equity.</p>
                   </div>
                   <div className="text-right">
-                     <p className="text-lg font-black text-rose-600">- KSh 1.5M</p>
+                     <p className={`text-lg font-black ${data.financing.net >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                       {data.financing.net > 0 ? '+' : ''} {formatMillions(data.financing.net)}
+                     </p>
                   </div>
                </div>
 
                <div className="space-y-3 text-sm pl-13">
-                  <div className="flex justify-between items-center text-slate-600">
-                     <span className="font-medium">Repayment of Long-Term Debt</span>
-                     <span className="font-bold">(1,500,000)</span>
-                  </div>
+                  {data.financing.details.map((detail: CashFlowDetail, idx: number) => (
+                    <div key={idx} className="flex justify-between items-center text-slate-600">
+                       <span className="font-medium">{detail.name}</span>
+                       <span className="font-bold">{detail.amount < 0 ? `(${formatCurrency(Math.abs(detail.amount))})` : formatCurrency(detail.amount)}</span>
+                    </div>
+                  ))}
                </div>
             </div>
 

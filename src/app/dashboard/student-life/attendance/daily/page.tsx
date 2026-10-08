@@ -1,6 +1,6 @@
 import React from "react";
 import DailyAttendanceClient from "./DailyAttendanceClient";
-import { getDailyAttendance } from "@/app/actions/studentLife";
+import { getDailyAttendance } from "./actions";
 
 export default async function DailyAttendanceTab(
   props: {

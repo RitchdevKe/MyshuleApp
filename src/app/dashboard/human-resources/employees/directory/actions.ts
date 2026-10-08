@@ -3,13 +3,26 @@
 
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { getSession } from "@/lib/auth";
 
 const DEFAULT_TENANT_ID = "1e8a93ff-1533-4f1a-b337-1473919ff7f2";
 
+async function getTenantId() {
+  try {
+    const session = await getSession();
+    if (session?.tenantId) return session.tenantId;
+  } catch (e) {
+    // ignore
+  }
+  const tenant = await prisma.tenant.findFirst();
+  return tenant?.id || DEFAULT_TENANT_ID;
+}
+
 export async function getStaff() {
   try {
+    const tenantId = await getTenantId();
     return await prisma.staff.findMany({
-      where: { tenantId: DEFAULT_TENANT_ID },
+      where: { tenantId },
       orderBy: { firstName: 'asc' },
       include: {
         user: true,
@@ -32,9 +45,7 @@ export async function createStaff(data: {
   type: string;
 }) {
   try {
-    let tenantId = DEFAULT_TENANT_ID;
-    const tenant = await prisma.tenant.findFirst();
-    if (tenant) tenantId = tenant.id;
+    const tenantId = await getTenantId();
 
     let user = await prisma.user.findUnique({
       where: { email: data.email }

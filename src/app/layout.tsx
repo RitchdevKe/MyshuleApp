@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import "./globals.css";
 import TopLoader from "@/components/TopLoader";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+
 
 export const metadata: Metadata = {
-  title: "EduSystem Kenya | School Management",
+  title: "MyShule App",
   description: "Modern School Management System for the Kenyan Market (CBC & 8-4-4)",
 };
 
@@ -32,7 +29,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
+      className={`h-full antialiased`}
     >
       <head>
         <style>{`
@@ -54,3 +51,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
+
